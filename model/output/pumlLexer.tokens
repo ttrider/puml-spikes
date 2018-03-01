@@ -1,0 +1,10 @@
+SEMICOLON=1
+STARTUML=2
+ENDUML=3
+SPACE=4
+TEXT=5
+WS=6
+CR=7
+';'=1
+'@startuml'=2
+'@enduml'=3

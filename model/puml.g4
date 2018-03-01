@@ -1,50 +1,35 @@
-grammar puml
-	;
+grammar puml;
 
-document
-	: diagram+;
+document: diagram+;
 
-diagram
-	: startUml endUml;
+diagram: startUml endUml;
 
-startUml
-	: STARTUML SPACE? textLine? CR;
-endUml
-	: ENDUML CR;
+startUml: STARTUML SPACE? textLine? CR;
+endUml: ENDUML CR;
 
-textLine
-	: (TEXT SPACE?)+;
+textLine: (TEXT SPACE?)+;
 
-SEMICOLON
-	: ';';
+SEMICOLON: ';';
 
-STARTUML
-	: '@startuml';
-ENDUML
-	: '@enduml';
+STARTUML: '@startuml';
+ENDUML: '@enduml';
 
-SPACE
-	: (' ' | '\t')+;
+SPACE: (' ' | '\t')+;
 
 //WS : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip ;
 
-TEXT
-	: (LETTERS | DIGITS | SYMBOL | WS)+;
+TEXT: (LETTERS | DIGITS | SYMBOL | WS)+;
 
-WS
-	: [ \t];
+WS: [ \t];
 
-CR
-	: '\r'? '\n' | EOF;
+CR: ('\r'? '\n') | EOF;
 
-fragment LETTERS
-	: [a-zA-Z];
+fragment LETTERS: [a-zA-Z];
 
-fragment DIGITS
-	: [0-9];
+fragment DIGITS: [0-9];
 
-fragment SYMBOL
-	: '.'
+fragment SYMBOL:
+	'.'
 	| ';'
 	| ':'
 	| ','
@@ -55,5 +40,4 @@ fragment SYMBOL
 	| '\''
 	| '~'
 	| '"'
-	| '+'
-	;
+	| '+';

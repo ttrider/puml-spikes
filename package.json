@@ -4,22 +4,27 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "antlr4ts": "antlr4ts -visitor model/puml.g4"
+        "test": "node test/test.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@types/glob": "^5.0.35",
         "@types/node": "^9.4.6",
+        "@types/tape": "^4.2.31",
         "eslint": "^4.18.1",
+        "glob": "^7.1.2",
         "jslint": "^0.12.0",
+        "tape": "^4.9.0",
         "tslint": "^5.9.1",
         "types": "^0.1.1",
         "typescript": "^2.7.2"
     },
     "dependencies": {
+        "@types/async": "^2.0.47",
         "ajv": "^6.2.0",
-        "antlr4": "^4.7.1"
+        "antlr4": "^4.7.1",
+        "async": "^2.6.0"
     }
 }
