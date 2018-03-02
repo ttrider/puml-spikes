@@ -36,8 +36,8 @@ pumlVisitor.prototype.visitEndUml = function(ctx) {
 };
 
 
-// Visit a parse tree produced by pumlParser#textLine.
-pumlVisitor.prototype.visitTextLine = function(ctx) {
+// Visit a parse tree produced by pumlParser#digramName.
+pumlVisitor.prototype.visitDigramName = function(ctx) {
   return this.visitChildren(ctx);
 };
 

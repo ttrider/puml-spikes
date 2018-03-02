@@ -47,12 +47,12 @@ pumlListener.prototype.exitEndUml = function(ctx) {
 };
 
 
-// Enter a parse tree produced by pumlParser#textLine.
-pumlListener.prototype.enterTextLine = function(ctx) {
+// Enter a parse tree produced by pumlParser#digramName.
+pumlListener.prototype.enterDigramName = function(ctx) {
 };
 
-// Exit a parse tree produced by pumlParser#textLine.
-pumlListener.prototype.exitTextLine = function(ctx) {
+// Exit a parse tree produced by pumlParser#digramName.
+pumlListener.prototype.exitDigramName = function(ctx) {
 };
 
 

@@ -63,48 +63,55 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     }
     pumlVisitor2.prototype.visitDocument = function (ctx) {
         var doc = new document_1.Document();
-        ctx.document = doc;
-        var children = this.visitChildren(ctx);
+        for (var _i = 0, _a = this.visitChildren(ctx); _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item) {
+                if (item.diagram) {
+                    doc.diagrams.push(item.diagram);
+                }
+            }
+        }
         return doc;
     };
     ;
     // Visit a parse tree produced by pumlParser#diagram.
     pumlVisitor2.prototype.visitDiagram = function (ctx) {
-        ctx.diagram = new document_1.Diagram();
-        var children = this.visitChildren(ctx);
-        if (ctx.document) {
-            ctx.document.diagrams.push(ctx.diagram);
+        var diagram = new document_1.Diagram();
+        for (var _i = 0, _a = this.visitChildren(ctx); _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item) {
+                if (item.diagramName) {
+                    diagram.name = item.diagramName;
+                }
+            }
         }
-        return ctx.diagram;
+        return { diagram: diagram };
     };
     ;
     pumlVisitor2.prototype.visitStartUml = function (ctx) {
-        if (!ctx.diagram) {
-            ctx.diagram = new document_1.Diagram();
-        }
-        var children = this.visitChildren(ctx);
-        for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
-            var child = children_1[_i];
-            if (typeof child === "string") {
-                return child;
+        for (var _i = 0, _a = this.visitChildren(ctx); _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item) {
+                if (item.diagramName) {
+                    return item;
+                }
             }
         }
+        return {};
     };
     ;
     pumlVisitor2.prototype.visitEndUml = function (ctx) {
-        return this.visitChildren(ctx);
+        return null;
     };
     ;
     pumlVisitor2.prototype.visitDigramName = function (ctx) {
-        if (!ctx.diagram) {
-            ctx.diagram = new document_1.Diagram();
-        }
         var value = ctx.getText();
         if (value) {
             value = value.trim();
         }
-        ctx.diagram.name = ctx.getText();
-        return value;
+        return {
+            diagramName: value
+        };
     };
     ;
     return pumlVisitor2;

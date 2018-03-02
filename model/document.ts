@@ -1,3 +1,5 @@
+
+
 export class Document {
 
     diagrams: Diagram[] = [];
@@ -5,5 +7,4 @@ export class Document {
 
 export class Diagram {
     name: string | null = null;
-    sealed: boolean = false;
 }

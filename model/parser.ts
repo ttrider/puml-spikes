@@ -55,72 +55,63 @@ function printTokens(input: string) {
 }
 
 
-declare interface IVisitorContext {
-
-    document: Document | undefined | null;
-    diagram: Diagram | undefined | null;
-
-
-
-    getText(): string;
-}
 
 class pumlVisitor2 extends pumlVisitor.pumlVisitor {
 
-
-
-
-    visitDocument(ctx: IVisitorContext) {
+    visitDocument(ctx: any) {
         const doc = new Document();
-        ctx.document = doc;
-        const children = this.visitChildren(ctx);
+
+        for (const item of this.visitChildren(ctx)) {
+            if (item) {
+                if (item.diagram) {
+                    doc.diagrams.push(item.diagram);
+                }
+            }
+        }
         return doc;
     };
 
 
     // Visit a parse tree produced by pumlParser#diagram.
-    visitDiagram(ctx: IVisitorContext) {
+    visitDiagram(ctx: any) {
 
-        ctx.diagram = new Diagram();
+        const diagram = new Diagram();
 
-        const children = this.visitChildren(ctx);
-
-        if (ctx.document) {
-            ctx.document.diagrams.push(ctx.diagram);
-        }
-
-        return ctx.diagram;
-    };
-
-    visitStartUml(ctx: IVisitorContext) {
-        if (!ctx.diagram){
-            ctx.diagram = new Diagram();
-        }
-        
-        const children = this.visitChildren(ctx);
-        for (const child of children) {
-            if (typeof child === "string") {
-                return child;
+        for (const item of this.visitChildren(ctx)) {
+            if (item) {
+                if (item.diagramName) {
+                    diagram.name = item.diagramName;
+                }
             }
         }
+
+        return { diagram: diagram };
     };
 
-
-    visitEndUml(ctx: IVisitorContext) {
-        return this.visitChildren(ctx);
-    };
-
-    visitDigramName(ctx: IVisitorContext) {
-        if (!ctx.diagram){
-            ctx.diagram = new Diagram();
+    visitStartUml(ctx: any) {
+        for (const item of this.visitChildren(ctx)) {
+            if (item) {
+                if (item.diagramName) {
+                    return item;
+                }
+            }
         }
+        return {};
+    };
+
+
+    visitEndUml(ctx: any) {
+        return null;
+    };
+
+    visitDigramName(ctx: any) {
         let value: string = ctx.getText();
         if (value) {
             value = value.trim();
         }
-        ctx.diagram.name = ctx.getText();
-
-        return value;
+        return {
+            diagramName: value
+        };
     };
 }
 
