@@ -1,4 +1,4 @@
-// Generated from /Volumes/v/github/puml.light/model/puml.g4 by ANTLR 4.7
+// Generated from /Volumes/v/github/puml/spikes/model/puml.g4 by ANTLR 4.7
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 
@@ -47,12 +47,12 @@ pumlListener.prototype.exitEndUml = function(ctx) {
 };
 
 
-// Enter a parse tree produced by pumlParser#textLine.
-pumlListener.prototype.enterTextLine = function(ctx) {
+// Enter a parse tree produced by pumlParser#digramName.
+pumlListener.prototype.enterDigramName = function(ctx) {
 };
 
-// Exit a parse tree produced by pumlParser#textLine.
-pumlListener.prototype.exitTextLine = function(ctx) {
+// Exit a parse tree produced by pumlParser#digramName.
+pumlListener.prototype.exitDigramName = function(ctx) {
 };
 
 

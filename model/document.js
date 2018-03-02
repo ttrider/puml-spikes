@@ -9,6 +9,8 @@ var Document = /** @class */ (function () {
 exports.Document = Document;
 var Diagram = /** @class */ (function () {
     function Diagram() {
+        this.name = null;
+        this.sealed = false;
     }
     return Diagram;
 }());

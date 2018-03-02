@@ -9,8 +9,7 @@ export function parse(diagram: string): Document {
     printTokens(diagram);
     const chars = new antlr4.InputStream(diagram);
     // adding extra CRLF at the end, if it is not there
-    if (chars.data[chars.size-1]!=10)
-    {
+    if (chars.data[chars.size - 1] != 10) {
         chars.data.push(10);
         chars._size++;
     }
@@ -55,43 +54,73 @@ function printTokens(input: string) {
 
 }
 
+
+declare interface IVisitorContext {
+
+    document: Document | undefined | null;
+    diagram: Diagram | undefined | null;
+
+
+
+    getText(): string;
+}
+
 class pumlVisitor2 extends pumlVisitor.pumlVisitor {
 
-    visitDocument(ctx: any) {
+
+
+
+    visitDocument(ctx: IVisitorContext) {
         const doc = new Document();
+        ctx.document = doc;
         const children = this.visitChildren(ctx);
-        for (const child of children) {
-            if (child instanceof Diagram) {
-                doc.diagrams.push(child);
-            }
-        }
         return doc;
     };
 
 
     // Visit a parse tree produced by pumlParser#diagram.
-    visitDiagram(ctx: any) {
-        const diagram = new Diagram();
+    visitDiagram(ctx: IVisitorContext) {
+
+        ctx.diagram = new Diagram();
 
         const children = this.visitChildren(ctx);
 
-        return diagram;
+        if (ctx.document) {
+            ctx.document.diagrams.push(ctx.diagram);
+        }
+
+        return ctx.diagram;
     };
 
-    visitStartUml(ctx: any) {
-        console.info("visitStartUml");
+    visitStartUml(ctx: IVisitorContext) {
+        if (!ctx.diagram){
+            ctx.diagram = new Diagram();
+        }
+        
+        const children = this.visitChildren(ctx);
+        for (const child of children) {
+            if (typeof child === "string") {
+                return child;
+            }
+        }
+    };
+
+
+    visitEndUml(ctx: IVisitorContext) {
         return this.visitChildren(ctx);
     };
 
+    visitDigramName(ctx: IVisitorContext) {
+        if (!ctx.diagram){
+            ctx.diagram = new Diagram();
+        }
+        let value: string = ctx.getText();
+        if (value) {
+            value = value.trim();
+        }
+        ctx.diagram.name = ctx.getText();
 
-    visitEndUml(ctx: any) {
-        console.info("visitEndUml");
-        return this.visitChildren(ctx);
-    };
-
-    visitTextLine(ctx: any) {
-        console.info("visitTextLine");
-        return this.visitChildren(ctx);
+        return value;
     };
 }
 

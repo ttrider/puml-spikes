@@ -63,36 +63,48 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     }
     pumlVisitor2.prototype.visitDocument = function (ctx) {
         var doc = new document_1.Document();
+        ctx.document = doc;
         var children = this.visitChildren(ctx);
-        for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
-            var child = children_1[_i];
-            if (child instanceof document_1.Diagram) {
-                doc.diagrams.push(child);
-            }
-        }
         return doc;
     };
     ;
     // Visit a parse tree produced by pumlParser#diagram.
     pumlVisitor2.prototype.visitDiagram = function (ctx) {
-        var diagram = new document_1.Diagram();
+        ctx.diagram = new document_1.Diagram();
         var children = this.visitChildren(ctx);
-        return diagram;
+        if (ctx.document) {
+            ctx.document.diagrams.push(ctx.diagram);
+        }
+        return ctx.diagram;
     };
     ;
     pumlVisitor2.prototype.visitStartUml = function (ctx) {
-        console.info("visitStartUml");
-        return this.visitChildren(ctx);
+        if (!ctx.diagram) {
+            ctx.diagram = new document_1.Diagram();
+        }
+        var children = this.visitChildren(ctx);
+        for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
+            var child = children_1[_i];
+            if (typeof child === "string") {
+                return child;
+            }
+        }
     };
     ;
     pumlVisitor2.prototype.visitEndUml = function (ctx) {
-        console.info("visitEndUml");
         return this.visitChildren(ctx);
     };
     ;
-    pumlVisitor2.prototype.visitTextLine = function (ctx) {
-        console.info("visitTextLine");
-        return this.visitChildren(ctx);
+    pumlVisitor2.prototype.visitDigramName = function (ctx) {
+        if (!ctx.diagram) {
+            ctx.diagram = new document_1.Diagram();
+        }
+        var value = ctx.getText();
+        if (value) {
+            value = value.trim();
+        }
+        ctx.diagram.name = ctx.getText();
+        return value;
     };
     ;
     return pumlVisitor2;

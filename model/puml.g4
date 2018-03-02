@@ -2,12 +2,13 @@ grammar puml;
 
 document: diagram+;
 
-diagram: startUml endUml;
+diagram: startUml endUml CR*;
 
-startUml: STARTUML SPACE? textLine? CR;
-endUml: ENDUML CR;
+startUml: STARTUML SPACE? digramName? CR;
+endUml: ENDUML SPACE? CR;
 
-textLine: (TEXT SPACE?)+;
+digramName: (TEXT SPACE?)+;
+//textLine: (TEXT SPACE?)+;
 
 SEMICOLON: ';';
 

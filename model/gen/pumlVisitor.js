@@ -1,4 +1,4 @@
-// Generated from /Volumes/v/github/puml.light/model/puml.g4 by ANTLR 4.7
+// Generated from /Volumes/v/github/puml/spikes/model/puml.g4 by ANTLR 4.7
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 
@@ -36,8 +36,8 @@ pumlVisitor.prototype.visitEndUml = function(ctx) {
 };
 
 
-// Visit a parse tree produced by pumlParser#textLine.
-pumlVisitor.prototype.visitTextLine = function(ctx) {
+// Visit a parse tree produced by pumlParser#digramName.
+pumlVisitor.prototype.visitDigramName = function(ctx) {
   return this.visitChildren(ctx);
 };
 

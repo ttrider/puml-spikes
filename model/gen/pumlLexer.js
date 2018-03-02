@@ -1,4 +1,4 @@
-// Generated from /Volumes/v/github/puml.light/model/puml.g4 by ANTLR 4.7
+// Generated from /Volumes/v/github/puml/spikes/model/puml.g4 by ANTLR 4.7
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 
