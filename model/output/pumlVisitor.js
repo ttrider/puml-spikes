@@ -42,5 +42,29 @@ pumlVisitor.prototype.visitDigramName = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#diagramItem.
+pumlVisitor.prototype.visitDiagramItem = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#note.
+pumlVisitor.prototype.visitNote = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#singleLineNote.
+pumlVisitor.prototype.visitSingleLineNote = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#noteTextLine.
+pumlVisitor.prototype.visitNoteTextLine = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 
 exports.pumlVisitor = pumlVisitor;

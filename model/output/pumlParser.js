@@ -7,37 +7,48 @@ var pumlVisitor = require('./pumlVisitor').pumlVisitor;
 var grammarFileName = "puml.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\t1\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t\u0004",
-    "\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0003\u0002\u0006\u0002\u000e",
-    "\n\u0002\r\u0002\u000e\u0002\u000f\u0003\u0003\u0003\u0003\u0003\u0003",
-    "\u0007\u0003\u0015\n\u0003\f\u0003\u000e\u0003\u0018\u000b\u0003\u0003",
-    "\u0004\u0003\u0004\u0005\u0004\u001c\n\u0004\u0003\u0004\u0005\u0004",
-    "\u001f\n\u0004\u0003\u0004\u0003\u0004\u0003\u0005\u0003\u0005\u0005",
-    "\u0005%\n\u0005\u0003\u0005\u0003\u0005\u0003\u0006\u0003\u0006\u0005",
-    "\u0006+\n\u0006\u0006\u0006-\n\u0006\r\u0006\u000e\u0006.\u0003\u0006",
-    "\u0002\u0002\u0007\u0002\u0004\u0006\b\n\u0002\u0002\u00022\u0002\r",
-    "\u0003\u0002\u0002\u0002\u0004\u0011\u0003\u0002\u0002\u0002\u0006\u0019",
-    "\u0003\u0002\u0002\u0002\b\"\u0003\u0002\u0002\u0002\n,\u0003\u0002",
-    "\u0002\u0002\f\u000e\u0005\u0004\u0003\u0002\r\f\u0003\u0002\u0002\u0002",
-    "\u000e\u000f\u0003\u0002\u0002\u0002\u000f\r\u0003\u0002\u0002\u0002",
-    "\u000f\u0010\u0003\u0002\u0002\u0002\u0010\u0003\u0003\u0002\u0002\u0002",
-    "\u0011\u0012\u0005\u0006\u0004\u0002\u0012\u0016\u0005\b\u0005\u0002",
-    "\u0013\u0015\u0007\t\u0002\u0002\u0014\u0013\u0003\u0002\u0002\u0002",
-    "\u0015\u0018\u0003\u0002\u0002\u0002\u0016\u0014\u0003\u0002\u0002\u0002",
-    "\u0016\u0017\u0003\u0002\u0002\u0002\u0017\u0005\u0003\u0002\u0002\u0002",
-    "\u0018\u0016\u0003\u0002\u0002\u0002\u0019\u001b\u0007\u0004\u0002\u0002",
-    "\u001a\u001c\u0007\u0006\u0002\u0002\u001b\u001a\u0003\u0002\u0002\u0002",
-    "\u001b\u001c\u0003\u0002\u0002\u0002\u001c\u001e\u0003\u0002\u0002\u0002",
-    "\u001d\u001f\u0005\n\u0006\u0002\u001e\u001d\u0003\u0002\u0002\u0002",
-    "\u001e\u001f\u0003\u0002\u0002\u0002\u001f \u0003\u0002\u0002\u0002",
-    " !\u0007\t\u0002\u0002!\u0007\u0003\u0002\u0002\u0002\"$\u0007\u0005",
-    "\u0002\u0002#%\u0007\u0006\u0002\u0002$#\u0003\u0002\u0002\u0002$%\u0003",
-    "\u0002\u0002\u0002%&\u0003\u0002\u0002\u0002&\'\u0007\t\u0002\u0002",
-    "\'\t\u0003\u0002\u0002\u0002(*\u0007\u0007\u0002\u0002)+\u0007\u0006",
-    "\u0002\u0002*)\u0003\u0002\u0002\u0002*+\u0003\u0002\u0002\u0002+-\u0003",
-    "\u0002\u0002\u0002,(\u0003\u0002\u0002\u0002-.\u0003\u0002\u0002\u0002",
-    ".,\u0003\u0002\u0002\u0002./\u0003\u0002\u0002\u0002/\u000b\u0003\u0002",
-    "\u0002\u0002\t\u000f\u0016\u001b\u001e$*."].join("");
+    "\u0003\u000bJ\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
+    "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0003\u0002\u0006\u0002\u0016\n\u0002",
+    "\r\u0002\u000e\u0002\u0017\u0003\u0003\u0003\u0003\u0007\u0003\u001c",
+    "\n\u0003\f\u0003\u000e\u0003\u001f\u000b\u0003\u0003\u0003\u0003\u0003",
+    "\u0007\u0003#\n\u0003\f\u0003\u000e\u0003&\u000b\u0003\u0003\u0004\u0003",
+    "\u0004\u0005\u0004*\n\u0004\u0003\u0004\u0005\u0004-\n\u0004\u0003\u0004",
+    "\u0003\u0004\u0003\u0005\u0003\u0005\u0005\u00053\n\u0005\u0003\u0005",
+    "\u0003\u0005\u0003\u0006\u0006\u00068\n\u0006\r\u0006\u000e\u00069\u0003",
+    "\u0007\u0003\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003",
+    "\t\u0003\n\u0006\nF\n\n\r\n\u000e\nG\u0003\n\u00049G\u0002\u000b\u0002",
+    "\u0004\u0006\b\n\f\u000e\u0010\u0012\u0002\u0004\u0003\u0002\u000b\u000b",
+    "\u0003\u0002\u0006\u0007\u0002H\u0002\u0015\u0003\u0002\u0002\u0002",
+    "\u0004\u0019\u0003\u0002\u0002\u0002\u0006\'\u0003\u0002\u0002\u0002",
+    "\b0\u0003\u0002\u0002\u0002\n7\u0003\u0002\u0002\u0002\f;\u0003\u0002",
+    "\u0002\u0002\u000e=\u0003\u0002\u0002\u0002\u0010?\u0003\u0002\u0002",
+    "\u0002\u0012E\u0003\u0002\u0002\u0002\u0014\u0016\u0005\u0004\u0003",
+    "\u0002\u0015\u0014\u0003\u0002\u0002\u0002\u0016\u0017\u0003\u0002\u0002",
+    "\u0002\u0017\u0015\u0003\u0002\u0002\u0002\u0017\u0018\u0003\u0002\u0002",
+    "\u0002\u0018\u0003\u0003\u0002\u0002\u0002\u0019\u001d\u0005\u0006\u0004",
+    "\u0002\u001a\u001c\u0005\f\u0007\u0002\u001b\u001a\u0003\u0002\u0002",
+    "\u0002\u001c\u001f\u0003\u0002\u0002\u0002\u001d\u001b\u0003\u0002\u0002",
+    "\u0002\u001d\u001e\u0003\u0002\u0002\u0002\u001e \u0003\u0002\u0002",
+    "\u0002\u001f\u001d\u0003\u0002\u0002\u0002 $\u0005\b\u0005\u0002!#\u0007",
+    "\u000b\u0002\u0002\"!\u0003\u0002\u0002\u0002#&\u0003\u0002\u0002\u0002",
+    "$\"\u0003\u0002\u0002\u0002$%\u0003\u0002\u0002\u0002%\u0005\u0003\u0002",
+    "\u0002\u0002&$\u0003\u0002\u0002\u0002\')\u0007\u0003\u0002\u0002(*",
+    "\u0007\n\u0002\u0002)(\u0003\u0002\u0002\u0002)*\u0003\u0002\u0002\u0002",
+    "*,\u0003\u0002\u0002\u0002+-\u0005\n\u0006\u0002,+\u0003\u0002\u0002",
+    "\u0002,-\u0003\u0002\u0002\u0002-.\u0003\u0002\u0002\u0002./\u0007\u000b",
+    "\u0002\u0002/\u0007\u0003\u0002\u0002\u000202\u0007\u0004\u0002\u0002",
+    "13\u0007\n\u0002\u000221\u0003\u0002\u0002\u000223\u0003\u0002\u0002",
+    "\u000234\u0003\u0002\u0002\u000245\u0007\u000b\u0002\u00025\t\u0003",
+    "\u0002\u0002\u000268\n\u0002\u0002\u000276\u0003\u0002\u0002\u00028",
+    "9\u0003\u0002\u0002\u00029:\u0003\u0002\u0002\u000297\u0003\u0002\u0002",
+    "\u0002:\u000b\u0003\u0002\u0002\u0002;<\u0005\u000e\b\u0002<\r\u0003",
+    "\u0002\u0002\u0002=>\u0005\u0010\t\u0002>\u000f\u0003\u0002\u0002\u0002",
+    "?@\u0007\u0005\u0002\u0002@A\t\u0003\u0002\u0002AB\u0007\t\u0002\u0002",
+    "BC\u0005\u0012\n\u0002C\u0011\u0003\u0002\u0002\u0002DF\n\u0002\u0002",
+    "\u0002ED\u0003\u0002\u0002\u0002FG\u0003\u0002\u0002\u0002GH\u0003\u0002",
+    "\u0002\u0002GE\u0003\u0002\u0002\u0002H\u0013\u0003\u0002\u0002\u0002",
+    "\n\u0017\u001d$),29G"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -46,12 +57,14 @@ var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new a
 
 var sharedContextCache = new antlr4.PredictionContextCache();
 
-var literalNames = [ null, "';'", "'@startuml'", "'@enduml'" ];
+var literalNames = [ null, "'@startuml'", "'@enduml'", null, null, null, 
+                     "';'", "':'" ];
 
-var symbolicNames = [ null, "SEMICOLON", "STARTUML", "ENDUML", "SPACE", 
-                      "TEXT", "WS", "CR" ];
+var symbolicNames = [ null, "STARTUML", "ENDUML", "NOTE", "LEFT", "RIGHT", 
+                      "SEMICOLON", "COLON", "SPACE", "CR" ];
 
-var ruleNames =  [ "document", "diagram", "startUml", "endUml", "digramName" ];
+var ruleNames =  [ "document", "diagram", "startUml", "endUml", "digramName", 
+                   "diagramItem", "note", "singleLineNote", "noteTextLine" ];
 
 function pumlParser (input) {
 	antlr4.Parser.call(this, input);
@@ -72,19 +85,25 @@ Object.defineProperty(pumlParser.prototype, "atn", {
 });
 
 pumlParser.EOF = antlr4.Token.EOF;
-pumlParser.SEMICOLON = 1;
-pumlParser.STARTUML = 2;
-pumlParser.ENDUML = 3;
-pumlParser.SPACE = 4;
-pumlParser.TEXT = 5;
-pumlParser.WS = 6;
-pumlParser.CR = 7;
+pumlParser.STARTUML = 1;
+pumlParser.ENDUML = 2;
+pumlParser.NOTE = 3;
+pumlParser.LEFT = 4;
+pumlParser.RIGHT = 5;
+pumlParser.SEMICOLON = 6;
+pumlParser.COLON = 7;
+pumlParser.SPACE = 8;
+pumlParser.CR = 9;
 
 pumlParser.RULE_document = 0;
 pumlParser.RULE_diagram = 1;
 pumlParser.RULE_startUml = 2;
 pumlParser.RULE_endUml = 3;
 pumlParser.RULE_digramName = 4;
+pumlParser.RULE_diagramItem = 5;
+pumlParser.RULE_note = 6;
+pumlParser.RULE_singleLineNote = 7;
+pumlParser.RULE_noteTextLine = 8;
 
 function DocumentContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -145,13 +164,13 @@ pumlParser.prototype.document = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 11; 
+        this.state = 19; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
-            this.state = 10;
+            this.state = 18;
             this.diagram();
-            this.state = 13; 
+            this.state = 21; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         } while(_la===pumlParser.STARTUML);
@@ -191,6 +210,17 @@ DiagramContext.prototype.startUml = function() {
 
 DiagramContext.prototype.endUml = function() {
     return this.getTypedRuleContext(EndUmlContext,0);
+};
+
+DiagramContext.prototype.diagramItem = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(DiagramItemContext);
+    } else {
+        return this.getTypedRuleContext(DiagramItemContext,i);
+    }
 };
 
 DiagramContext.prototype.CR = function(i) {
@@ -237,17 +267,27 @@ pumlParser.prototype.diagram = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 15;
+        this.state = 23;
         this.startUml();
-        this.state = 16;
+        this.state = 27;
+        this._errHandler.sync(this);
+        _la = this._input.LA(1);
+        while(_la===pumlParser.NOTE) {
+            this.state = 24;
+            this.diagramItem();
+            this.state = 29;
+            this._errHandler.sync(this);
+            _la = this._input.LA(1);
+        }
+        this.state = 30;
         this.endUml();
-        this.state = 20;
+        this.state = 34;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         while(_la===pumlParser.CR) {
-            this.state = 17;
+            this.state = 31;
             this.match(pumlParser.CR);
-            this.state = 22;
+            this.state = 36;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         }
@@ -329,25 +369,25 @@ pumlParser.prototype.startUml = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 23;
+        this.state = 37;
         this.match(pumlParser.STARTUML);
-        this.state = 25;
+        this.state = 39;
         this._errHandler.sync(this);
-        _la = this._input.LA(1);
-        if(_la===pumlParser.SPACE) {
-            this.state = 24;
+        var la_ = this._interp.adaptivePredict(this._input,3,this._ctx);
+        if(la_===1) {
+            this.state = 38;
             this.match(pumlParser.SPACE);
-        }
 
-        this.state = 28;
+        }
+        this.state = 42;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        if(_la===pumlParser.TEXT) {
-            this.state = 27;
+        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << pumlParser.STARTUML) | (1 << pumlParser.ENDUML) | (1 << pumlParser.NOTE) | (1 << pumlParser.LEFT) | (1 << pumlParser.RIGHT) | (1 << pumlParser.SEMICOLON) | (1 << pumlParser.COLON) | (1 << pumlParser.SPACE))) !== 0)) {
+            this.state = 41;
             this.digramName();
         }
 
-        this.state = 30;
+        this.state = 44;
         this.match(pumlParser.CR);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -423,17 +463,17 @@ pumlParser.prototype.endUml = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 32;
+        this.state = 46;
         this.match(pumlParser.ENDUML);
-        this.state = 34;
+        this.state = 48;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===pumlParser.SPACE) {
-            this.state = 33;
+            this.state = 47;
             this.match(pumlParser.SPACE);
         }
 
-        this.state = 36;
+        this.state = 50;
         this.match(pumlParser.CR);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -465,26 +505,14 @@ function DigramNameContext(parser, parent, invokingState) {
 DigramNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DigramNameContext.prototype.constructor = DigramNameContext;
 
-DigramNameContext.prototype.TEXT = function(i) {
+DigramNameContext.prototype.CR = function(i) {
 	if(i===undefined) {
 		i = null;
 	}
     if(i===null) {
-        return this.getTokens(pumlParser.TEXT);
+        return this.getTokens(pumlParser.CR);
     } else {
-        return this.getToken(pumlParser.TEXT, i);
-    }
-};
-
-
-DigramNameContext.prototype.SPACE = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(pumlParser.SPACE);
-    } else {
-        return this.getToken(pumlParser.SPACE, i);
+        return this.getToken(pumlParser.CR, i);
     }
 };
 
@@ -521,24 +549,357 @@ pumlParser.prototype.digramName = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 42; 
+        this.state = 53; 
         this._errHandler.sync(this);
-        _la = this._input.LA(1);
+        var _alt = 1+1;
         do {
-            this.state = 38;
-            this.match(pumlParser.TEXT);
-            this.state = 40;
-            this._errHandler.sync(this);
-            _la = this._input.LA(1);
-            if(_la===pumlParser.SPACE) {
-                this.state = 39;
-                this.match(pumlParser.SPACE);
-            }
+        	switch (_alt) {
+        	case 1+1:
+        		this.state = 52;
+        		_la = this._input.LA(1);
+        		if(_la<=0 || _la===pumlParser.CR) {
+        		this._errHandler.recoverInline(this);
+        		}
+        		else {
+        			this._errHandler.reportMatch(this);
+        		    this.consume();
+        		}
+        		break;
+        	default:
+        		throw new antlr4.error.NoViableAltException(this);
+        	}
+        	this.state = 55; 
+        	this._errHandler.sync(this);
+        	_alt = this._interp.adaptivePredict(this._input,6, this._ctx);
+        } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
 
-            this.state = 44; 
-            this._errHandler.sync(this);
-            _la = this._input.LA(1);
-        } while(_la===pumlParser.TEXT);
+function DiagramItemContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = pumlParser.RULE_diagramItem;
+    return this;
+}
+
+DiagramItemContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+DiagramItemContext.prototype.constructor = DiagramItemContext;
+
+DiagramItemContext.prototype.note = function() {
+    return this.getTypedRuleContext(NoteContext,0);
+};
+
+DiagramItemContext.prototype.enterRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.enterDiagramItem(this);
+	}
+};
+
+DiagramItemContext.prototype.exitRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.exitDiagramItem(this);
+	}
+};
+
+DiagramItemContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof pumlVisitor ) {
+        return visitor.visitDiagramItem(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+pumlParser.DiagramItemContext = DiagramItemContext;
+
+pumlParser.prototype.diagramItem = function() {
+
+    var localctx = new DiagramItemContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 10, pumlParser.RULE_diagramItem);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 57;
+        this.note();
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+function NoteContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = pumlParser.RULE_note;
+    return this;
+}
+
+NoteContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+NoteContext.prototype.constructor = NoteContext;
+
+NoteContext.prototype.singleLineNote = function() {
+    return this.getTypedRuleContext(SingleLineNoteContext,0);
+};
+
+NoteContext.prototype.enterRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.enterNote(this);
+	}
+};
+
+NoteContext.prototype.exitRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.exitNote(this);
+	}
+};
+
+NoteContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof pumlVisitor ) {
+        return visitor.visitNote(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+pumlParser.NoteContext = NoteContext;
+
+pumlParser.prototype.note = function() {
+
+    var localctx = new NoteContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 12, pumlParser.RULE_note);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 59;
+        this.singleLineNote();
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+function SingleLineNoteContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = pumlParser.RULE_singleLineNote;
+    return this;
+}
+
+SingleLineNoteContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+SingleLineNoteContext.prototype.constructor = SingleLineNoteContext;
+
+SingleLineNoteContext.prototype.NOTE = function() {
+    return this.getToken(pumlParser.NOTE, 0);
+};
+
+SingleLineNoteContext.prototype.COLON = function() {
+    return this.getToken(pumlParser.COLON, 0);
+};
+
+SingleLineNoteContext.prototype.noteTextLine = function() {
+    return this.getTypedRuleContext(NoteTextLineContext,0);
+};
+
+SingleLineNoteContext.prototype.LEFT = function() {
+    return this.getToken(pumlParser.LEFT, 0);
+};
+
+SingleLineNoteContext.prototype.RIGHT = function() {
+    return this.getToken(pumlParser.RIGHT, 0);
+};
+
+SingleLineNoteContext.prototype.enterRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.enterSingleLineNote(this);
+	}
+};
+
+SingleLineNoteContext.prototype.exitRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.exitSingleLineNote(this);
+	}
+};
+
+SingleLineNoteContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof pumlVisitor ) {
+        return visitor.visitSingleLineNote(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+pumlParser.SingleLineNoteContext = SingleLineNoteContext;
+
+pumlParser.prototype.singleLineNote = function() {
+
+    var localctx = new SingleLineNoteContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 14, pumlParser.RULE_singleLineNote);
+    var _la = 0; // Token type
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 61;
+        this.match(pumlParser.NOTE);
+        this.state = 62;
+        _la = this._input.LA(1);
+        if(!(_la===pumlParser.LEFT || _la===pumlParser.RIGHT)) {
+        this._errHandler.recoverInline(this);
+        }
+        else {
+        	this._errHandler.reportMatch(this);
+            this.consume();
+        }
+        this.state = 63;
+        this.match(pumlParser.COLON);
+        this.state = 64;
+        this.noteTextLine();
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+function NoteTextLineContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = pumlParser.RULE_noteTextLine;
+    return this;
+}
+
+NoteTextLineContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+NoteTextLineContext.prototype.constructor = NoteTextLineContext;
+
+NoteTextLineContext.prototype.CR = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(pumlParser.CR);
+    } else {
+        return this.getToken(pumlParser.CR, i);
+    }
+};
+
+
+NoteTextLineContext.prototype.enterRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.enterNoteTextLine(this);
+	}
+};
+
+NoteTextLineContext.prototype.exitRule = function(listener) {
+    if(listener instanceof pumlListener ) {
+        listener.exitNoteTextLine(this);
+	}
+};
+
+NoteTextLineContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof pumlVisitor ) {
+        return visitor.visitNoteTextLine(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+pumlParser.NoteTextLineContext = NoteTextLineContext;
+
+pumlParser.prototype.noteTextLine = function() {
+
+    var localctx = new NoteTextLineContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 16, pumlParser.RULE_noteTextLine);
+    var _la = 0; // Token type
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 67; 
+        this._errHandler.sync(this);
+        var _alt = 1+1;
+        do {
+        	switch (_alt) {
+        	case 1+1:
+        		this.state = 66;
+        		_la = this._input.LA(1);
+        		if(_la<=0 || _la===pumlParser.CR) {
+        		this._errHandler.recoverInline(this);
+        		}
+        		else {
+        			this._errHandler.reportMatch(this);
+        		    this.consume();
+        		}
+        		break;
+        	default:
+        		throw new antlr4.error.NoViableAltException(this);
+        	}
+        	this.state = 69; 
+        	this._errHandler.sync(this);
+        	_alt = this._interp.adaptivePredict(this._input,7, this._ctx);
+        } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;

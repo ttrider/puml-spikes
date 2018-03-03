@@ -113,6 +113,28 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             diagramName: value
         };
     };
+
+    visitDiagramItem(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#note.
+    visitNote(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#singleLineNote.
+    visitSingleLineNote(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#noteTextLine.
+    visitNoteTextLine(ctx: any) {
+        return this.visitChildren(ctx);
+    };
 }
 
 

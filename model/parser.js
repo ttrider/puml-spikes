@@ -114,6 +114,25 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         };
     };
     ;
+    pumlVisitor2.prototype.visitDiagramItem = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#note.
+    pumlVisitor2.prototype.visitNote = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#singleLineNote.
+    pumlVisitor2.prototype.visitSingleLineNote = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#noteTextLine.
+    pumlVisitor2.prototype.visitNoteTextLine = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
     return pumlVisitor2;
 }(pumlVisitor.pumlVisitor));
 exports.default = test;

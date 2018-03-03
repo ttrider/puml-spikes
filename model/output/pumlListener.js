@@ -56,5 +56,41 @@ pumlListener.prototype.exitDigramName = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#diagramItem.
+pumlListener.prototype.enterDiagramItem = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#diagramItem.
+pumlListener.prototype.exitDiagramItem = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#note.
+pumlListener.prototype.enterNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#note.
+pumlListener.prototype.exitNote = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#singleLineNote.
+pumlListener.prototype.enterSingleLineNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#singleLineNote.
+pumlListener.prototype.exitSingleLineNote = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#noteTextLine.
+pumlListener.prototype.enterNoteTextLine = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteTextLine.
+pumlListener.prototype.exitNoteTextLine = function(ctx) {
+};
+
+
 
 exports.pumlListener = pumlListener;
