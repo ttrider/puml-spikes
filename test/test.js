@@ -13,16 +13,16 @@ test('common', function (t) {
         }
         t.end();
     });
-    // t.equal(applyData(testData, (c, data) => {
-    //     return "foo";
-    // }), "foo");
-    // t.equal(applyData(testData, (c, data) => {
-    //     return `foo_${data.name}`;
-    // }), "foo_nameValue");
-    // t.equal(applyData(testData, "prefix_",
-    //     (c, data) => {
-    //         return `foo_${data.name}`;
-    //     },
-    //     "_suffix"), "prefix_foo_nameValue_suffix");
+});
+test('notes', function (t) {
+    util_1.getTests("test/notes", function (err, matches) {
+        for (var _i = 0, matches_2 = matches; _i < matches_2.length; _i++) {
+            var item = matches_2[_i];
+            console.info(item.name);
+            var actual = parser_1.parse(item.diagram);
+            t.deepEqual(actual, item.data, item.name);
+        }
+        t.end();
+    });
 });
 //# sourceMappingURL=test.js.map

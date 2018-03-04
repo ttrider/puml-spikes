@@ -15,20 +15,18 @@ test('common', (t) => {
         }
         t.end();
     });
+});
 
-    // t.equal(applyData(testData, (c, data) => {
-    //     return "foo";
-    // }), "foo");
+test('notes', (t) => {
 
-    // t.equal(applyData(testData, (c, data) => {
-    //     return `foo_${data.name}`;
-    // }), "foo_nameValue");
+    getTests("test/notes", (err, matches) => {
 
-    // t.equal(applyData(testData, "prefix_",
-    //     (c, data) => {
-    //         return `foo_${data.name}`;
-    //     },
-    //     "_suffix"), "prefix_foo_nameValue_suffix");
+        for (const item of matches) {
+            console.info(item.name);
+            const actual = parse(item.diagram);
 
-
+            t.deepEqual(actual, item.data, item.name);
+        }
+        t.end();
+    });
 });

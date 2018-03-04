@@ -5,9 +5,12 @@ document: diagram+;
 diagram: startUml diagramItem* endUml CR*;
 
 startUml: STARTUML SPACE? digramName? CR;
+
+
 endUml: ENDUML SPACE? CR;
 
-digramName: (~(CR))+?;
+//digramName: TEXTEOL;
+digramName: (ANY|SPACE)*?;
 
 diagramItem:
 	note;
@@ -16,8 +19,8 @@ diagramItem:
 note:
 	singleLineNote;
 
-singleLineNote: NOTE (LEFT|RIGHT) COLON noteTextLine;
-noteTextLine: (~(CR))+?;
+singleLineNote: NOTE SPACE ( LEFT | RIGHT ) SPACE? COLON noteTextLine? CR;
+noteTextLine: (ANY|SPACE)*?;
 
 
 
@@ -36,15 +39,19 @@ SEMICOLON: ';';
 COLON: ':';
 
 
+
+
 SPACE: (' ' | '\t')+;
 
 //WS : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip ;
 
-//TEXT: (LETTERS | DIGITS | SYMBOL | WS)+;
-
 //WS: [ \t];
 
 CR: ('\r'? '\n') | EOF;
+
+//// THIS MUST BE THE LAST LEXER RULE
+ANY: .;
+/////////////////////////////////////
 
 fragment LETTERS: [a-zA-Z];
 

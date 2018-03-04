@@ -11,9 +11,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var antlr4 = require('antlr4/index');
-var pumlLexer = require('./gen/pumlLexer');
-var pumlParser = require('./gen/pumlParser');
-var pumlVisitor = require('./gen/pumlVisitor');
+var pumlLexer = require('./output/pumlLexer');
+var pumlParser = require('./output/pumlParser');
+var pumlVisitor = require('./output/pumlVisitor');
 var document_1 = require("./document");
 function parse(diagram) {
     printTokens(diagram);
@@ -47,6 +47,7 @@ exports.test = test;
 function printTokens(input) {
     console.info("==========");
     console.info(input);
+    console.info("~~~~~~~~~~");
     var chars = new antlr4.InputStream(input);
     var lexer = new pumlLexer.pumlLexer(chars);
     var token = lexer.nextToken();
@@ -55,6 +56,7 @@ function printTokens(input) {
         console.info(token.text);
         token = lexer.nextToken();
     }
+    console.info("~~~~~~~~~~");
 }
 var pumlVisitor2 = /** @class */ (function (_super) {
     __extends(pumlVisitor2, _super);

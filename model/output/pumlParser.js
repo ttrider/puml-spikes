@@ -7,48 +7,53 @@ var pumlVisitor = require('./pumlVisitor').pumlVisitor;
 var grammarFileName = "puml.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u000bJ\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
-    "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
-    "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0003\u0002\u0006\u0002\u0016\n\u0002",
-    "\r\u0002\u000e\u0002\u0017\u0003\u0003\u0003\u0003\u0007\u0003\u001c",
-    "\n\u0003\f\u0003\u000e\u0003\u001f\u000b\u0003\u0003\u0003\u0003\u0003",
+    "\u0003\fS\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t\u0004",
+    "\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004\b",
+    "\t\b\u0004\t\t\t\u0004\n\t\n\u0003\u0002\u0006\u0002\u0016\n\u0002\r",
+    "\u0002\u000e\u0002\u0017\u0003\u0003\u0003\u0003\u0007\u0003\u001c\n",
+    "\u0003\f\u0003\u000e\u0003\u001f\u000b\u0003\u0003\u0003\u0003\u0003",
     "\u0007\u0003#\n\u0003\f\u0003\u000e\u0003&\u000b\u0003\u0003\u0004\u0003",
     "\u0004\u0005\u0004*\n\u0004\u0003\u0004\u0005\u0004-\n\u0004\u0003\u0004",
     "\u0003\u0004\u0003\u0005\u0003\u0005\u0005\u00053\n\u0005\u0003\u0005",
-    "\u0003\u0005\u0003\u0006\u0006\u00068\n\u0006\r\u0006\u000e\u00069\u0003",
-    "\u0007\u0003\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003",
-    "\t\u0003\n\u0006\nF\n\n\r\n\u000e\nG\u0003\n\u00049G\u0002\u000b\u0002",
-    "\u0004\u0006\b\n\f\u000e\u0010\u0012\u0002\u0004\u0003\u0002\u000b\u000b",
-    "\u0003\u0002\u0006\u0007\u0002H\u0002\u0015\u0003\u0002\u0002\u0002",
-    "\u0004\u0019\u0003\u0002\u0002\u0002\u0006\'\u0003\u0002\u0002\u0002",
-    "\b0\u0003\u0002\u0002\u0002\n7\u0003\u0002\u0002\u0002\f;\u0003\u0002",
-    "\u0002\u0002\u000e=\u0003\u0002\u0002\u0002\u0010?\u0003\u0002\u0002",
-    "\u0002\u0012E\u0003\u0002\u0002\u0002\u0014\u0016\u0005\u0004\u0003",
-    "\u0002\u0015\u0014\u0003\u0002\u0002\u0002\u0016\u0017\u0003\u0002\u0002",
-    "\u0002\u0017\u0015\u0003\u0002\u0002\u0002\u0017\u0018\u0003\u0002\u0002",
-    "\u0002\u0018\u0003\u0003\u0002\u0002\u0002\u0019\u001d\u0005\u0006\u0004",
-    "\u0002\u001a\u001c\u0005\f\u0007\u0002\u001b\u001a\u0003\u0002\u0002",
-    "\u0002\u001c\u001f\u0003\u0002\u0002\u0002\u001d\u001b\u0003\u0002\u0002",
-    "\u0002\u001d\u001e\u0003\u0002\u0002\u0002\u001e \u0003\u0002\u0002",
-    "\u0002\u001f\u001d\u0003\u0002\u0002\u0002 $\u0005\b\u0005\u0002!#\u0007",
-    "\u000b\u0002\u0002\"!\u0003\u0002\u0002\u0002#&\u0003\u0002\u0002\u0002",
-    "$\"\u0003\u0002\u0002\u0002$%\u0003\u0002\u0002\u0002%\u0005\u0003\u0002",
-    "\u0002\u0002&$\u0003\u0002\u0002\u0002\')\u0007\u0003\u0002\u0002(*",
-    "\u0007\n\u0002\u0002)(\u0003\u0002\u0002\u0002)*\u0003\u0002\u0002\u0002",
-    "*,\u0003\u0002\u0002\u0002+-\u0005\n\u0006\u0002,+\u0003\u0002\u0002",
-    "\u0002,-\u0003\u0002\u0002\u0002-.\u0003\u0002\u0002\u0002./\u0007\u000b",
-    "\u0002\u0002/\u0007\u0003\u0002\u0002\u000202\u0007\u0004\u0002\u0002",
-    "13\u0007\n\u0002\u000221\u0003\u0002\u0002\u000223\u0003\u0002\u0002",
-    "\u000234\u0003\u0002\u0002\u000245\u0007\u000b\u0002\u00025\t\u0003",
-    "\u0002\u0002\u000268\n\u0002\u0002\u000276\u0003\u0002\u0002\u00028",
-    "9\u0003\u0002\u0002\u00029:\u0003\u0002\u0002\u000297\u0003\u0002\u0002",
-    "\u0002:\u000b\u0003\u0002\u0002\u0002;<\u0005\u000e\b\u0002<\r\u0003",
-    "\u0002\u0002\u0002=>\u0005\u0010\t\u0002>\u000f\u0003\u0002\u0002\u0002",
-    "?@\u0007\u0005\u0002\u0002@A\t\u0003\u0002\u0002AB\u0007\t\u0002\u0002",
-    "BC\u0005\u0012\n\u0002C\u0011\u0003\u0002\u0002\u0002DF\n\u0002\u0002",
-    "\u0002ED\u0003\u0002\u0002\u0002FG\u0003\u0002\u0002\u0002GH\u0003\u0002",
-    "\u0002\u0002GE\u0003\u0002\u0002\u0002H\u0013\u0003\u0002\u0002\u0002",
-    "\n\u0017\u001d$),29G"].join("");
+    "\u0003\u0005\u0003\u0006\u0007\u00068\n\u0006\f\u0006\u000e\u0006;\u000b",
+    "\u0006\u0003\u0007\u0003\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003",
+    "\t\u0003\t\u0005\tE\n\t\u0003\t\u0003\t\u0005\tI\n\t\u0003\t\u0003\t",
+    "\u0003\n\u0007\nN\n\n\f\n\u000e\nQ\u000b\n\u0003\n\u00049O\u0002\u000b",
+    "\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0002\u0004\u0004\u0002\n",
+    "\n\f\f\u0003\u0002\u0006\u0007\u0002S\u0002\u0015\u0003\u0002\u0002",
+    "\u0002\u0004\u0019\u0003\u0002\u0002\u0002\u0006\'\u0003\u0002\u0002",
+    "\u0002\b0\u0003\u0002\u0002\u0002\n9\u0003\u0002\u0002\u0002\f<\u0003",
+    "\u0002\u0002\u0002\u000e>\u0003\u0002\u0002\u0002\u0010@\u0003\u0002",
+    "\u0002\u0002\u0012O\u0003\u0002\u0002\u0002\u0014\u0016\u0005\u0004",
+    "\u0003\u0002\u0015\u0014\u0003\u0002\u0002\u0002\u0016\u0017\u0003\u0002",
+    "\u0002\u0002\u0017\u0015\u0003\u0002\u0002\u0002\u0017\u0018\u0003\u0002",
+    "\u0002\u0002\u0018\u0003\u0003\u0002\u0002\u0002\u0019\u001d\u0005\u0006",
+    "\u0004\u0002\u001a\u001c\u0005\f\u0007\u0002\u001b\u001a\u0003\u0002",
+    "\u0002\u0002\u001c\u001f\u0003\u0002\u0002\u0002\u001d\u001b\u0003\u0002",
+    "\u0002\u0002\u001d\u001e\u0003\u0002\u0002\u0002\u001e \u0003\u0002",
+    "\u0002\u0002\u001f\u001d\u0003\u0002\u0002\u0002 $\u0005\b\u0005\u0002",
+    "!#\u0007\u000b\u0002\u0002\"!\u0003\u0002\u0002\u0002#&\u0003\u0002",
+    "\u0002\u0002$\"\u0003\u0002\u0002\u0002$%\u0003\u0002\u0002\u0002%\u0005",
+    "\u0003\u0002\u0002\u0002&$\u0003\u0002\u0002\u0002\')\u0007\u0003\u0002",
+    "\u0002(*\u0007\n\u0002\u0002)(\u0003\u0002\u0002\u0002)*\u0003\u0002",
+    "\u0002\u0002*,\u0003\u0002\u0002\u0002+-\u0005\n\u0006\u0002,+\u0003",
+    "\u0002\u0002\u0002,-\u0003\u0002\u0002\u0002-.\u0003\u0002\u0002\u0002",
+    "./\u0007\u000b\u0002\u0002/\u0007\u0003\u0002\u0002\u000202\u0007\u0004",
+    "\u0002\u000213\u0007\n\u0002\u000221\u0003\u0002\u0002\u000223\u0003",
+    "\u0002\u0002\u000234\u0003\u0002\u0002\u000245\u0007\u000b\u0002\u0002",
+    "5\t\u0003\u0002\u0002\u000268\t\u0002\u0002\u000276\u0003\u0002\u0002",
+    "\u00028;\u0003\u0002\u0002\u00029:\u0003\u0002\u0002\u000297\u0003\u0002",
+    "\u0002\u0002:\u000b\u0003\u0002\u0002\u0002;9\u0003\u0002\u0002\u0002",
+    "<=\u0005\u000e\b\u0002=\r\u0003\u0002\u0002\u0002>?\u0005\u0010\t\u0002",
+    "?\u000f\u0003\u0002\u0002\u0002@A\u0007\u0005\u0002\u0002AB\u0007\n",
+    "\u0002\u0002BD\t\u0003\u0002\u0002CE\u0007\n\u0002\u0002DC\u0003\u0002",
+    "\u0002\u0002DE\u0003\u0002\u0002\u0002EF\u0003\u0002\u0002\u0002FH\u0007",
+    "\t\u0002\u0002GI\u0005\u0012\n\u0002HG\u0003\u0002\u0002\u0002HI\u0003",
+    "\u0002\u0002\u0002IJ\u0003\u0002\u0002\u0002JK\u0007\u000b\u0002\u0002",
+    "K\u0011\u0003\u0002\u0002\u0002LN\t\u0002\u0002\u0002ML\u0003\u0002",
+    "\u0002\u0002NQ\u0003\u0002\u0002\u0002OP\u0003\u0002\u0002\u0002OM\u0003",
+    "\u0002\u0002\u0002P\u0013\u0003\u0002\u0002\u0002QO\u0003\u0002\u0002",
+    "\u0002\f\u0017\u001d$),29DHO"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -61,7 +66,7 @@ var literalNames = [ null, "'@startuml'", "'@enduml'", null, null, null,
                      "';'", "':'" ];
 
 var symbolicNames = [ null, "STARTUML", "ENDUML", "NOTE", "LEFT", "RIGHT", 
-                      "SEMICOLON", "COLON", "SPACE", "CR" ];
+                      "SEMICOLON", "COLON", "SPACE", "CR", "ANY" ];
 
 var ruleNames =  [ "document", "diagram", "startUml", "endUml", "digramName", 
                    "diagramItem", "note", "singleLineNote", "noteTextLine" ];
@@ -94,6 +99,7 @@ pumlParser.SEMICOLON = 6;
 pumlParser.COLON = 7;
 pumlParser.SPACE = 8;
 pumlParser.CR = 9;
+pumlParser.ANY = 10;
 
 pumlParser.RULE_document = 0;
 pumlParser.RULE_diagram = 1;
@@ -366,7 +372,6 @@ pumlParser.prototype.startUml = function() {
 
     var localctx = new StartUmlContext(this, this._ctx, this.state);
     this.enterRule(localctx, 4, pumlParser.RULE_startUml);
-    var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 37;
@@ -381,12 +386,12 @@ pumlParser.prototype.startUml = function() {
         }
         this.state = 42;
         this._errHandler.sync(this);
-        _la = this._input.LA(1);
-        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << pumlParser.STARTUML) | (1 << pumlParser.ENDUML) | (1 << pumlParser.NOTE) | (1 << pumlParser.LEFT) | (1 << pumlParser.RIGHT) | (1 << pumlParser.SEMICOLON) | (1 << pumlParser.COLON) | (1 << pumlParser.SPACE))) !== 0)) {
+        var la_ = this._interp.adaptivePredict(this._input,4,this._ctx);
+        if(la_===1) {
             this.state = 41;
             this.digramName();
-        }
 
+        }
         this.state = 44;
         this.match(pumlParser.CR);
     } catch (re) {
@@ -505,14 +510,26 @@ function DigramNameContext(parser, parent, invokingState) {
 DigramNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DigramNameContext.prototype.constructor = DigramNameContext;
 
-DigramNameContext.prototype.CR = function(i) {
+DigramNameContext.prototype.ANY = function(i) {
 	if(i===undefined) {
 		i = null;
 	}
     if(i===null) {
-        return this.getTokens(pumlParser.CR);
+        return this.getTokens(pumlParser.ANY);
     } else {
-        return this.getToken(pumlParser.CR, i);
+        return this.getToken(pumlParser.ANY, i);
+    }
+};
+
+
+DigramNameContext.prototype.SPACE = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(pumlParser.SPACE);
+    } else {
+        return this.getToken(pumlParser.SPACE, i);
     }
 };
 
@@ -549,29 +566,26 @@ pumlParser.prototype.digramName = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 53; 
+        this.state = 55;
         this._errHandler.sync(this);
-        var _alt = 1+1;
-        do {
-        	switch (_alt) {
-        	case 1+1:
-        		this.state = 52;
-        		_la = this._input.LA(1);
-        		if(_la<=0 || _la===pumlParser.CR) {
-        		this._errHandler.recoverInline(this);
-        		}
-        		else {
-        			this._errHandler.reportMatch(this);
-        		    this.consume();
-        		}
-        		break;
-        	default:
-        		throw new antlr4.error.NoViableAltException(this);
-        	}
-        	this.state = 55; 
-        	this._errHandler.sync(this);
-        	_alt = this._interp.adaptivePredict(this._input,6, this._ctx);
-        } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
+        var _alt = this._interp.adaptivePredict(this._input,6,this._ctx)
+        while(_alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+            if(_alt===1+1) {
+                this.state = 52;
+                _la = this._input.LA(1);
+                if(!(_la===pumlParser.SPACE || _la===pumlParser.ANY)) {
+                this._errHandler.recoverInline(this);
+                }
+                else {
+                	this._errHandler.reportMatch(this);
+                    this.consume();
+                } 
+            }
+            this.state = 57;
+            this._errHandler.sync(this);
+            _alt = this._interp.adaptivePredict(this._input,6,this._ctx);
+        }
+
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -637,7 +651,7 @@ pumlParser.prototype.diagramItem = function() {
     this.enterRule(localctx, 10, pumlParser.RULE_diagramItem);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 57;
+        this.state = 58;
         this.note();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -704,7 +718,7 @@ pumlParser.prototype.note = function() {
     this.enterRule(localctx, 12, pumlParser.RULE_note);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 59;
+        this.state = 60;
         this.singleLineNote();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -740,12 +754,24 @@ SingleLineNoteContext.prototype.NOTE = function() {
     return this.getToken(pumlParser.NOTE, 0);
 };
 
+SingleLineNoteContext.prototype.SPACE = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(pumlParser.SPACE);
+    } else {
+        return this.getToken(pumlParser.SPACE, i);
+    }
+};
+
+
 SingleLineNoteContext.prototype.COLON = function() {
     return this.getToken(pumlParser.COLON, 0);
 };
 
-SingleLineNoteContext.prototype.noteTextLine = function() {
-    return this.getTypedRuleContext(NoteTextLineContext,0);
+SingleLineNoteContext.prototype.CR = function() {
+    return this.getToken(pumlParser.CR, 0);
 };
 
 SingleLineNoteContext.prototype.LEFT = function() {
@@ -754,6 +780,10 @@ SingleLineNoteContext.prototype.LEFT = function() {
 
 SingleLineNoteContext.prototype.RIGHT = function() {
     return this.getToken(pumlParser.RIGHT, 0);
+};
+
+SingleLineNoteContext.prototype.noteTextLine = function() {
+    return this.getTypedRuleContext(NoteTextLineContext,0);
 };
 
 SingleLineNoteContext.prototype.enterRule = function(listener) {
@@ -788,9 +818,11 @@ pumlParser.prototype.singleLineNote = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 61;
-        this.match(pumlParser.NOTE);
         this.state = 62;
+        this.match(pumlParser.NOTE);
+        this.state = 63;
+        this.match(pumlParser.SPACE);
+        this.state = 64;
         _la = this._input.LA(1);
         if(!(_la===pumlParser.LEFT || _la===pumlParser.RIGHT)) {
         this._errHandler.recoverInline(this);
@@ -799,10 +831,26 @@ pumlParser.prototype.singleLineNote = function() {
         	this._errHandler.reportMatch(this);
             this.consume();
         }
-        this.state = 63;
+        this.state = 66;
+        this._errHandler.sync(this);
+        _la = this._input.LA(1);
+        if(_la===pumlParser.SPACE) {
+            this.state = 65;
+            this.match(pumlParser.SPACE);
+        }
+
+        this.state = 68;
         this.match(pumlParser.COLON);
-        this.state = 64;
-        this.noteTextLine();
+        this.state = 70;
+        this._errHandler.sync(this);
+        var la_ = this._interp.adaptivePredict(this._input,8,this._ctx);
+        if(la_===1) {
+            this.state = 69;
+            this.noteTextLine();
+
+        }
+        this.state = 72;
+        this.match(pumlParser.CR);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -833,14 +881,26 @@ function NoteTextLineContext(parser, parent, invokingState) {
 NoteTextLineContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 NoteTextLineContext.prototype.constructor = NoteTextLineContext;
 
-NoteTextLineContext.prototype.CR = function(i) {
+NoteTextLineContext.prototype.ANY = function(i) {
 	if(i===undefined) {
 		i = null;
 	}
     if(i===null) {
-        return this.getTokens(pumlParser.CR);
+        return this.getTokens(pumlParser.ANY);
     } else {
-        return this.getToken(pumlParser.CR, i);
+        return this.getToken(pumlParser.ANY, i);
+    }
+};
+
+
+NoteTextLineContext.prototype.SPACE = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(pumlParser.SPACE);
+    } else {
+        return this.getToken(pumlParser.SPACE, i);
     }
 };
 
@@ -877,29 +937,26 @@ pumlParser.prototype.noteTextLine = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 67; 
+        this.state = 77;
         this._errHandler.sync(this);
-        var _alt = 1+1;
-        do {
-        	switch (_alt) {
-        	case 1+1:
-        		this.state = 66;
-        		_la = this._input.LA(1);
-        		if(_la<=0 || _la===pumlParser.CR) {
-        		this._errHandler.recoverInline(this);
-        		}
-        		else {
-        			this._errHandler.reportMatch(this);
-        		    this.consume();
-        		}
-        		break;
-        	default:
-        		throw new antlr4.error.NoViableAltException(this);
-        	}
-        	this.state = 69; 
-        	this._errHandler.sync(this);
-        	_alt = this._interp.adaptivePredict(this._input,7, this._ctx);
-        } while ( _alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
+        var _alt = this._interp.adaptivePredict(this._input,9,this._ctx)
+        while(_alt!=1 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+            if(_alt===1+1) {
+                this.state = 74;
+                _la = this._input.LA(1);
+                if(!(_la===pumlParser.SPACE || _la===pumlParser.ANY)) {
+                this._errHandler.recoverInline(this);
+                }
+                else {
+                	this._errHandler.reportMatch(this);
+                    this.consume();
+                } 
+            }
+            this.state = 79;
+            this._errHandler.sync(this);
+            _alt = this._interp.adaptivePredict(this._input,9,this._ctx);
+        }
+
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;

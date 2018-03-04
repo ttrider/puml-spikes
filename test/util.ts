@@ -68,6 +68,8 @@ export function getTests(testPath: string, cb: (err: Error | null, matches: Arra
                         icb();
                     }
                 });
+            } else{
+                icb();
             }
 
         }, (errcb) => {

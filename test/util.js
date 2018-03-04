@@ -62,6 +62,9 @@ function getTests(testPath, cb) {
                     }
                 });
             }
+            else {
+                icb();
+            }
         }, function (errcb) {
             cb(err, ret);
         });

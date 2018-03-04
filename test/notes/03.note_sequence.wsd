@@ -1,0 +1,43 @@
+@startuml
+note left of Bob
+left of Bob
+end note
+note over Alise
+over Alise
+end note
+note over Alise, James
+over Alise, James
+end note
+note over James, Patric #blue
+James, Patric #blue
+end note
+rnote left of James: foo
+rnote right of Patric #white
+ern
+endrnote
+rnote right of Patric #white
+e_rn
+end rnote
+rnote right of Patric #white
+e_n
+end note
+rnote right of Patric #white
+en
+endnote
+rnote right of Patric #white
+ehn
+endhnote
+hnote left of Bob: foo
+hnote right of Bob #white
+ern
+endhnote
+hnote right of Bob #white
+e_rn
+end hnote
+hnote right of Bob #white
+e_n
+end note
+hnote right of Bob #white
+en
+endnote
+@enduml

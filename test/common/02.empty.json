@@ -1,1 +1,6 @@
-{ "diagrams": [{ "name": null }] }
+{
+    "diagrams": [{
+        "name": null,
+        "items": []
+    }]
+}

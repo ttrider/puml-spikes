@@ -1,7 +1,7 @@
 const antlr4 = require('antlr4/index');
-const pumlLexer = require('./gen/pumlLexer');
-const pumlParser = require('./gen/pumlParser');
-const pumlVisitor = require('./gen/pumlVisitor');
+const pumlLexer = require('./output/pumlLexer');
+const pumlParser = require('./output/pumlParser');
+const pumlVisitor = require('./output/pumlVisitor');
 import { Document, Diagram } from "./document";
 
 
@@ -43,6 +43,7 @@ export function test(input: string) {
 function printTokens(input: string) {
     console.info("==========");
     console.info(input);
+    console.info("~~~~~~~~~~");
     const chars = new antlr4.InputStream(input);
     const lexer = new pumlLexer.pumlLexer(chars);
     let token = lexer.nextToken();
@@ -51,7 +52,7 @@ function printTokens(input: string) {
         console.info(token.text);
         token = lexer.nextToken();
     }
-
+    console.info("~~~~~~~~~~");
 }
 
 
