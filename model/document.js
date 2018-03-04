@@ -26,8 +26,8 @@ var Diagram = /** @class */ (function () {
 }());
 exports.Diagram = Diagram;
 var DiagramItem = /** @class */ (function () {
-    function DiagramItem() {
-        this.name = null;
+    function DiagramItem(type) {
+        this.type = type;
     }
     return DiagramItem;
 }());
@@ -35,8 +35,9 @@ exports.DiagramItem = DiagramItem;
 var Note = /** @class */ (function (_super) {
     __extends(Note, _super);
     function Note() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this, "note") || this;
         _this.content = null;
+        _this.location = "Left";
         return _this;
     }
     return Note;

@@ -2,7 +2,7 @@ const antlr4 = require('antlr4/index');
 const pumlLexer = require('./output/pumlLexer');
 const pumlParser = require('./output/pumlParser');
 const pumlVisitor = require('./output/pumlVisitor');
-import { Document, Diagram } from "./document";
+import { Document, Diagram, Note } from "./document";
 
 
 export function parse(diagram: string): Document {
@@ -59,6 +59,16 @@ function printTokens(input: string) {
 
 class pumlVisitor2 extends pumlVisitor.pumlVisitor {
 
+    getTextToEOL(ctx: any): string {
+        let value: string = ctx.getText();
+        if (value) {
+            value = value.trim();
+        }
+        return value;
+    }
+
+
+
     visitDocument(ctx: any) {
         const doc = new Document();
 
@@ -73,29 +83,55 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     };
 
 
+    processResults(result: Array<any> | any, handler: (value: any) => void) {
+        if (!result) {
+            return;
+        }
+        if (Array.isArray(result)) {
+            for (const item of result) {
+                this.processResults(item, handler);
+            }
+        }
+        else {
+            handler(result);
+        }
+    }
+
     // Visit a parse tree produced by pumlParser#diagram.
     visitDiagram(ctx: any) {
 
         const diagram = new Diagram();
 
-        for (const item of this.visitChildren(ctx)) {
-            if (item) {
-                if (item.diagramName) {
-                    diagram.name = item.diagramName;
-                }
+        this.processResults(this.visitChildren(ctx), (item)=>{
+            if (item.diagramName) {
+                diagram.name = item.diagramName;
             }
-        }
+            if (item.note) {
+                diagram.items.push(item.note);
+            }
+        });
+
+        // for (const item of this.visitChildren(ctx)) {
+        //     if (item) {
+        //         if (item.diagramName) {
+        //             diagram.name = item.diagramName;
+        //         }
+        //         if (item.note) {
+        //             diagram.items.push(item.note);
+        //         }
+        //     }
+        // }
 
         return { diagram: diagram };
     };
 
     visitStartUml(ctx: any) {
-        for (const item of this.visitChildren(ctx)) {
-            if (item) {
-                if (item.diagramName) {
-                    return item;
-                }
-            }
+        const txt: string = ctx.getText();
+        //strip @startuml
+        if (txt.length > 9) {
+            return {
+                diagramName: txt.substr(9).trim()
+            };
         }
         return {};
     };
@@ -105,16 +141,6 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return null;
     };
 
-    visitDigramName(ctx: any) {
-        let value: string = ctx.getText();
-        if (value) {
-            value = value.trim();
-        }
-        return {
-            diagramName: value
-        };
-    };
-
     visitDiagramItem(ctx: any) {
         return this.visitChildren(ctx);
     };
@@ -122,7 +148,29 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
 
     // Visit a parse tree produced by pumlParser#note.
     visitNote(ctx: any) {
-        return this.visitChildren(ctx);
+
+        const note = new Note();
+
+        this.processResults(this.visitChildren(ctx), (item)=>{
+            if (item.noteLocation) {
+                note.location = item.noteLocation;
+            }
+            if (item.noteContent) {
+                note.content = item.noteContent;
+            }
+        });
+
+        // for (const item of this.visitChildren(ctx)) {
+        //     if (item) {
+        //         if (item.noteLocation) {
+        //             note.location = item.noteLocation;
+        //         }
+        //         if (item.noteContent) {
+        //             note.content = item.noteContent;
+        //         }
+        //     }
+        // }
+        return { note: note };
     };
 
 
@@ -132,9 +180,33 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     };
 
 
+    // Visit a parse tree produced by pumlParser#noteLocation.
+    visitNoteLocation(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#noteLocationRight.
+    visitNoteLocationRight(ctx: any) {
+        return {
+            noteLocation: "Right"
+        };
+    };
+
+
+    // Visit a parse tree produced by pumlParser#noteLocationLeft.
+    visitNoteLocationLeft(ctx: any) {
+        return {
+            noteLocation: "Left"
+        };
+    };
+
+
     // Visit a parse tree produced by pumlParser#noteTextLine.
     visitNoteTextLine(ctx: any) {
-        return this.visitChildren(ctx);
+        return {
+            noteContent: this.getTextToEOL(ctx)
+        };
     };
 }
 

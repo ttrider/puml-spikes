@@ -63,6 +63,13 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     function pumlVisitor2() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    pumlVisitor2.prototype.getTextToEOL = function (ctx) {
+        var value = ctx.getText();
+        if (value) {
+            value = value.trim();
+        }
+        return value;
+    };
     pumlVisitor2.prototype.visitDocument = function (ctx) {
         var doc = new document_1.Document();
         for (var _i = 0, _a = this.visitChildren(ctx); _i < _a.length; _i++) {
@@ -76,28 +83,51 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return doc;
     };
     ;
+    pumlVisitor2.prototype.processResults = function (result, handler) {
+        if (!result) {
+            return;
+        }
+        if (Array.isArray(result)) {
+            for (var _i = 0, result_1 = result; _i < result_1.length; _i++) {
+                var item = result_1[_i];
+                this.processResults(item, handler);
+            }
+        }
+        else {
+            handler(result);
+        }
+    };
     // Visit a parse tree produced by pumlParser#diagram.
     pumlVisitor2.prototype.visitDiagram = function (ctx) {
         var diagram = new document_1.Diagram();
-        for (var _i = 0, _a = this.visitChildren(ctx); _i < _a.length; _i++) {
-            var item = _a[_i];
-            if (item) {
-                if (item.diagramName) {
-                    diagram.name = item.diagramName;
-                }
+        this.processResults(this.visitChildren(ctx), function (item) {
+            if (item.diagramName) {
+                diagram.name = item.diagramName;
             }
-        }
+            if (item.note) {
+                diagram.items.push(item.note);
+            }
+        });
+        // for (const item of this.visitChildren(ctx)) {
+        //     if (item) {
+        //         if (item.diagramName) {
+        //             diagram.name = item.diagramName;
+        //         }
+        //         if (item.note) {
+        //             diagram.items.push(item.note);
+        //         }
+        //     }
+        // }
         return { diagram: diagram };
     };
     ;
     pumlVisitor2.prototype.visitStartUml = function (ctx) {
-        for (var _i = 0, _a = this.visitChildren(ctx); _i < _a.length; _i++) {
-            var item = _a[_i];
-            if (item) {
-                if (item.diagramName) {
-                    return item;
-                }
-            }
+        var txt = ctx.getText();
+        //strip @startuml
+        if (txt.length > 9) {
+            return {
+                diagramName: txt.substr(9).trim()
+            };
         }
         return {};
     };
@@ -106,23 +136,32 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return null;
     };
     ;
-    pumlVisitor2.prototype.visitDigramName = function (ctx) {
-        var value = ctx.getText();
-        if (value) {
-            value = value.trim();
-        }
-        return {
-            diagramName: value
-        };
-    };
-    ;
     pumlVisitor2.prototype.visitDiagramItem = function (ctx) {
         return this.visitChildren(ctx);
     };
     ;
     // Visit a parse tree produced by pumlParser#note.
     pumlVisitor2.prototype.visitNote = function (ctx) {
-        return this.visitChildren(ctx);
+        var note = new document_1.Note();
+        this.processResults(this.visitChildren(ctx), function (item) {
+            if (item.noteLocation) {
+                note.location = item.noteLocation;
+            }
+            if (item.noteContent) {
+                note.content = item.noteContent;
+            }
+        });
+        // for (const item of this.visitChildren(ctx)) {
+        //     if (item) {
+        //         if (item.noteLocation) {
+        //             note.location = item.noteLocation;
+        //         }
+        //         if (item.noteContent) {
+        //             note.content = item.noteContent;
+        //         }
+        //     }
+        // }
+        return { note: note };
     };
     ;
     // Visit a parse tree produced by pumlParser#singleLineNote.
@@ -130,9 +169,30 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return this.visitChildren(ctx);
     };
     ;
+    // Visit a parse tree produced by pumlParser#noteLocation.
+    pumlVisitor2.prototype.visitNoteLocation = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#noteLocationRight.
+    pumlVisitor2.prototype.visitNoteLocationRight = function (ctx) {
+        return {
+            noteLocation: "Right"
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#noteLocationLeft.
+    pumlVisitor2.prototype.visitNoteLocationLeft = function (ctx) {
+        return {
+            noteLocation: "Left"
+        };
+    };
+    ;
     // Visit a parse tree produced by pumlParser#noteTextLine.
     pumlVisitor2.prototype.visitNoteTextLine = function (ctx) {
-        return this.visitChildren(ctx);
+        return {
+            noteContent: this.getTextToEOL(ctx)
+        };
     };
     ;
     return pumlVisitor2;

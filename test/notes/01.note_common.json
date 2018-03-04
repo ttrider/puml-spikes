@@ -1,6 +1,10 @@
 {
     "diagrams": [{
         "name": "Notes",
-        "items": []
+        "items": [{
+            "type": "note",
+            "content": "single line",
+            "location": "Left"
+        }]
     }]
 }

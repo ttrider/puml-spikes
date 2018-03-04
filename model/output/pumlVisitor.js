@@ -60,6 +60,24 @@ pumlVisitor.prototype.visitSingleLineNote = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#noteLocation.
+pumlVisitor.prototype.visitNoteLocation = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#noteLocationRight.
+pumlVisitor.prototype.visitNoteLocationRight = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#noteLocationLeft.
+pumlVisitor.prototype.visitNoteLocationLeft = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#noteTextLine.
 pumlVisitor.prototype.visitNoteTextLine = function(ctx) {
   return this.visitChildren(ctx);

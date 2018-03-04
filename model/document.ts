@@ -1,5 +1,6 @@
 
 
+
 export class Document {
 
     diagrams: Diagram[] = [];
@@ -11,9 +12,14 @@ export class Diagram {
 }
 
 export class DiagramItem {
-    name: string | null = null;
+    constructor(public type: "note") { }
 }
 
 export class Note extends DiagramItem {
+    constructor() {
+        super("note");
+    }
     content: string | null = null;
+
+    location: "Left" | "Right" | "Over" = "Left";
 }

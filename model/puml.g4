@@ -4,28 +4,31 @@ document: diagram+;
 
 diagram: startUml diagramItem* endUml CR*;
 
-startUml: STARTUML SPACE? digramName? CR;
-
+startUml: STARTUMLLINE;
 
 endUml: ENDUML SPACE? CR;
 
 //digramName: TEXTEOL;
-digramName: (ANY|SPACE)*?;
+digramName: (ANY | SPACE)*?;
 
-diagramItem:
-	note;
+diagramItem: note;
 
 // notes
-note:
-	singleLineNote;
+note: singleLineNote;
 
-singleLineNote: NOTE SPACE ( LEFT | RIGHT ) SPACE? COLON noteTextLine? CR;
-noteTextLine: (ANY|SPACE)*?;
+singleLineNote:
+	NOTE SPACE noteLocation SPACE? COLON noteTextLine? CR;
 
+noteLocation: noteLocationRight | noteLocationLeft;
 
+noteLocationRight: RIGHT;
+noteLocationLeft: LEFT;
+
+noteTextLine: (ANY | SPACE)*?;
 
 // LEXER rules
 STARTUML: '@startuml';
+STARTUMLLINE: STARTUML .*? CR;
 ENDUML: '@enduml';
 
 // NOTE
@@ -33,13 +36,9 @@ NOTE: N O T E;
 LEFT: L E F T;
 RIGHT: R I G H T;
 
-
 // COMMON
 SEMICOLON: ';';
 COLON: ':';
-
-
-
 
 SPACE: (' ' | '\t')+;
 

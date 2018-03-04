@@ -83,6 +83,33 @@ pumlListener.prototype.exitSingleLineNote = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#noteLocation.
+pumlListener.prototype.enterNoteLocation = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteLocation.
+pumlListener.prototype.exitNoteLocation = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#noteLocationRight.
+pumlListener.prototype.enterNoteLocationRight = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteLocationRight.
+pumlListener.prototype.exitNoteLocationRight = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#noteLocationLeft.
+pumlListener.prototype.enterNoteLocationLeft = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteLocationLeft.
+pumlListener.prototype.exitNoteLocationLeft = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#noteTextLine.
 pumlListener.prototype.enterNoteTextLine = function(ctx) {
 };
