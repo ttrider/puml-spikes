@@ -1,0 +1,18 @@
+{
+    "diagrams": [{
+        "name": "Notes",
+        "items": [{
+            "type": "note",
+            "content": "0 - line\n1 - line",
+            "location": "Left"
+        }, {
+            "type": "note",
+            "content": "0 - green line\n1 - green line",
+            "location": "Right",
+            "color": "#green"
+        }, {
+            "type": "note",
+            "location": "Left"
+        }]
+    }]
+}

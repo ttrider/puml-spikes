@@ -1,0 +1,20 @@
+{
+    "diagrams": [{
+        "name": "Notes",
+        "items": [{
+            "type": "note",
+            "content": "single line",
+            "location": "Left"
+        }, {
+            "type": "note",
+            "content": "red single line",
+            "location": "Right",
+            "color": "#red"
+        }, {
+            "type": "note",
+            "content": "hex single line",
+            "location": "Right",
+            "color": "#0a0b0f"
+        }]
+    }]
+}

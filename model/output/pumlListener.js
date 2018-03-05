@@ -65,6 +65,15 @@ pumlListener.prototype.exitDiagramItem = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#color.
+pumlListener.prototype.enterColor = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#color.
+pumlListener.prototype.exitColor = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#note.
 pumlListener.prototype.enterNote = function(ctx) {
 };
@@ -80,6 +89,15 @@ pumlListener.prototype.enterSingleLineNote = function(ctx) {
 
 // Exit a parse tree produced by pumlParser#singleLineNote.
 pumlListener.prototype.exitSingleLineNote = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#multiLineNote.
+pumlListener.prototype.enterMultiLineNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#multiLineNote.
+pumlListener.prototype.exitMultiLineNote = function(ctx) {
 };
 
 
@@ -110,12 +128,39 @@ pumlListener.prototype.exitNoteLocationLeft = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#noteLocationOver.
+pumlListener.prototype.enterNoteLocationOver = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteLocationOver.
+pumlListener.prototype.exitNoteLocationOver = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#noteTextLine.
 pumlListener.prototype.enterNoteTextLine = function(ctx) {
 };
 
 // Exit a parse tree produced by pumlParser#noteTextLine.
 pumlListener.prototype.exitNoteTextLine = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#noteTextLines.
+pumlListener.prototype.enterNoteTextLines = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteTextLines.
+pumlListener.prototype.exitNoteTextLines = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#noteAnchor.
+pumlListener.prototype.enterNoteAnchor = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#noteAnchor.
+pumlListener.prototype.exitNoteAnchor = function(ctx) {
 };
 
 

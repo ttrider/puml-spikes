@@ -16,10 +16,13 @@ export class DiagramItem {
 }
 
 export class Note extends DiagramItem {
+
     constructor() {
         super("note");
     }
-    content: string | null = null;
-
+    content?: string;
     location: "Left" | "Right" | "Over" = "Left";
+    color?: string;
+    anchors?: string[];
+
 }

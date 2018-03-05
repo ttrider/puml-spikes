@@ -36,7 +36,6 @@ var Note = /** @class */ (function (_super) {
     __extends(Note, _super);
     function Note() {
         var _this = _super.call(this, "note") || this;
-        _this.content = null;
         _this.location = "Left";
         return _this;
     }

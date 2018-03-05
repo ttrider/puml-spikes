@@ -1,0 +1,12 @@
+@startuml Notes
+note left
+0 - line
+1 - line
+end note
+note right #green
+0 - green line
+1 - green line
+endnote
+note left
+end note
+@enduml

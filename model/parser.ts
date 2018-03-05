@@ -102,7 +102,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
 
         const diagram = new Diagram();
 
-        this.processResults(this.visitChildren(ctx), (item)=>{
+        this.processResults(this.visitChildren(ctx), (item) => {
             if (item.diagramName) {
                 diagram.name = item.diagramName;
             }
@@ -145,18 +145,39 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return this.visitChildren(ctx);
     };
 
+    visitColor(ctx: any) {
+
+        const color = ctx.getText();
+        if (color) {
+            return {
+                color: color.toLowerCase()
+            };
+        }
+        return null;
+    };
 
     // Visit a parse tree produced by pumlParser#note.
     visitNote(ctx: any) {
 
         const note = new Note();
 
-        this.processResults(this.visitChildren(ctx), (item)=>{
+        this.processResults(this.visitChildren(ctx), (item) => {
             if (item.noteLocation) {
                 note.location = item.noteLocation;
             }
             if (item.noteContent) {
                 note.content = item.noteContent;
+            }
+            if (item.color) {
+                note.color = item.color;
+            }
+            if (item.anchor) {
+                if (note.anchors){
+                    note.anchors.push(item.anchor);
+                } else{
+                    note.anchors = [item.anchor];
+                }
+                
             }
         });
 
@@ -201,12 +222,34 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         };
     };
 
+    visitNoteLocationOver(ctx: any) {
+        return {
+            noteLocation: "Over"
+        };
+    };
+
 
     // Visit a parse tree produced by pumlParser#noteTextLine.
     visitNoteTextLine(ctx: any) {
         return {
             noteContent: this.getTextToEOL(ctx)
         };
+    };
+
+    visitNoteTextLines(ctx: any) {
+        return {
+            noteContent: ctx.getText()
+        };
+    };
+
+    visitNoteAnchor(ctx: any) {
+        const anchor = ctx.getText();
+        if (anchor){
+            return {
+                anchor: anchor.trim()
+            }
+        }
+        return null;
     };
 }
 

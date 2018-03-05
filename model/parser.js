@@ -140,6 +140,16 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return this.visitChildren(ctx);
     };
     ;
+    pumlVisitor2.prototype.visitColor = function (ctx) {
+        var color = ctx.getText();
+        if (color) {
+            return {
+                color: color.toLowerCase()
+            };
+        }
+        return null;
+    };
+    ;
     // Visit a parse tree produced by pumlParser#note.
     pumlVisitor2.prototype.visitNote = function (ctx) {
         var note = new document_1.Note();
@@ -149,6 +159,17 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             }
             if (item.noteContent) {
                 note.content = item.noteContent;
+            }
+            if (item.color) {
+                note.color = item.color;
+            }
+            if (item.anchor) {
+                if (note.anchors) {
+                    note.anchors.push(item.anchor);
+                }
+                else {
+                    note.anchors = [item.anchor];
+                }
             }
         });
         // for (const item of this.visitChildren(ctx)) {
@@ -188,11 +209,33 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         };
     };
     ;
+    pumlVisitor2.prototype.visitNoteLocationOver = function (ctx) {
+        return {
+            noteLocation: "Over"
+        };
+    };
+    ;
     // Visit a parse tree produced by pumlParser#noteTextLine.
     pumlVisitor2.prototype.visitNoteTextLine = function (ctx) {
         return {
             noteContent: this.getTextToEOL(ctx)
         };
+    };
+    ;
+    pumlVisitor2.prototype.visitNoteTextLines = function (ctx) {
+        return {
+            noteContent: ctx.getText()
+        };
+    };
+    ;
+    pumlVisitor2.prototype.visitNoteAnchor = function (ctx) {
+        var anchor = ctx.getText();
+        if (anchor) {
+            return {
+                anchor: anchor.trim()
+            };
+        }
+        return null;
     };
     ;
     return pumlVisitor2;

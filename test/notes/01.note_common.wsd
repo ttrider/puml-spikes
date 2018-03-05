@@ -1,4 +1,0 @@
-@startuml Notes
-note left: single line
-note right #red: single line
-@enduml

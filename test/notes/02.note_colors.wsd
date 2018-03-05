@@ -1,6 +1,0 @@
-@startuml
-NOTE left #red
-red ddff note on left
-end note
-note right #YELLOWGREEN: single green line
-@enduml

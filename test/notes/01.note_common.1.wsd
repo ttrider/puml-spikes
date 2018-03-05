@@ -1,9 +1,0 @@
-@startuml
-note left
-left note
-end note
-note right
-right note
-end note
-note left: single line
-@enduml

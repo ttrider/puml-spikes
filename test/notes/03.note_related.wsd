@@ -1,0 +1,13 @@
+@startuml Notes
+note left of Bob
+Bob
+end note
+note right of Bob, Alise #red
+Bob
+Alise
+endnote
+note over Bob , Alise
+Bob
+Alise
+end note
+@enduml

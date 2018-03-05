@@ -1,0 +1,30 @@
+{
+    "diagrams": [{
+        "name": "Notes",
+        "items": [{
+            "type": "note",
+            "content": "Bob",
+            "location": "Left",
+            "anchors": [
+                "Bob"
+            ]
+        }, {
+            "type": "note",
+            "content": "Bob\nAlise",
+            "location": "Right",
+            "anchors": [
+                "Bob",
+                "Alise"
+            ],
+            "color": "#red"
+        }, {
+            "type": "note",
+            "content": "Bob\nAlise",
+            "location": "Over",
+            "anchors": [
+                "Bob",
+                "Alise"
+            ]
+        }]
+    }]
+}
