@@ -48,6 +48,17 @@ SPACE: (' ' | '\t')+;
 
 CR: ('\r'? '\n') | EOF;
 
+
+HEX_COLORS:
+	'#' HEXDIGITS HEXDIGITS HEXDIGITS (
+		HEXDIGITS HEXDIGITS HEXDIGITS
+	)?;
+// colors
+NAMED_COLORS:
+
+
+
+
 //// THIS MUST BE THE LAST LEXER RULE
 ANY: .;
 /////////////////////////////////////
@@ -55,6 +66,8 @@ ANY: .;
 fragment LETTERS: [a-zA-Z];
 
 fragment DIGITS: [0-9];
+fragment HEXDIGITS: [0-9aAbBcCdDeEfF];
+
 
 fragment A: 'A' | 'a';
 fragment B: 'B' | 'b';
