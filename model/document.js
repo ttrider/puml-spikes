@@ -21,6 +21,7 @@ var Diagram = /** @class */ (function () {
     function Diagram() {
         this.name = null;
         this.items = [];
+        this.participants = {};
     }
     return Diagram;
 }());
@@ -42,4 +43,33 @@ var Note = /** @class */ (function (_super) {
     return Note;
 }(DiagramItem));
 exports.Note = Note;
+var SequenceMessage = /** @class */ (function (_super) {
+    __extends(SequenceMessage, _super);
+    function SequenceMessage() {
+        return _super.call(this, "sequence_message") || this;
+    }
+    return SequenceMessage;
+}(DiagramItem));
+exports.SequenceMessage = SequenceMessage;
+var Connector = /** @class */ (function (_super) {
+    __extends(Connector, _super);
+    function Connector() {
+        var _this = _super.call(this, "connector") || this;
+        _this.style = "solid";
+        return _this;
+    }
+    return Connector;
+}(DiagramItem));
+exports.Connector = Connector;
+var Participant = /** @class */ (function (_super) {
+    __extends(Participant, _super);
+    function Participant(index, name) {
+        var _this = _super.call(this, "participant") || this;
+        _this.index = index;
+        _this.name = name;
+        return _this;
+    }
+    return Participant;
+}(DiagramItem));
+exports.Participant = Participant;
 //# sourceMappingURL=document.js.map

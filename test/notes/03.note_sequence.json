@@ -1,0 +1,103 @@
+{
+    "diagrams": [{
+        "name": null,
+        "items": [{
+            "type": "note",
+            "location": "Left",
+            "anchors": [
+                "James"
+            ],
+            "content": "foo",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Patric"
+            ],
+            "color": "#white",
+            "content": "ern",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Patric"
+            ],
+            "color": "#white",
+            "content": "e_rn",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Patric"
+            ],
+            "color": "#white",
+            "content": "e_n",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Patric"
+            ],
+            "color": "#white",
+            "content": "en",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Patric"
+            ],
+            "color": "#white",
+            "content": "ehn",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Left",
+            "anchors": [
+                "Bob"
+            ],
+            "content": "foo",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Bob"
+            ],
+            "color": "#white",
+            "content": "ern",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Bob"
+            ],
+            "color": "#white",
+            "content": "ern",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Bob"
+            ],
+            "color": "#white",
+            "content": "ern",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": [
+                "Bob"
+            ],
+            "color": "#white",
+            "content": "ern",
+            "shape": "hexagon"
+        }]
+    }]
+}

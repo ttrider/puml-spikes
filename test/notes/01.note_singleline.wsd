@@ -1,5 +1,7 @@
 @startuml Notes
 note left: single line
+
 note right #red: red single line
+
 note right #0A0b0F: hex single line
 @enduml

@@ -1,16 +1,4 @@
 @startuml
-note left of Bob
-left of Bob
-end note
-note over Alise
-over Alise
-end note
-note over Alise, James
-over Alise, James
-end note
-note over James, Patric #blue
-James, Patric #blue
-end note
 rnote left of James: foo
 rnote right of Patric #white
 ern
@@ -32,12 +20,12 @@ hnote right of Bob #white
 ern
 endhnote
 hnote right of Bob #white
-e_rn
+ern
 end hnote
 hnote right of Bob #white
-e_n
+ern
 end note
 hnote right of Bob #white
-en
+ern
 endnote
 @enduml

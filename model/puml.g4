@@ -11,23 +11,41 @@ endUml: ENDUML SPACE? CR;
 //digramName: TEXTEOL;
 digramName: (ANY | SPACE)*?;
 
-diagramItem: note;
+diagramItem
+	: emptyLine 
+	| note
+	| sequenceMessage;
 
 color: NAMED_COLORS | HEX_COLORS;
 
+emptyLine: SPACE | CR;
+
 // notes
-note: singleLineNote | multiLineNote;
+note
+	: singleLineNote 
+	| singleLineRNote 
+	| singleLineHNote 
+	| multiLineNote
+	| multiLineRNote
+	| multiLineHNote;
 
 singleLineNote:
 	NOTE SPACE noteLocation (SPACE color)? SPACE? COLON noteTextLine? CR;
+singleLineRNote:
+	RNOTE SPACE noteLocation (SPACE color)? SPACE? COLON noteTextLine? CR;
+singleLineHNote:
+	HNOTE SPACE noteLocation (SPACE color)? SPACE? COLON noteTextLine? CR;
 
 multiLineNote:
 	NOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (ENDNOTE | END_NOTE) CR;
-
+multiLineRNote:
+	RNOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (ENDNOTE | END_NOTE | ENDRNOTE | END_RNOTE | ENDHNOTE | END_HNOTE) CR;
+multiLineHNote:
+	HNOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (ENDNOTE | END_NOTE | ENDRNOTE | END_RNOTE | ENDHNOTE | END_HNOTE) CR;
 
 noteLocation
 	: noteLocationRight (SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)* )? 
-	| noteLocationLeft (SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)* )
+	| noteLocationLeft (SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)* )?
 	| noteLocationOver (SPACE noteAnchor (SPACE? COMMA noteAnchor)* )
 	;
 
@@ -39,6 +57,34 @@ noteTextLine: (ANY | SPACE)*?;
 noteTextLines: (ANY | SPACE | CR)*?;
 noteAnchor: (ANY | SPACE)*?;
 
+
+// sequence diagram
+sequenceMessage
+	: participant SPACE? connector SPACE? participant SPACE? (COLON messageText)? CR;
+
+connector
+	: connectorSolid
+	| connectorDotted
+	| connectorSolidReverse
+	| connectorDottedReverse
+	;
+
+connectorSolid:
+	CONNECTOR_SINGLE_LEFT;
+connectorSolidReverse:
+	CONNECTOR_SINGLE_RIGHT;
+
+connectorDotted:
+	CONNECTOR_DOUBLE_LEFT;
+connectorDottedReverse:
+	CONNECTOR_DOUBLE_RIGHT;
+
+
+participant
+	: (ANY | SPACE)+?;
+
+messageText: (ANY | SPACE)+?;
+
 // LEXER rules
 STARTUML: '@startuml';
 STARTUMLLINE: STARTUML .*? CR;
@@ -46,13 +92,25 @@ ENDUML: '@enduml';
 
 // NOTE
 NOTE: N O T E;
+RNOTE: R N O T E;
+HNOTE: H N O T E;
+
 LEFT: L E F T;
 RIGHT: R I G H T;
 OVER: O V E R;
 ENDNOTE: E N D N O T E;
+ENDRNOTE: E N D R N O T E;
+ENDHNOTE: E N D H N O T E;
 END_NOTE: E N D SPACE N O T E;
+END_RNOTE: E N D SPACE R N O T E;
+END_HNOTE: E N D SPACE H N O T E;
 
 OF: O F;
+
+CONNECTOR_SINGLE_LEFT : '->';
+CONNECTOR_SINGLE_RIGHT: '<-';
+CONNECTOR_DOUBLE_LEFT : '-->';
+CONNECTOR_DOUBLE_RIGHT : '<--';
 
 // COMMON
 SEMICOLON: ';';

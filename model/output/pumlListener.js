@@ -74,6 +74,15 @@ pumlListener.prototype.exitColor = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#emptyLine.
+pumlListener.prototype.enterEmptyLine = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#emptyLine.
+pumlListener.prototype.exitEmptyLine = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#note.
 pumlListener.prototype.enterNote = function(ctx) {
 };
@@ -92,12 +101,48 @@ pumlListener.prototype.exitSingleLineNote = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#singleLineRNote.
+pumlListener.prototype.enterSingleLineRNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#singleLineRNote.
+pumlListener.prototype.exitSingleLineRNote = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#singleLineHNote.
+pumlListener.prototype.enterSingleLineHNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#singleLineHNote.
+pumlListener.prototype.exitSingleLineHNote = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#multiLineNote.
 pumlListener.prototype.enterMultiLineNote = function(ctx) {
 };
 
 // Exit a parse tree produced by pumlParser#multiLineNote.
 pumlListener.prototype.exitMultiLineNote = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#multiLineRNote.
+pumlListener.prototype.enterMultiLineRNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#multiLineRNote.
+pumlListener.prototype.exitMultiLineRNote = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#multiLineHNote.
+pumlListener.prototype.enterMultiLineHNote = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#multiLineHNote.
+pumlListener.prototype.exitMultiLineHNote = function(ctx) {
 };
 
 
@@ -161,6 +206,78 @@ pumlListener.prototype.enterNoteAnchor = function(ctx) {
 
 // Exit a parse tree produced by pumlParser#noteAnchor.
 pumlListener.prototype.exitNoteAnchor = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#sequenceMessage.
+pumlListener.prototype.enterSequenceMessage = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#sequenceMessage.
+pumlListener.prototype.exitSequenceMessage = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#connector.
+pumlListener.prototype.enterConnector = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#connector.
+pumlListener.prototype.exitConnector = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#connectorSolid.
+pumlListener.prototype.enterConnectorSolid = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#connectorSolid.
+pumlListener.prototype.exitConnectorSolid = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#connectorSolidReverse.
+pumlListener.prototype.enterConnectorSolidReverse = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#connectorSolidReverse.
+pumlListener.prototype.exitConnectorSolidReverse = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#connectorDotted.
+pumlListener.prototype.enterConnectorDotted = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#connectorDotted.
+pumlListener.prototype.exitConnectorDotted = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#connectorDottedReverse.
+pumlListener.prototype.enterConnectorDottedReverse = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#connectorDottedReverse.
+pumlListener.prototype.exitConnectorDottedReverse = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#participant.
+pumlListener.prototype.enterParticipant = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#participant.
+pumlListener.prototype.exitParticipant = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#messageText.
+pumlListener.prototype.enterMessageText = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#messageText.
+pumlListener.prototype.exitMessageText = function(ctx) {
 };
 
 

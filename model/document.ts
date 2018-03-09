@@ -9,10 +9,19 @@ export class Document {
 export class Diagram {
     name: string | null = null;
     items: DiagramItem[] = [];
+    participants: { [name: string]: Participant } = {};
 }
 
 export class DiagramItem {
-    constructor(public type: "note") { }
+    constructor(public type
+        : "note"
+        | "sequence_message"
+        | "connector"
+        | "participant"
+    ) { }
+
+    shape?: "default" | "rectangle" | "hexagon";
+
 }
 
 export class Note extends DiagramItem {
@@ -25,4 +34,29 @@ export class Note extends DiagramItem {
     color?: string;
     anchors?: string[];
 
+}
+
+export class SequenceMessage extends DiagramItem {
+    connector?: Connector;
+    constructor() {
+        super("sequence_message");
+    }
+}
+
+export class Connector extends DiagramItem {
+    source?: string;
+    target?: string;
+    style: "solid" | "dotted" = "solid";
+    text?: string;
+    constructor() {
+        super("connector");
+    }
+}
+
+export class Participant extends DiagramItem {
+
+
+    constructor(public index: number, public name: string) {
+        super("participant");
+    }
 }

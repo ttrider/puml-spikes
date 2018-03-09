@@ -16,7 +16,7 @@ var pumlParser = require('./output/pumlParser');
 var pumlVisitor = require('./output/pumlVisitor');
 var document_1 = require("./document");
 function parse(diagram) {
-    printTokens(diagram);
+    //printTokens(diagram);
     var chars = new antlr4.InputStream(diagram);
     // adding extra CRLF at the end, if it is not there
     if (chars.data[chars.size - 1] != 10) {
@@ -100,6 +100,7 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     // Visit a parse tree produced by pumlParser#diagram.
     pumlVisitor2.prototype.visitDiagram = function (ctx) {
         var diagram = new document_1.Diagram();
+        var participants = 0;
         this.processResults(this.visitChildren(ctx), function (item) {
             if (item.diagramName) {
                 diagram.name = item.diagramName;
@@ -107,17 +108,19 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             if (item.note) {
                 diagram.items.push(item.note);
             }
+            if (item.sequenceMessage) {
+                diagram.items.push(item.sequenceMessage);
+                if (item.sequenceMessage.connector) {
+                    var connector = item.sequenceMessage.connector;
+                    if (!diagram.participants[connector.source]) {
+                        diagram.participants[connector.source] = new document_1.Participant(participants++, connector.source);
+                    }
+                    if (!diagram.participants[connector.target]) {
+                        diagram.participants[connector.target] = new document_1.Participant(participants++, connector.target);
+                    }
+                }
+            }
         });
-        // for (const item of this.visitChildren(ctx)) {
-        //     if (item) {
-        //         if (item.diagramName) {
-        //             diagram.name = item.diagramName;
-        //         }
-        //         if (item.note) {
-        //             diagram.items.push(item.note);
-        //         }
-        //     }
-        // }
         return { diagram: diagram };
     };
     ;
@@ -163,6 +166,9 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             if (item.color) {
                 note.color = item.color;
             }
+            if (item.shape) {
+                note.shape = item.shape;
+            }
             if (item.anchor) {
                 if (note.anchors) {
                     note.anchors.push(item.anchor);
@@ -172,22 +178,52 @@ var pumlVisitor2 = /** @class */ (function (_super) {
                 }
             }
         });
-        // for (const item of this.visitChildren(ctx)) {
-        //     if (item) {
-        //         if (item.noteLocation) {
-        //             note.location = item.noteLocation;
-        //         }
-        //         if (item.noteContent) {
-        //             note.content = item.noteContent;
-        //         }
-        //     }
-        // }
         return { note: note };
     };
     ;
     // Visit a parse tree produced by pumlParser#singleLineNote.
     pumlVisitor2.prototype.visitSingleLineNote = function (ctx) {
-        return this.visitChildren(ctx);
+        var ch = this.visitChildren(ctx);
+        return ch;
+    };
+    ;
+    pumlVisitor2.prototype.visitSingleLineRNote = function (ctx) {
+        var ch = this.visitChildren(ctx);
+        ch.push({
+            shape: "rectangle"
+        });
+        return ch;
+    };
+    ;
+    pumlVisitor2.prototype.visitSingleLineHNote = function (ctx) {
+        var ch = this.visitChildren(ctx);
+        ch.push({
+            shape: "hexagon"
+        });
+        return ch;
+    };
+    ;
+    pumlVisitor2.prototype.visitMultiLineNote = function (ctx) {
+        var ch = this.visitChildren(ctx);
+        return ch;
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#multiLineRNote.
+    pumlVisitor2.prototype.visitMultiLineRNote = function (ctx) {
+        var ch = this.visitChildren(ctx);
+        ch.push({
+            shape: "rectangle"
+        });
+        return ch;
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#multiLineHNote.
+    pumlVisitor2.prototype.visitMultiLineHNote = function (ctx) {
+        var ch = this.visitChildren(ctx);
+        ch.push({
+            shape: "hexagon"
+        });
+        return ch;
     };
     ;
     // Visit a parse tree produced by pumlParser#noteLocation.
@@ -236,6 +272,102 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             };
         }
         return null;
+    };
+    ;
+    pumlVisitor2.prototype.visitSequenceMessage = function (ctx) {
+        var msg = new document_1.SequenceMessage();
+        var participants = [];
+        var connector;
+        var reversed = false;
+        this.processResults(this.visitChildren(ctx), function (item) {
+            if (item.participantName) {
+                participants.push(item.participantName);
+            }
+            if (item.connector) {
+                connector = item.connector;
+            }
+            if (item.reversed) {
+                reversed = item.reversed;
+            }
+        });
+        if (participants.length < 2) {
+            throw "Invalid Sequence";
+        }
+        if (connector === undefined) {
+            throw "Invalid Sequence";
+        }
+        if (reversed) {
+            connector.source = participants[1];
+            connector.target = participants[0];
+        }
+        else {
+            connector.source = participants[1];
+            connector.target = participants[0];
+        }
+        msg.connector = connector;
+        return { sequenceMessage: msg };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#connector.
+    pumlVisitor2.prototype.visitConnector = function (ctx) {
+        var connector = new document_1.Connector();
+        var reversed = false;
+        this.processResults(this.visitChildren(ctx), function (item) {
+            if (item.text) {
+                connector.text = item.text;
+            }
+            if (item.style) {
+                connector.style = item.style;
+            }
+            if (item.reversed) {
+                reversed = item.reversed;
+            }
+        });
+        return { connector: connector, reversed: reversed };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#connectorSolidLeft.
+    pumlVisitor2.prototype.visitConnectorSolid = function (ctx) {
+        return {
+            style: "solid"
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#connectorSolidRight.
+    pumlVisitor2.prototype.visitConnectorSolidReverse = function (ctx) {
+        return {
+            reversed: true,
+            style: "solid"
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#connectorDottedLeft.
+    pumlVisitor2.prototype.visitConnectorDotted = function (ctx) {
+        return {
+            style: "dotted"
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#connectorDottedRight.
+    pumlVisitor2.prototype.visitConnectorDottedReverse = function (ctx) {
+        return {
+            reversed: true,
+            style: "dotted"
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#participant.
+    pumlVisitor2.prototype.visitParticipant = function (ctx) {
+        return {
+            participantName: ctx.getText()
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#messageText.
+    pumlVisitor2.prototype.visitMessageText = function (ctx) {
+        return {
+            text: this.getTextToEOL(ctx)
+        };
     };
     ;
     return pumlVisitor2;

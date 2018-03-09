@@ -1,0 +1,53 @@
+{
+    "diagrams": [{
+        "name": "Sequence",
+        "items": [{
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "solid",
+                    "source": "Bob",
+                    "target": "Alice"
+                }
+            },
+            {
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "dotted",
+                    "source": "Alice",
+                    "target": "Bob"
+                }
+            },
+            {
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "solid",
+                    "source": "Bob",
+                    "target": "Alice"
+                }
+            }, {
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "dotted",
+                    "source": "Bob",
+                    "target": "Alice"
+                }
+            }
+        ],
+        "participants": {
+            "Bob": {
+                "type": "participant",
+                "index": 0,
+                "name": "Bob"
+            },
+            "Alice": {
+                "type": "participant",
+                "index": 1,
+                "name": "Alice"
+            }
+        }
+    }]
+}

@@ -7,7 +7,7 @@
             "location": "Left"
         }, {
             "type": "note",
-            "content": "0 - green line\n1 - green line",
+            "content": "0 - green line\n\n1 - green line",
             "location": "Right",
             "color": "#green"
         }, {

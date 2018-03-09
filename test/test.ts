@@ -4,8 +4,9 @@ import { getTests } from './util';
 import { parse } from "../model/parser";
 
 const testSet = [
-   // "test/common",
-    "test/notes"
+//    "test/common",
+//    "test/notes",
+    "test/sequence"
 ];
 
 async.eachOf(testSet,
@@ -18,7 +19,7 @@ async.eachOf(testSet,
                     console.info(item.name);
                     const actual = parse(item.diagram);
         
-                    t.deepEqual(actual, item.data, item.name);
+                    t.deepEqual(actual, item.data, JSON.stringify(actual));
                 }
                 t.end();
                 icb();

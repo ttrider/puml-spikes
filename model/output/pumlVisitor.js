@@ -54,6 +54,12 @@ pumlVisitor.prototype.visitColor = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#emptyLine.
+pumlVisitor.prototype.visitEmptyLine = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#note.
 pumlVisitor.prototype.visitNote = function(ctx) {
   return this.visitChildren(ctx);
@@ -66,8 +72,32 @@ pumlVisitor.prototype.visitSingleLineNote = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#singleLineRNote.
+pumlVisitor.prototype.visitSingleLineRNote = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#singleLineHNote.
+pumlVisitor.prototype.visitSingleLineHNote = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#multiLineNote.
 pumlVisitor.prototype.visitMultiLineNote = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#multiLineRNote.
+pumlVisitor.prototype.visitMultiLineRNote = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#multiLineHNote.
+pumlVisitor.prototype.visitMultiLineHNote = function(ctx) {
   return this.visitChildren(ctx);
 };
 
@@ -110,6 +140,54 @@ pumlVisitor.prototype.visitNoteTextLines = function(ctx) {
 
 // Visit a parse tree produced by pumlParser#noteAnchor.
 pumlVisitor.prototype.visitNoteAnchor = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#sequenceMessage.
+pumlVisitor.prototype.visitSequenceMessage = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#connector.
+pumlVisitor.prototype.visitConnector = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#connectorSolid.
+pumlVisitor.prototype.visitConnectorSolid = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#connectorSolidReverse.
+pumlVisitor.prototype.visitConnectorSolidReverse = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#connectorDotted.
+pumlVisitor.prototype.visitConnectorDotted = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#connectorDottedReverse.
+pumlVisitor.prototype.visitConnectorDottedReverse = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#participant.
+pumlVisitor.prototype.visitParticipant = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#messageText.
+pumlVisitor.prototype.visitMessageText = function(ctx) {
   return this.visitChildren(ctx);
 };
 
