@@ -279,6 +279,7 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         var participants = [];
         var connector;
         var reversed = false;
+        var text = "";
         this.processResults(this.visitChildren(ctx), function (item) {
             if (item.participantName) {
                 participants.push(item.participantName);
@@ -288,6 +289,9 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             }
             if (item.reversed) {
                 reversed = item.reversed;
+            }
+            if (item.text) {
+                text = item.text;
             }
         });
         if (participants.length < 2) {
@@ -301,8 +305,11 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             connector.target = participants[0];
         }
         else {
-            connector.source = participants[1];
-            connector.target = participants[0];
+            connector.source = participants[0];
+            connector.target = participants[1];
+        }
+        if (text) {
+            connector.text = text;
         }
         msg.connector = connector;
         return { sequenceMessage: msg };
@@ -313,9 +320,6 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         var connector = new document_1.Connector();
         var reversed = false;
         this.processResults(this.visitChildren(ctx), function (item) {
-            if (item.text) {
-                connector.text = item.text;
-            }
             if (item.style) {
                 connector.style = item.style;
             }
@@ -356,8 +360,15 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         };
     };
     ;
-    // Visit a parse tree produced by pumlParser#participant.
-    pumlVisitor2.prototype.visitParticipant = function (ctx) {
+    pumlVisitor2.prototype.visitQuotedParticipant = function (ctx) {
+        var txt = ctx.getText();
+        return {
+            participantName: txt.substr(1, txt.length - 2)
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#simpleParticipant.
+    pumlVisitor2.prototype.visitSimpleParticipant = function (ctx) {
         return {
             participantName: ctx.getText()
         };

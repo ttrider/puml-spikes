@@ -79,9 +79,14 @@ connectorDotted:
 connectorDottedReverse:
 	CONNECTOR_DOUBLE_RIGHT;
 
+quotedParticipant
+	: DBLQUOTE ~DBLQUOTE* DBLQUOTE;
+simpleParticipant
+	 : ((ANY | SPACE)+?);
 
 participant
-	: (ANY | SPACE)+?;
+	: quotedParticipant
+	| simpleParticipant;
 
 messageText: (ANY | SPACE)+?;
 
@@ -116,8 +121,11 @@ CONNECTOR_DOUBLE_RIGHT : '<--';
 SEMICOLON: ';';
 COLON: ':';
 COMMA: ',';
+DBLQUOTE: '"';
 
 SPACE: (' ' | '\t')+;
+
+
 
 //WS : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip ;
 

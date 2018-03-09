@@ -113,17 +113,14 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             if (item.sequenceMessage) {
                 diagram.items.push(item.sequenceMessage);
 
-                if (item.sequenceMessage.connector)
-                {
+                if (item.sequenceMessage.connector) {
                     const connector = item.sequenceMessage.connector;
 
-                    if (!diagram.participants[connector.source])
-                    {
+                    if (!diagram.participants[connector.source]) {
                         diagram.participants[connector.source] = new Participant(participants++, connector.source);
                     }
 
-                    if (!diagram.participants[connector.target])
-                    {
+                    if (!diagram.participants[connector.target]) {
                         diagram.participants[connector.target] = new Participant(participants++, connector.target);
                     }
 
@@ -299,6 +296,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         const participants: any[] = [];
         let connector: Connector | undefined;
         let reversed: boolean = false;
+        let text: string = "";
 
         this.processResults(this.visitChildren(ctx), (item) => {
             if (item.participantName) {
@@ -309,6 +307,9 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             }
             if (item.reversed) {
                 reversed = item.reversed;
+            }
+            if (item.text) {
+                text = item.text;
             }
         });
 
@@ -323,8 +324,12 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             connector.source = participants[1];
             connector.target = participants[0];
         } else {
-            connector.source = participants[1];
-            connector.target = participants[0];
+            connector.source = participants[0];
+            connector.target = participants[1];
+        }
+
+        if (text) {
+            connector.text = text;
         }
 
         msg.connector = connector;
@@ -340,9 +345,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         let reversed: boolean = false;
 
         this.processResults(this.visitChildren(ctx), (item) => {
-            if (item.text) {
-                connector.text = item.text;
-            }
+
             if (item.style) {
                 connector.style = item.style;
             }
@@ -391,9 +394,16 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         };
     };
 
+    visitQuotedParticipant(ctx: any) {
+        const txt = ctx.getText() as string;
+        return {
+            participantName: txt.substr(1, txt.length - 2)
+        };
+    };
 
-    // Visit a parse tree produced by pumlParser#participant.
-    visitParticipant(ctx: any) {
+
+    // Visit a parse tree produced by pumlParser#simpleParticipant.
+    visitSimpleParticipant(ctx: any) {
         return {
             participantName: ctx.getText()
         };

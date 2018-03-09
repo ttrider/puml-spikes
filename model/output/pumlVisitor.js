@@ -180,6 +180,18 @@ pumlVisitor.prototype.visitConnectorDottedReverse = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#quotedParticipant.
+pumlVisitor.prototype.visitQuotedParticipant = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#simpleParticipant.
+pumlVisitor.prototype.visitSimpleParticipant = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#participant.
 pumlVisitor.prototype.visitParticipant = function(ctx) {
   return this.visitChildren(ctx);

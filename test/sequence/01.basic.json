@@ -6,8 +6,9 @@
                 "connector": {
                     "type": "connector",
                     "style": "solid",
-                    "source": "Bob",
-                    "target": "Alice"
+                    "source": "Alice",
+                    "target": "Bob",
+                    "text": "Authentication Request"
                 }
             },
             {
@@ -15,8 +16,8 @@
                 "connector": {
                     "type": "connector",
                     "style": "dotted",
-                    "source": "Alice",
-                    "target": "Bob"
+                    "source": "Bob",
+                    "target": "Alice"
                 }
             },
             {
@@ -24,8 +25,9 @@
                 "connector": {
                     "type": "connector",
                     "style": "solid",
-                    "source": "Bob",
-                    "target": "Alice"
+                    "source": "Alice",
+                    "target": "Bob",
+                    "text": "Another authentication Request"
                 }
             }, {
                 "type": "sequence_message",
@@ -33,20 +35,35 @@
                     "type": "connector",
                     "style": "dotted",
                     "source": "Bob",
-                    "target": "Alice"
+                    "target": "Alice",
+                    "text": "another authentication Response"
+                }
+            }, {
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "solid",
+                    "source": "Bob",
+                    "target": "James Smith",
+                    "text": "space in name"
                 }
             }
         ],
         "participants": {
-            "Bob": {
-                "type": "participant",
-                "index": 0,
-                "name": "Bob"
-            },
             "Alice": {
                 "type": "participant",
-                "index": 1,
+                "index": 0,
                 "name": "Alice"
+            },
+            "Bob": {
+                "type": "participant",
+                "index": 1,
+                "name": "Bob"
+            },
+            "James Smith": {
+                "type": "participant",
+                "index": 2,
+                "name": "James Smith"
             }
         }
     }]
