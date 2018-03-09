@@ -209,6 +209,78 @@ pumlListener.prototype.exitNoteAnchor = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#declareParticipant.
+pumlListener.prototype.enterDeclareParticipant = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareParticipant.
+pumlListener.prototype.exitDeclareParticipant = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareDefaultParticipant.
+pumlListener.prototype.enterDeclareDefaultParticipant = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareDefaultParticipant.
+pumlListener.prototype.exitDeclareDefaultParticipant = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareActor.
+pumlListener.prototype.enterDeclareActor = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareActor.
+pumlListener.prototype.exitDeclareActor = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareBoundary.
+pumlListener.prototype.enterDeclareBoundary = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareBoundary.
+pumlListener.prototype.exitDeclareBoundary = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareControl.
+pumlListener.prototype.enterDeclareControl = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareControl.
+pumlListener.prototype.exitDeclareControl = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareEntity.
+pumlListener.prototype.enterDeclareEntity = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareEntity.
+pumlListener.prototype.exitDeclareEntity = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareDatabase.
+pumlListener.prototype.enterDeclareDatabase = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareDatabase.
+pumlListener.prototype.exitDeclareDatabase = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareCollections.
+pumlListener.prototype.enterDeclareCollections = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareCollections.
+pumlListener.prototype.exitDeclareCollections = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#sequenceMessage.
 pumlListener.prototype.enterSequenceMessage = function(ctx) {
 };

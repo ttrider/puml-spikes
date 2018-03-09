@@ -274,6 +274,40 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return null;
     };
     ;
+    pumlVisitor2.prototype.visitDeclareParticipant = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#declareActor.
+    pumlVisitor2.prototype.visitDeclareActor = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#declareBoundary.
+    pumlVisitor2.prototype.visitDeclareBoundary = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#declareControl.
+    pumlVisitor2.prototype.visitDeclareControl = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#declareEntity.
+    pumlVisitor2.prototype.visitDeclareEntity = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#declareDatabase.
+    pumlVisitor2.prototype.visitDeclareDatabase = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#declareCollections.
+    pumlVisitor2.prototype.visitDeclareCollections = function (ctx) {
+        return this.visitChildren(ctx);
+    };
+    ;
     pumlVisitor2.prototype.visitSequenceMessage = function (ctx) {
         var msg = new document_1.SequenceMessage();
         var participants = [];

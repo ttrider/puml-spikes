@@ -289,6 +289,48 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return null;
     };
 
+    visitDeclareParticipant(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareActor.
+    visitDeclareActor(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareBoundary.
+    visitDeclareBoundary(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareControl.
+    visitDeclareControl(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareEntity.
+    visitDeclareEntity(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareDatabase.
+    visitDeclareDatabase(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareCollections.
+    visitDeclareCollections(ctx: any) {
+        return this.visitChildren(ctx);
+    };
+
+
+
     visitSequenceMessage(ctx: any) {
 
         const msg = new SequenceMessage();

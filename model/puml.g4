@@ -13,7 +13,8 @@ digramName: (ANY | SPACE)*?;
 
 diagramItem
 	: emptyLine 
-	| note
+	| note 
+	| declareParticipant
 	| sequenceMessage;
 
 color: NAMED_COLORS | HEX_COLORS;
@@ -21,10 +22,10 @@ color: NAMED_COLORS | HEX_COLORS;
 emptyLine: SPACE | CR;
 
 // notes
-note
-	: singleLineNote 
-	| singleLineRNote 
-	| singleLineHNote 
+note:
+	singleLineNote
+	| singleLineRNote
+	| singleLineHNote
 	| multiLineNote
 	| multiLineRNote
 	| multiLineHNote;
@@ -37,17 +38,39 @@ singleLineHNote:
 	HNOTE SPACE noteLocation (SPACE color)? SPACE? COLON noteTextLine? CR;
 
 multiLineNote:
-	NOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (ENDNOTE | END_NOTE) CR;
+	NOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (
+		ENDNOTE
+		| END_NOTE
+	) CR;
 multiLineRNote:
-	RNOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (ENDNOTE | END_NOTE | ENDRNOTE | END_RNOTE | ENDHNOTE | END_HNOTE) CR;
+	RNOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (
+		ENDNOTE
+		| END_NOTE
+		| ENDRNOTE
+		| END_RNOTE
+		| ENDHNOTE
+		| END_HNOTE
+	) CR;
 multiLineHNote:
-	HNOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (ENDNOTE | END_NOTE | ENDRNOTE | END_RNOTE | ENDHNOTE | END_HNOTE) CR;
+	HNOTE SPACE noteLocation (SPACE color)? SPACE? CR noteTextLines CR? (
+		ENDNOTE
+		| END_NOTE
+		| ENDRNOTE
+		| END_RNOTE
+		| ENDHNOTE
+		| END_HNOTE
+	) CR;
 
-noteLocation
-	: noteLocationRight (SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)* )? 
-	| noteLocationLeft (SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)* )?
-	| noteLocationOver (SPACE noteAnchor (SPACE? COMMA noteAnchor)* )
-	;
+noteLocation:
+	noteLocationRight (
+		SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)*
+	)?
+	| noteLocationLeft (
+		SPACE OF SPACE noteAnchor (SPACE? COMMA noteAnchor)*
+	)?
+	| noteLocationOver (
+		SPACE noteAnchor (SPACE? COMMA noteAnchor)*
+	);
 
 noteLocationRight: RIGHT;
 noteLocationLeft: LEFT;
@@ -57,36 +80,45 @@ noteTextLine: (ANY | SPACE)*?;
 noteTextLines: (ANY | SPACE | CR)*?;
 noteAnchor: (ANY | SPACE)*?;
 
-
 // sequence diagram
-sequenceMessage
-	: participant SPACE? connector SPACE? participant SPACE? (COLON messageText)? CR;
+declareParticipant
+	: (declareDefaultParticipant
+	| declareActor
+	| declareBoundary
+	| declareControl
+	| declareEntity
+	| declareDatabase
+	| declareCollections) participant CR;
 
-connector
-	: connectorSolid
+declareDefaultParticipant: PARTICIPANT;
+declareActor: ACTOR;
+declareBoundary: BOUNDARY;
+declareControl: CONTROL;
+declareEntity: ENTITY;
+declareDatabase: DATABASE;
+declareCollections: COLLECTIONS;
+
+sequenceMessage:
+	participant SPACE? connector SPACE? participant SPACE? (
+		COLON messageText
+	)? CR;
+
+connector:
+	connectorSolid
 	| connectorDotted
 	| connectorSolidReverse
-	| connectorDottedReverse
-	;
+	| connectorDottedReverse;
 
-connectorSolid:
-	CONNECTOR_SINGLE_LEFT;
-connectorSolidReverse:
-	CONNECTOR_SINGLE_RIGHT;
+connectorSolid: CONNECTOR_SINGLE_LEFT;
+connectorSolidReverse: CONNECTOR_SINGLE_RIGHT;
 
-connectorDotted:
-	CONNECTOR_DOUBLE_LEFT;
-connectorDottedReverse:
-	CONNECTOR_DOUBLE_RIGHT;
+connectorDotted: CONNECTOR_DOUBLE_LEFT;
+connectorDottedReverse: CONNECTOR_DOUBLE_RIGHT;
 
-quotedParticipant
-	: DBLQUOTE ~DBLQUOTE* DBLQUOTE;
-simpleParticipant
-	 : ((ANY | SPACE)+?);
+quotedParticipant: DBLQUOTE ~DBLQUOTE* DBLQUOTE;
+simpleParticipant: ((ANY | SPACE)+?);
 
-participant
-	: quotedParticipant
-	| simpleParticipant;
+participant: quotedParticipant | simpleParticipant;
 
 messageText: (ANY | SPACE)+?;
 
@@ -94,6 +126,15 @@ messageText: (ANY | SPACE)+?;
 STARTUML: '@startuml';
 STARTUMLLINE: STARTUML .*? CR;
 ENDUML: '@enduml';
+
+//PARTICIPANTS
+PARTICIPANT: P A R T I C I P A N T;
+ACTOR: A C T O R;
+BOUNDARY: B O U N D A R Y;
+CONTROL: C O N T R O L;
+ENTITY: E N T I T Y;
+DATABASE: D A T A B A S E;
+COLLECTIONS: C O L L E C T I O N S;
 
 // NOTE
 NOTE: N O T E;
@@ -112,10 +153,10 @@ END_HNOTE: E N D SPACE H N O T E;
 
 OF: O F;
 
-CONNECTOR_SINGLE_LEFT : '->';
+CONNECTOR_SINGLE_LEFT: '->';
 CONNECTOR_SINGLE_RIGHT: '<-';
-CONNECTOR_DOUBLE_LEFT : '-->';
-CONNECTOR_DOUBLE_RIGHT : '<--';
+CONNECTOR_DOUBLE_LEFT: '-->';
+CONNECTOR_DOUBLE_RIGHT: '<--';
 
 // COMMON
 SEMICOLON: ';';
@@ -124,8 +165,6 @@ COMMA: ',';
 DBLQUOTE: '"';
 
 SPACE: (' ' | '\t')+;
-
-
 
 //WS : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip ;
 

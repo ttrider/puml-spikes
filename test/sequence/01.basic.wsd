@@ -1,4 +1,12 @@
 @startuml Sequence
+participant Participant
+actor Actor
+boundary Boundary
+control Control
+entity Entity
+database Database
+collections Collections
+
 Alice->Bob: Authentication Request
 Bob --> Alice
 Alice -> Bob: Another authentication Request

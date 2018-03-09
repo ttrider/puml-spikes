@@ -50,19 +50,62 @@
             }
         ],
         "participants": {
-            "Alice": {
+
+            "Participant": {
                 "type": "participant",
                 "index": 0,
+                "name": "Participant",
+                "style": "default"
+            },
+            "Actor": {
+                "type": "participant",
+                "index": 1,
+                "name": "Actor",
+                "style": "actor"
+            },
+            "Boundary": {
+                "type": "participant",
+                "index": 2,
+                "name": "Boundary",
+                "style": "boundary"
+            },
+            "Control": {
+                "type": "participant",
+                "index": 3,
+                "name": "Control",
+                "style": "control"
+            },
+            "Entity": {
+                "type": "participant",
+                "index": 4,
+                "name": "Entity",
+                "style": "entity"
+            },
+            "Database": {
+                "type": "participant",
+                "index": 5,
+                "name": "Database",
+                "style": "database"
+            },
+            "Collections": {
+                "type": "participant",
+                "index": 6,
+                "name": "Collections",
+                "style": "collections"
+            },
+            "Alice": {
+                "type": "participant",
+                "index": 7,
                 "name": "Alice"
             },
             "Bob": {
                 "type": "participant",
-                "index": 1,
+                "index": 8,
                 "name": "Bob"
             },
             "James Smith": {
                 "type": "participant",
-                "index": 2,
+                "index": 9,
                 "name": "James Smith"
             }
         }

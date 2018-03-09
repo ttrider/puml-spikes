@@ -144,6 +144,54 @@ pumlVisitor.prototype.visitNoteAnchor = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#declareParticipant.
+pumlVisitor.prototype.visitDeclareParticipant = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareDefaultParticipant.
+pumlVisitor.prototype.visitDeclareDefaultParticipant = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareActor.
+pumlVisitor.prototype.visitDeclareActor = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareBoundary.
+pumlVisitor.prototype.visitDeclareBoundary = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareControl.
+pumlVisitor.prototype.visitDeclareControl = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareEntity.
+pumlVisitor.prototype.visitDeclareEntity = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareDatabase.
+pumlVisitor.prototype.visitDeclareDatabase = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareCollections.
+pumlVisitor.prototype.visitDeclareCollections = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#sequenceMessage.
 pumlVisitor.prototype.visitSequenceMessage = function(ctx) {
   return this.visitChildren(ctx);
