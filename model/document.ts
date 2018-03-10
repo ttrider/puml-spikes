@@ -55,8 +55,20 @@ export class Connector extends DiagramItem {
 
 export class Participant extends DiagramItem {
 
-
+    style?: "default" | "actor" | "boundary" | "control" | "entity" | "database" | "collections";
     constructor(public index: number, public name: string) {
         super("participant");
     }
+
+    merge(other: Participant): Participant {
+        if (other) {
+            if (other.style) {
+                this.style = other.style;
+            }
+        }
+
+
+        return this;
+    }
+
 }

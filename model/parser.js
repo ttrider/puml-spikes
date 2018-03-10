@@ -120,6 +120,16 @@ var pumlVisitor2 = /** @class */ (function (_super) {
                     }
                 }
             }
+            if (item.declareParticipant && item.declareParticipant.name) {
+                var existing = diagram.participants[item.declareParticipant.name];
+                if (existing) {
+                    existing.merge(item.declareParticipant);
+                }
+                else {
+                    item.declareParticipant.index = participants++;
+                    diagram.participants[item.declareParticipant.name] = item.declareParticipant;
+                }
+            }
         });
         return { diagram: diagram };
     };
@@ -275,37 +285,52 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     };
     ;
     pumlVisitor2.prototype.visitDeclareParticipant = function (ctx) {
-        return this.visitChildren(ctx);
+        var p = new document_1.Participant(0, "");
+        this.processResults(this.visitChildren(ctx), function (item) {
+            if (item.participantName) {
+                p.name = item.participantName;
+            }
+            if (item.participantStyle) {
+                p.style = item.participantStyle;
+            }
+        });
+        return {
+            declareParticipant: p
+        };
+    };
+    ;
+    pumlVisitor2.prototype.visitDeclareDefaultParticipant = function (ctx) {
+        return { participantStyle: "default" };
     };
     ;
     // Visit a parse tree produced by pumlParser#declareActor.
     pumlVisitor2.prototype.visitDeclareActor = function (ctx) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "actor" };
     };
     ;
     // Visit a parse tree produced by pumlParser#declareBoundary.
     pumlVisitor2.prototype.visitDeclareBoundary = function (ctx) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "boundary" };
     };
     ;
     // Visit a parse tree produced by pumlParser#declareControl.
     pumlVisitor2.prototype.visitDeclareControl = function (ctx) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "control" };
     };
     ;
     // Visit a parse tree produced by pumlParser#declareEntity.
     pumlVisitor2.prototype.visitDeclareEntity = function (ctx) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "entity" };
     };
     ;
     // Visit a parse tree produced by pumlParser#declareDatabase.
     pumlVisitor2.prototype.visitDeclareDatabase = function (ctx) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "database" };
     };
     ;
     // Visit a parse tree produced by pumlParser#declareCollections.
     pumlVisitor2.prototype.visitDeclareCollections = function (ctx) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "collections" };
     };
     ;
     pumlVisitor2.prototype.visitSequenceMessage = function (ctx) {
@@ -394,24 +419,35 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         };
     };
     ;
-    pumlVisitor2.prototype.visitQuotedParticipant = function (ctx) {
-        var txt = ctx.getText();
-        return {
-            participantName: txt.substr(1, txt.length - 2)
-        };
-    };
-    ;
     // Visit a parse tree produced by pumlParser#simpleParticipant.
-    pumlVisitor2.prototype.visitSimpleParticipant = function (ctx) {
-        return {
-            participantName: ctx.getText()
-        };
+    pumlVisitor2.prototype.visitParticipant = function (ctx) {
+        var ret = {};
+        this.processResults(this.visitChildren(ctx), function (item) {
+            if (item.identifier) {
+                ret.participantName = item.identifier;
+            }
+        });
+        return ret;
     };
     ;
     // Visit a parse tree produced by pumlParser#messageText.
     pumlVisitor2.prototype.visitMessageText = function (ctx) {
         return {
             text: this.getTextToEOL(ctx)
+        };
+    };
+    ;
+    pumlVisitor2.prototype.visitQuotedIdentifier = function (ctx) {
+        var txt = ctx.getText();
+        return {
+            identifier: txt.substr(1, txt.length - 2)
+        };
+    };
+    ;
+    // Visit a parse tree produced by pumlParser#simpleParticipant.
+    pumlVisitor2.prototype.visitIdentifier = function (ctx) {
+        return {
+            identifier: ctx.getText()
         };
     };
     ;

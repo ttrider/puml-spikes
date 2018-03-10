@@ -127,6 +127,18 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
                 }
 
             }
+            if (item.declareParticipant && item.declareParticipant.name) {
+
+                const existing = diagram.participants[item.declareParticipant.name];
+
+                if (existing) {
+                    existing.merge(item.declareParticipant);
+                }
+                else {
+                    item.declareParticipant.index = participants++;
+                    diagram.participants[item.declareParticipant.name] = item.declareParticipant;
+                }
+            }
         });
         return { diagram: diagram };
     };
@@ -290,43 +302,60 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     };
 
     visitDeclareParticipant(ctx: any) {
-        return this.visitChildren(ctx);
+
+        const p = new Participant(0, "");
+
+        this.processResults(this.visitChildren(ctx), (item) => {
+            if (item.participantName) {
+                p.name = item.participantName;
+            }
+            if (item.participantStyle) {
+                p.style = item.participantStyle;
+            }
+        });
+        return {
+            declareParticipant: p
+        }
+    };
+
+    visitDeclareDefaultParticipant(ctx: any) {
+        return { participantStyle: "default" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareActor.
     visitDeclareActor(ctx: any) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "actor" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareBoundary.
     visitDeclareBoundary(ctx: any) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "boundary" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareControl.
     visitDeclareControl(ctx: any) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "control" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareEntity.
     visitDeclareEntity(ctx: any) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "entity" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareDatabase.
     visitDeclareDatabase(ctx: any) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "database" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareCollections.
     visitDeclareCollections(ctx: any) {
-        return this.visitChildren(ctx);
+        return { participantStyle: "collections" };
     };
 
 
@@ -436,19 +465,19 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         };
     };
 
-    visitQuotedParticipant(ctx: any) {
-        const txt = ctx.getText() as string;
-        return {
-            participantName: txt.substr(1, txt.length - 2)
-        };
-    };
-
 
     // Visit a parse tree produced by pumlParser#simpleParticipant.
-    visitSimpleParticipant(ctx: any) {
-        return {
-            participantName: ctx.getText()
-        };
+    visitParticipant(ctx: any) {
+
+        const ret: { participantName?: string } = {};
+
+        this.processResults(this.visitChildren(ctx), (item) => {
+            if (item.identifier) {
+                ret.participantName = item.identifier;
+            }
+        });
+
+        return ret;
     };
 
 
@@ -456,6 +485,21 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     visitMessageText(ctx: any) {
         return {
             text: this.getTextToEOL(ctx)
+        };
+    };
+
+    visitQuotedIdentifier(ctx: any) {
+        const txt = ctx.getText() as string;
+        return {
+            identifier: txt.substr(1, txt.length - 2)
+        };
+    };
+
+
+    // Visit a parse tree produced by pumlParser#simpleParticipant.
+    visitIdentifier(ctx: any) {
+        return {
+            identifier: ctx.getText()
         };
     };
 }

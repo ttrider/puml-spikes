@@ -69,6 +69,14 @@ var Participant = /** @class */ (function (_super) {
         _this.name = name;
         return _this;
     }
+    Participant.prototype.merge = function (other) {
+        if (other) {
+            if (other.style) {
+                this.style = other.style;
+            }
+        }
+        return this;
+    };
     return Participant;
 }(DiagramItem));
 exports.Participant = Participant;

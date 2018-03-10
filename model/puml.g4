@@ -82,13 +82,14 @@ noteAnchor: (ANY | SPACE)*?;
 
 // sequence diagram
 declareParticipant
-	: (declareDefaultParticipant
+	 : ( declareDefaultParticipant
 	| declareActor
 	| declareBoundary
 	| declareControl
 	| declareEntity
 	| declareDatabase
-	| declareCollections) participant CR;
+	| declareCollections
+	) SPACE participant CR;
 
 declareDefaultParticipant: PARTICIPANT;
 declareActor: ACTOR;
@@ -115,10 +116,12 @@ connectorSolidReverse: CONNECTOR_SINGLE_RIGHT;
 connectorDotted: CONNECTOR_DOUBLE_LEFT;
 connectorDottedReverse: CONNECTOR_DOUBLE_RIGHT;
 
-quotedParticipant: DBLQUOTE ~DBLQUOTE* DBLQUOTE;
-simpleParticipant: ((ANY | SPACE)+?);
 
-participant: quotedParticipant | simpleParticipant;
+
+participant: identifier | quotedIdentifier;
+
+identifier: (~(SPACE | CR))*;
+quotedIdentifier: DBLQUOTE ( (~DBLQUOTE) | ESC_DBLQUOTE ) * DBLQUOTE;
 
 messageText: (ANY | SPACE)+?;
 
@@ -163,6 +166,7 @@ SEMICOLON: ';';
 COLON: ':';
 COMMA: ',';
 DBLQUOTE: '"';
+ESC_DBLQUOTE: '\\"';
 
 SPACE: (' ' | '\t')+;
 
