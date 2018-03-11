@@ -21,8 +21,26 @@ var Diagram = /** @class */ (function () {
     function Diagram() {
         this.name = null;
         this.items = [];
-        this.participants = {};
     }
+    Diagram.prototype.addParticipant = function (participant) {
+        if (!participant || !participant.id) {
+            return participant;
+        }
+        if (!this.participants) {
+            participant.index = 0;
+            this.participants = {};
+            this.participants[participant.id] = participant;
+            return participant;
+        }
+        participant.index = Object.keys(this.participants).length;
+        var existing = this.participants[participant.id];
+        if (existing) {
+            existing.merge(participant);
+            return existing;
+        }
+        this.participants[participant.id] = participant;
+        return participant;
+    };
     return Diagram;
 }());
 exports.Diagram = Diagram;
@@ -63,16 +81,22 @@ var Connector = /** @class */ (function (_super) {
 exports.Connector = Connector;
 var Participant = /** @class */ (function (_super) {
     __extends(Participant, _super);
-    function Participant(index, name) {
+    function Participant(index, id) {
         var _this = _super.call(this, "participant") || this;
         _this.index = index;
-        _this.name = name;
+        _this.id = id;
         return _this;
     }
     Participant.prototype.merge = function (other) {
         if (other) {
-            if (other.style) {
+            if (!this.style && other.style) {
                 this.style = other.style;
+            }
+            if (!this.color && other.color) {
+                this.color = other.color;
+            }
+            if (!this.title && other.title) {
+                this.title = other.title;
             }
         }
         return this;

@@ -6,7 +6,7 @@ import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from
 
 
 export function parse(diagram: string): Document {
-    //printTokens(diagram);
+    //  printTokens(diagram);
     const chars = new antlr4.InputStream(diagram);
     // adding extra CRLF at the end, if it is not there
     if (chars.data[chars.size - 1] != 10) {
@@ -24,21 +24,6 @@ export function parse(diagram: string): Document {
     return visitor.visit(start) as Document;
 }
 
-export function test(input: string) {
-    printTokens(input);
-    const chars = new antlr4.InputStream(input);
-    const lexer = new pumlLexer.pumlLexer(chars);
-
-
-    const tokens = new antlr4.CommonTokenStream(lexer);
-    const parser = new pumlParser.pumlParser(tokens);
-    parser.buildParseTrees = true;
-    const start = parser.start();
-
-    const visitor = new pumlVisitor2();
-    visitor.visit(start);
-
-}
 
 function printTokens(input: string) {
     console.info("==========");
@@ -106,38 +91,18 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         this.processResults(this.visitChildren(ctx), (item) => {
             if (item.diagramName) {
                 diagram.name = item.diagramName;
-            }
-            if (item.note) {
+            } else if (item.note) {
                 diagram.items.push(item.note);
-            }
-            if (item.sequenceMessage) {
+            } else if (item.sequenceMessage) {
                 diagram.items.push(item.sequenceMessage);
 
                 if (item.sequenceMessage.connector) {
                     const connector = item.sequenceMessage.connector;
-
-                    if (!diagram.participants[connector.source]) {
-                        diagram.participants[connector.source] = new Participant(participants++, connector.source);
-                    }
-
-                    if (!diagram.participants[connector.target]) {
-                        diagram.participants[connector.target] = new Participant(participants++, connector.target);
-                    }
-
+                    diagram.addParticipant(new Participant(participants++, connector.source));
+                    diagram.addParticipant(new Participant(participants++, connector.target));
                 }
-
-            }
-            if (item.declareParticipant && item.declareParticipant.name) {
-
-                const existing = diagram.participants[item.declareParticipant.name];
-
-                if (existing) {
-                    existing.merge(item.declareParticipant);
-                }
-                else {
-                    item.declareParticipant.index = participants++;
-                    diagram.participants[item.declareParticipant.name] = item.declareParticipant;
-                }
+            } else if (item.declareParticipant) {
+                diagram.addParticipant(item.declareParticipant);
             }
         });
         return { diagram: diagram };
@@ -306,11 +271,20 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         const p = new Participant(0, "");
 
         this.processResults(this.visitChildren(ctx), (item) => {
-            if (item.participantName) {
-                p.name = item.participantName;
+            if (item.id) {
+                p.id = item.id;
             }
-            if (item.participantStyle) {
-                p.style = item.participantStyle;
+            if (item.participantId) {
+                p.id = item.participantId;
+            }
+            if (item.title) {
+                p.title = item.title;
+            }
+            if (item.style) {
+                p.style = item.style;
+            }
+            if (item.color) {
+                p.color = item.color;
             }
         });
         return {
@@ -319,43 +293,43 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     };
 
     visitDeclareDefaultParticipant(ctx: any) {
-        return { participantStyle: "default" };
+        return { style: "default" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareActor.
     visitDeclareActor(ctx: any) {
-        return { participantStyle: "actor" };
+        return { style: "actor" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareBoundary.
     visitDeclareBoundary(ctx: any) {
-        return { participantStyle: "boundary" };
+        return { style: "boundary" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareControl.
     visitDeclareControl(ctx: any) {
-        return { participantStyle: "control" };
+        return { style: "control" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareEntity.
     visitDeclareEntity(ctx: any) {
-        return { participantStyle: "entity" };
+        return { style: "entity" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareDatabase.
     visitDeclareDatabase(ctx: any) {
-        return { participantStyle: "database" };
+        return { style: "database" };
     };
 
 
     // Visit a parse tree produced by pumlParser#declareCollections.
     visitDeclareCollections(ctx: any) {
-        return { participantStyle: "collections" };
+        return { style: "collections" };
     };
 
 
@@ -370,8 +344,8 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         let text: string = "";
 
         this.processResults(this.visitChildren(ctx), (item) => {
-            if (item.participantName) {
-                participants.push(item.participantName);
+            if (item.participantId) {
+                participants.push(item.participantId);
             }
             if (item.connector) {
                 connector = item.connector;
@@ -469,15 +443,57 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     // Visit a parse tree produced by pumlParser#simpleParticipant.
     visitParticipant(ctx: any) {
 
-        const ret: { participantName?: string } = {};
+        const ret: { participantId?: string } = {};
 
         this.processResults(this.visitChildren(ctx), (item) => {
             if (item.identifier) {
-                ret.participantName = item.identifier;
+                ret.participantId = item.identifier;
             }
         });
 
         return ret;
+    };
+
+    visitDeclareTitleAsId(ctx: any) {
+        const data: string[] = [];
+        this.processResults(this.visitChildren(ctx), (item) => {
+            if (item.identifier) {
+                data.push(item.identifier);
+            }
+        });
+
+        return {
+            title: data[0],
+            id: data[1]
+        };
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareIdAsTitle.
+    visitDeclareIdAsTitle(ctx: any) {
+        const data: string[] = [];
+        this.processResults(this.visitChildren(ctx), (item) => {
+            if (item.identifier) {
+                data.push(item.identifier);
+            }
+        });
+
+        return {
+            title: data[1],
+            id: data[0]
+        };
+    };
+
+
+    // Visit a parse tree produced by pumlParser#declareId.
+    visitDeclareId(ctx: any) {
+        this.processResults(this.visitChildren(ctx), (item) => {
+            if (item.identifier) {
+                return {
+                    id: item.identifier
+                };
+            }
+        });
     };
 
 
@@ -503,7 +519,3 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         };
     };
 }
-
-
-
-export default test;

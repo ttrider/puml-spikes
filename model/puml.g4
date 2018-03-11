@@ -89,7 +89,7 @@ declareParticipant
 	| declareEntity
 	| declareDatabase
 	| declareCollections
-	) SPACE participant CR;
+	) SPACE declareId (SPACE color)? SPACE? CR;
 
 declareDefaultParticipant: PARTICIPANT;
 declareActor: ACTOR;
@@ -98,6 +98,10 @@ declareControl: CONTROL;
 declareEntity: ENTITY;
 declareDatabase: DATABASE;
 declareCollections: COLLECTIONS;
+
+declareTitleAsId: (quotedIdentifier AS identifier) | (identifier AS identifier);
+declareIdAsTitle: identifier AS quotedIdentifier;
+declareId: identifier | quotedIdentifier;
 
 sequenceMessage:
 	participant SPACE? connector SPACE? participant SPACE? (
@@ -155,6 +159,7 @@ END_RNOTE: E N D SPACE R N O T E;
 END_HNOTE: E N D SPACE H N O T E;
 
 OF: O F;
+AS: A S;
 
 CONNECTOR_SINGLE_LEFT: '->';
 CONNECTOR_SINGLE_RIGHT: '<-';
@@ -166,15 +171,21 @@ SEMICOLON: ';';
 COLON: ':';
 COMMA: ',';
 DBLQUOTE: '"';
+
 ESC_DBLQUOTE: '\\"';
 
 SPACE: (' ' | '\t')+;
+
+WS: (' ' | '\t');
 
 //WS : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip ;
 
 //WS: [ \t];
 
 CR: ('\r'? '\n') | EOF;
+
+SINGLE_LINE_COMMENT: '\'' ~('\r' | '\n')* '\r'? '\n' -> skip;
+MULTI_LINE_COMMENT: '/\'' ~('\'')* '\'/' -> skip;
 
 HEX_COLORS:
 	'#' HEXDIGITS HEXDIGITS HEXDIGITS (

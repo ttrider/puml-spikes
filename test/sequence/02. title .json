@@ -1,0 +1,33 @@
+{
+    "diagrams": [{
+        "name": "Sequence",
+        "items": [{
+            "type": "sequence_message",
+            "connector": {
+                "type": "connector",
+                "style": "solid",
+                "source": "id",
+                "target": "id2"
+            }
+        }],
+        "participants": {
+
+            "id": {
+                "type": "participant",
+                "index": 0,
+                "id": "id",
+                "title": "Title",
+                "style": "default",
+                "color": "#99FF99"
+            },
+            "id2": {
+                "type": "participant",
+                "index": 1,
+                "id": "id2",
+                "title": "Title2",
+                "style": "default",
+                "color": "#990099"
+            }
+        }
+    }]
+}

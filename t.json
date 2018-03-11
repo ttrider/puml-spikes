@@ -1,0 +1,38 @@
+{
+    "diagrams": [
+
+        {
+            "name": "Sequence",
+            "items": [
+
+                {
+                    "type": "sequence_message",
+                    "connector":
+
+                    { "type": "connector", "style": "solid", "source": "Alice", "target": "Bob", "text": "Authentication Request" }
+                },
+                {
+                    "type": "sequence_message",
+                    "connector": { "type": "connector", "style": "dotted", "source": "Bob", "target": "Alice" }
+                },
+                {
+                    "type": "sequence_message",
+                    "connector": { "type": "connector", "style": "solid", "source": "Alice", "target": "Bob", "text": "Another authentication Request" }
+                },
+                {
+                    "type": "sequence_message",
+                    "connector": { "type": "connector", "style": "dotted", "source": "Bob", "target": "Alice", "text": "another authentication Response" }
+                },
+                {
+                    "type": "sequence_message",
+                    "connector": { "type": "connector", "style": "solid", "source": "Bob", "target": "James Smith", "text": "space in name" }
+                }
+            ],
+            "participants": {
+                "Alice": { "type": "participant", "index": 0, "id": "Alice" },
+                "Bob": { "type": "participant", "index": 1, "id": "Bob" },
+                "James Smith": { "type": "participant", "index": 2, "id": "James Smith" }
+            }
+        }
+    ]
+}

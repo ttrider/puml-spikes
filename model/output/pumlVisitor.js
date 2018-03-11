@@ -192,6 +192,24 @@ pumlVisitor.prototype.visitDeclareCollections = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#declareTitleAsId.
+pumlVisitor.prototype.visitDeclareTitleAsId = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareIdAsTitle.
+pumlVisitor.prototype.visitDeclareIdAsTitle = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by pumlParser#declareId.
+pumlVisitor.prototype.visitDeclareId = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#sequenceMessage.
 pumlVisitor.prototype.visitSequenceMessage = function(ctx) {
   return this.visitChildren(ctx);

@@ -281,6 +281,33 @@ pumlListener.prototype.exitDeclareCollections = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#declareTitleAsId.
+pumlListener.prototype.enterDeclareTitleAsId = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareTitleAsId.
+pumlListener.prototype.exitDeclareTitleAsId = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareIdAsTitle.
+pumlListener.prototype.enterDeclareIdAsTitle = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareIdAsTitle.
+pumlListener.prototype.exitDeclareIdAsTitle = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#declareId.
+pumlListener.prototype.enterDeclareId = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareId.
+pumlListener.prototype.exitDeclareId = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#sequenceMessage.
 pumlListener.prototype.enterSequenceMessage = function(ctx) {
 };

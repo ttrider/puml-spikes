@@ -5,9 +5,8 @@ var async = require("async");
 var util_1 = require("./util");
 var parser_1 = require("../model/parser");
 var testSet = [
-    //    "test/common",
-    //    "test/notes",
-    "test/sequence"
+    "test/common",
+    "test/notes",
 ];
 async.eachOf(testSet, function (item, index, icb) {
     test(item, function (t) {

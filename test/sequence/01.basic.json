@@ -54,59 +54,60 @@
             "Participant": {
                 "type": "participant",
                 "index": 0,
-                "name": "Participant",
+                "id": "Participant",
                 "style": "default"
             },
             "Actor": {
                 "type": "participant",
                 "index": 1,
-                "name": "Actor",
-                "style": "actor"
+                "id": "Actor",
+                "style": "actor",
+                "color": "#red"
             },
             "Boundary": {
                 "type": "participant",
                 "index": 2,
-                "name": "Boundary",
+                "id": "Boundary",
                 "style": "boundary"
             },
             "Control": {
                 "type": "participant",
                 "index": 3,
-                "name": "Control",
+                "id": "Control",
                 "style": "control"
             },
             "Entity": {
                 "type": "participant",
                 "index": 4,
-                "name": "Entity",
+                "id": "Entity",
                 "style": "entity"
             },
             "Database": {
                 "type": "participant",
                 "index": 5,
-                "name": "Database",
+                "id": "Database",
                 "style": "database"
             },
             "Collections": {
                 "type": "participant",
                 "index": 6,
-                "name": "Collections",
+                "id": "Collections",
                 "style": "collections"
             },
             "Alice": {
                 "type": "participant",
                 "index": 7,
-                "name": "Alice"
+                "id": "Alice"
             },
             "Bob": {
                 "type": "participant",
                 "index": 8,
-                "name": "Bob"
+                "id": "Bob"
             },
             "James Smith": {
                 "type": "participant",
                 "index": 9,
-                "name": "James Smith"
+                "id": "James Smith"
             }
         }
     }]

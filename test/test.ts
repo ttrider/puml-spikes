@@ -4,9 +4,9 @@ import { getTests } from './util';
 import { parse } from "../model/parser";
 
 const testSet = [
-//    "test/common",
-//    "test/notes",
-    "test/sequence"
+    "test/common",
+    "test/notes",
+//    "test/sequence"
 ];
 
 async.eachOf(testSet,

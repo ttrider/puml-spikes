@@ -1,6 +1,6 @@
 @startuml Sequence
 participant Participant
-actor Actor
+actor Actor #red
 boundary Boundary
 control Control
 entity Entity

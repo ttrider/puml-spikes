@@ -9,7 +9,33 @@ export class Document {
 export class Diagram {
     name: string | null = null;
     items: DiagramItem[] = [];
-    participants: { [name: string]: Participant } = {};
+    participants?: { [name: string]: Participant };
+
+
+
+    addParticipant(participant: Participant): Participant {
+
+        if (!participant || !participant.id) { return participant; }
+
+        if (!this.participants) {
+            participant.index = 0;
+            this.participants = {};
+            this.participants[participant.id] = participant;
+            return participant;
+        }
+
+        participant.index = Object.keys(this.participants).length;
+
+        const existing = this.participants[participant.id];
+
+        if (existing) {
+            existing.merge(participant);
+            return existing;
+        }
+
+        this.participants[participant.id] = participant;
+        return participant;
+    }
 }
 
 export class DiagramItem {
@@ -56,14 +82,22 @@ export class Connector extends DiagramItem {
 export class Participant extends DiagramItem {
 
     style?: "default" | "actor" | "boundary" | "control" | "entity" | "database" | "collections";
-    constructor(public index: number, public name: string) {
+    color?: string;
+    title?: string;
+    constructor(public index: number, public id: string) {
         super("participant");
     }
 
     merge(other: Participant): Participant {
         if (other) {
-            if (other.style) {
+            if (!this.style && other.style) {
                 this.style = other.style;
+            }
+            if (!this.color && other.color) {
+                this.color = other.color;
+            }
+            if (!this.title && other.title) {
+                this.title = other.title;
             }
         }
 
