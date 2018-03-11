@@ -68,7 +68,7 @@ export function getTests(testPath: string, cb: (err: Error | null, matches: Arra
                         icb();
                     }
                 });
-            } else{
+            } else {
                 icb();
             }
 
@@ -76,4 +76,116 @@ export function getTests(testPath: string, cb: (err: Error | null, matches: Arra
             cb(err, ret);
         });
     });
+}
+
+export function deepCompare(actual: any, expected: any) {
+    compareProperty("root", actual, expected);
+}
+
+function compareProperty(context: string, actual: any, expected: any) {
+    if (actual === undefined) {
+        if (expected === undefined) {
+            return true;
+        }
+        else {
+            throw new Error(`missing property ${context}`);
+        }
+    }
+    if (expected === undefined) {
+        throw new Error(`extra property ${context}`);
+    }
+
+    if (actual === null) {
+        if (expected === null) {
+            return true;
+        }
+        else {
+            throw new Error(`null property ${context}`);
+        }
+    }
+    if (expected === undefined) {
+        throw new Error(`null property ${context}`);
+    }
+
+    const typeofActual = typeof actual;
+
+    if (typeofActual !== typeof expected) {
+        throw new Error(`property type mismatch ${context}`);
+    }
+
+    // base types
+    if (
+        typeofActual === "string" ||
+        typeofActual === "number" ||
+        typeofActual === "boolean"
+    ) {
+        if (actual === expected) {
+            return true;
+        }
+        throw new Error(`property value mismatch ${context} (${actual} vs ${expected})`);
+    }
+
+    // date
+    if (actual instanceof Date) {
+        if (expected instanceof Date) {
+            if (actual.valueOf() === expected.valueOf()) {
+                return true;
+            }
+            throw new Error(`property value mismatch ${context} (${actual} vs ${expected})`);
+        }
+        else {
+            throw new Error(`property type mismatch ${context}`);
+        }
+    }
+    if (expected instanceof Date) {
+        throw new Error(`property type mismatch ${context}`);
+    }
+
+    // array
+    if (Array.isArray(actual)) {
+        if (Array.isArray(expected)) {
+
+            if (actual.length !== expected.length) {
+                throw new Error(`mismatch array length ${context}`);
+            }
+
+            for (let i = 0; i < actual.length; i++) {
+                const contextItem = context + "[" + i + "]";
+                compareProperty(contextItem, actual[i], expected[i]);
+            }
+            return true;
+        }
+        else {
+            throw new Error(`property type mismatch ${context}`);
+        }
+    }
+    if (expected instanceof Date) {
+        throw new Error(`property type mismatch ${context}`);
+    }
+
+    for (const key in actual) {
+        if (actual.hasOwnProperty(key)) {
+
+            const actualItem = actual[key];
+
+            if (expected.hasOwnProperty(key)) {
+                const expectedItem = expected[key];
+                const contextItem = context + "." + key;
+                compareProperty(contextItem, actualItem, expectedItem);
+            } else {
+                throw new Error(`extra property ${context}.${key}`);
+            }
+        } 
+    }
+
+    for (const key in expected) {
+        if (expected.hasOwnProperty(key)) {
+            if (!actual.hasOwnProperty(key)) {
+                throw new Error(`missing property ${context}.${key}`);
+            }
+        }
+    }
+
+
+    return true;
 }

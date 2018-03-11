@@ -1,12 +1,12 @@
 import * as test from 'tape';
 import * as async from "async";
-import { getTests } from './util';
+import { getTests, deepCompare } from './util';
 import { parse } from "../model/parser";
 
 const testSet = [
-    "test/common",
+    "test/common", 
     "test/notes",
-//    "test/sequence"
+    "test/sequence"
 ];
 
 async.eachOf(testSet,
@@ -14,11 +14,13 @@ async.eachOf(testSet,
         test(item, (t) => {
 
             getTests(item, (err, matches) => {
-        
+
                 for (const item of matches) {
                     console.info(item.name);
                     const actual = parse(item.diagram);
-        
+
+                    deepCompare(actual, item.data);
+
                     t.deepEqual(actual, item.data, JSON.stringify(actual));
                 }
                 t.end();

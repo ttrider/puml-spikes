@@ -1,38 +1,79 @@
 {
-    "diagrams": [
-
-        {
-            "name": "Sequence",
-            "items": [
-
-                {
-                    "type": "sequence_message",
-                    "connector":
-
-                    { "type": "connector", "style": "solid", "source": "Alice", "target": "Bob", "text": "Authentication Request" }
-                },
-                {
-                    "type": "sequence_message",
-                    "connector": { "type": "connector", "style": "dotted", "source": "Bob", "target": "Alice" }
-                },
-                {
-                    "type": "sequence_message",
-                    "connector": { "type": "connector", "style": "solid", "source": "Alice", "target": "Bob", "text": "Another authentication Request" }
-                },
-                {
-                    "type": "sequence_message",
-                    "connector": { "type": "connector", "style": "dotted", "source": "Bob", "target": "Alice", "text": "another authentication Response" }
-                },
-                {
-                    "type": "sequence_message",
-                    "connector": { "type": "connector", "style": "solid", "source": "Bob", "target": "James Smith", "text": "space in name" }
-                }
+    "diagrams": [{
+        "name": null,
+        "items": [{
+            "type": "note",
+            "location": "Left",
+            "anchors": [
+                "James"
             ],
-            "participants": {
-                "Alice": { "type": "participant", "index": 0, "id": "Alice" },
-                "Bob": { "type": "participant", "index": 1, "id": "Bob" },
-                "James Smith": { "type": "participant", "index": 2, "id": "James Smith" }
-            }
-        }
-    ]
+            "content": "foo",
+            "shape": "rectangle"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Patric"],
+            "color": "#white",
+            "content": "ern",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Patric"],
+            "color": "#white",
+            "content": "e_rn",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Patric"],
+            "color": "#white",
+            "content": "e_n",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Patric"],
+            "color": "#white",
+            "content": "en",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Patric"],
+            "color": "#white",
+            "content": "ehn",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Left",
+            "anchors": ["Bob"],
+            "content": "foo",
+            "shape": "hexagon"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Bob"],
+            "color": "#white",
+            "content": "ern"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Bob"],
+            "color": "#white",
+            "content": "ern"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Bob"],
+            "color": "#white",
+            "content": "ern"
+        }, {
+            "type": "note",
+            "location": "Right",
+            "anchors": ["Bob"],
+            "color": "#white",
+            "content": "ern"
+        }]
+    }]
 }

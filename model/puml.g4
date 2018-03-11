@@ -1,5 +1,6 @@
 grammar puml;
 
+
 document: diagram+;
 
 diagram: startUml diagramItem* endUml CR*;
@@ -89,7 +90,7 @@ declareParticipant
 	| declareEntity
 	| declareDatabase
 	| declareCollections
-	) SPACE declareId (SPACE color)? SPACE? CR;
+	) SPACE ( declareId | declareTitleAsId | declareIdAsTitle ) (SPACE color)? SPACE? CR;
 
 declareDefaultParticipant: PARTICIPANT;
 declareActor: ACTOR;
@@ -99,8 +100,8 @@ declareEntity: ENTITY;
 declareDatabase: DATABASE;
 declareCollections: COLLECTIONS;
 
-declareTitleAsId: (quotedIdentifier AS identifier) | (identifier AS identifier);
-declareIdAsTitle: identifier AS quotedIdentifier;
+declareTitleAsId: (quotedIdentifier SPACE AS SPACE identifier) | (identifier SPACE AS SPACE identifier);
+declareIdAsTitle: identifier SPACE AS SPACE quotedIdentifier;
 declareId: identifier | quotedIdentifier;
 
 sequenceMessage:
@@ -124,10 +125,19 @@ connectorDottedReverse: CONNECTOR_DOUBLE_RIGHT;
 
 participant: identifier | quotedIdentifier;
 
-identifier: (~(SPACE | CR))*;
+identifier: ~DBLQUOTE (~(SPACE | CR))*;
 quotedIdentifier: DBLQUOTE ( (~DBLQUOTE) | ESC_DBLQUOTE ) * DBLQUOTE;
 
 messageText: (ANY | SPACE)+?;
+
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
 
 // LEXER rules
 STARTUML: '@startuml';
@@ -178,9 +188,6 @@ SPACE: (' ' | '\t')+;
 
 WS: (' ' | '\t');
 
-//WS : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip ;
-
-//WS: [ \t];
 
 CR: ('\r'? '\n') | EOF;
 
@@ -344,7 +351,13 @@ NAMED_COLORS:
 
 //// THIS MUST BE THE LAST LEXER RULE
 ANY: .;
-/////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 fragment LETTERS: [a-zA-Z];
 fragment DIGITS: [0-9];
