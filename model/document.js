@@ -80,10 +80,10 @@ var Connector = /** @class */ (function (_super) {
 exports.Connector = Connector;
 var Participant = /** @class */ (function (_super) {
     __extends(Participant, _super);
-    function Participant(index, id) {
+    function Participant(id) {
         var _this = _super.call(this, "participant") || this;
-        _this.index = index;
         _this.id = id;
+        _this.index = 0;
         return _this;
     }
     Participant.prototype.merge = function (other) {
@@ -96,6 +96,9 @@ var Participant = /** @class */ (function (_super) {
             }
             if (!this.title && other.title) {
                 this.title = other.title;
+            }
+            if (!this.order && other.order) {
+                this.order = other.order;
             }
         }
         return this;

@@ -2,14 +2,24 @@
     "diagrams": [{
         "name": "Sequence",
         "items": [{
-            "type": "sequence_message",
-            "connector": {
-                "type": "connector",
-                "style": "solid",
-                "source": "id2",
-                "target": "id"
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "solid",
+                    "source": "id2",
+                    "target": "id"
+                }
+            },
+            {
+                "type": "sequence_message",
+                "connector": {
+                    "type": "connector",
+                    "style": "solid",
+                    "source": "news",
+                    "target": "newt"
+                }
             }
-        }],
+        ],
         "participants": {
             "id2": {
                 "type": "participant",
@@ -34,6 +44,18 @@
                 "title": "Title3",
                 "style": "default",
                 "color": "#00ff11"
+            },
+            "news": {
+                "type": "participant",
+                "index": 3,
+                "id": "news",
+                "title": "New Source"
+            },
+            "newt": {
+                "type": "participant",
+                "index": 4,
+                "id": "newt",
+                "title": "New Target"
             }
         }
     }]

@@ -308,12 +308,30 @@ pumlListener.prototype.exitDeclareId = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#declareParticipantIdAndTitle.
+pumlListener.prototype.enterDeclareParticipantIdAndTitle = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareParticipantIdAndTitle.
+pumlListener.prototype.exitDeclareParticipantIdAndTitle = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#declareOrder.
 pumlListener.prototype.enterDeclareOrder = function(ctx) {
 };
 
 // Exit a parse tree produced by pumlParser#declareOrder.
 pumlListener.prototype.exitDeclareOrder = function(ctx) {
+};
+
+
+// Enter a parse tree produced by pumlParser#sequenceMessageParticipant.
+pumlListener.prototype.enterSequenceMessageParticipant = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#sequenceMessageParticipant.
+pumlListener.prototype.exitSequenceMessageParticipant = function(ctx) {
 };
 
 
@@ -368,15 +386,6 @@ pumlListener.prototype.enterConnectorDottedReverse = function(ctx) {
 
 // Exit a parse tree produced by pumlParser#connectorDottedReverse.
 pumlListener.prototype.exitConnectorDottedReverse = function(ctx) {
-};
-
-
-// Enter a parse tree produced by pumlParser#participant.
-pumlListener.prototype.enterParticipant = function(ctx) {
-};
-
-// Exit a parse tree produced by pumlParser#participant.
-pumlListener.prototype.exitParticipant = function(ctx) {
 };
 
 

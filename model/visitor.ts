@@ -43,11 +43,13 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             } else if (item.sequenceMessage) {
                 diagram.items.push(item.sequenceMessage);
 
-                if (item.sequenceMessage.connector) {
-                    const connector = item.sequenceMessage.connector;
-                    diagram.addParticipant(new Participant(participants++, connector.source));
-                    diagram.addParticipant(new Participant(participants++, connector.target));
+                if (item.sequenceMessage.participants){
+                    for (const p of item.sequenceMessage.participants) {
+                        diagram.addParticipant(p);
+                    }
+                    delete item.sequenceMessage.participants;
                 }
+
             } else if (item.declareParticipant) {
                 diagram.addParticipant(item.declareParticipant);
             }
@@ -82,34 +84,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return null;
     };
 
-    visitDeclareParticipant(ctx: any) {
 
-        const p = new Participant(0, "");
-
-        processChildren(this, ctx, (item) => {
-            if (item.id) {
-                p.id = item.id;
-            }
-            if (item.participantId) {
-                p.id = item.participantId;
-            }
-            if (item.title) {
-                p.title = item.title;
-            }
-            if (item.style) {
-                p.style = item.style;
-            }
-            if (item.color) {
-                p.color = item.color;
-            }
-            if (item.order) {
-                p.order = item.order;
-            }
-        });
-        return {
-            declareParticipant: p
-        }
-    };
 
 
 
@@ -118,15 +93,17 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
     visitSequenceMessage(ctx: any) {
 
         const msg = new SequenceMessage();
+        msg.participants = [];
+        const participants = msg.participants;
 
-        const participants: any[] = [];
         let connector: Connector | undefined;
         let reversed: boolean = false;
         let text: string = "";
 
+
         processChildren(this, ctx, (item) => {
-            if (item.participantId) {
-                participants.push(item.participantId);
+            if (item.participant) {
+                participants.push(item.participant);
             }
             if (item.connector) {
                 connector = item.connector;
@@ -139,7 +116,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             }
         });
 
-        if (participants.length < 2) {
+        if (msg.participants.length < 2) {
             throw "Invalid Sequence";
         }
         if (connector === undefined) {
@@ -147,11 +124,11 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         }
 
         if (reversed) {
-            connector.source = participants[1];
-            connector.target = participants[0];
+            connector.source = msg.participants[1].id;
+            connector.target = msg.participants[0].id;
         } else {
-            connector.source = participants[0];
-            connector.target = participants[1];
+            connector.source = msg.participants[0].id;
+            connector.target = msg.participants[1].id;
         }
 
         if (text) {
@@ -165,74 +142,26 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
 
 
     // Visit a parse tree produced by pumlParser#connector.
-    
 
 
 
-    visitParticipant(ctx: any) {
 
-        const ret: { participantId?: string } = {};
+    visitSequenceMessageParticipant(ctx: any) {
+
+        const p = new Participant("");
 
         processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                ret.participantId = item.identifier;
+            if (item.id) {
+                p.id = item.id;
+            }
+            if (item.title) {
+                p.title = item.title;
             }
         });
-
-        return ret;
-    };
-
-    visitDeclareTitleAsId(ctx: any) {
-        const data: string[] = [];
-        processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                data.push(item.identifier);
-            }
-        });
-
         return {
-            title: data[0],
-            id: data[1]
-        };
+            participant: p
+        }
     };
-
-
-    // Visit a parse tree produced by pumlParser#declareIdAsTitle.
-    visitDeclareIdAsTitle(ctx: any) {
-        const data: string[] = [];
-        processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                data.push(item.identifier);
-            }
-        });
-
-        return {
-            title: data[1],
-            id: data[0]
-        };
-    };
-
-    // Visit a parse tree produced by pumlParser#declareId.
-    visitDeclareId(ctx: any) {
-        return processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                return {
-                    id: item.identifier
-                };
-            }
-        });
-    };
-
-    visitDeclareOrder(ctx: any) {
-        return processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                
-                return {
-                    order: parseFloat(item.identifier)
-                };
-            }
-        });
-    }
 
 
     // Visit a parse tree produced by pumlParser#messageText.
@@ -255,7 +184,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return {
             identifier: ctx.getText()
         };
-    }; 
+    };
 }
 
 applyMixins(pumlVisitor2, [NoteVisitor, NoteConnector, NoteParticipant]);

@@ -12,4 +12,5 @@ Bob --> Alice
 Alice -> Bob: Another authentication Request
 Alice <-- Bob: another authentication Response
 Bob -> "James Smith": space in name
+Jeff->Jeff: Message To Self
 @enduml

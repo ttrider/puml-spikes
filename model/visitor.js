@@ -52,10 +52,12 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             }
             else if (item.sequenceMessage) {
                 diagram.items.push(item.sequenceMessage);
-                if (item.sequenceMessage.connector) {
-                    var connector = item.sequenceMessage.connector;
-                    diagram.addParticipant(new document_1.Participant(participants++, connector.source));
-                    diagram.addParticipant(new document_1.Participant(participants++, connector.target));
+                if (item.sequenceMessage.participants) {
+                    for (var _i = 0, _a = item.sequenceMessage.participants; _i < _a.length; _i++) {
+                        var p = _a[_i];
+                        diagram.addParticipant(p);
+                    }
+                    delete item.sequenceMessage.participants;
                 }
             }
             else if (item.declareParticipant) {
@@ -90,42 +92,16 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return null;
     };
     ;
-    pumlVisitor2.prototype.visitDeclareParticipant = function (ctx) {
-        var p = new document_1.Participant(0, "");
-        visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.id) {
-                p.id = item.id;
-            }
-            if (item.participantId) {
-                p.id = item.participantId;
-            }
-            if (item.title) {
-                p.title = item.title;
-            }
-            if (item.style) {
-                p.style = item.style;
-            }
-            if (item.color) {
-                p.color = item.color;
-            }
-            if (item.order) {
-                p.order = item.order;
-            }
-        });
-        return {
-            declareParticipant: p
-        };
-    };
-    ;
     pumlVisitor2.prototype.visitSequenceMessage = function (ctx) {
         var msg = new document_1.SequenceMessage();
-        var participants = [];
+        msg.participants = [];
+        var participants = msg.participants;
         var connector;
         var reversed = false;
         var text = "";
         visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.participantId) {
-                participants.push(item.participantId);
+            if (item.participant) {
+                participants.push(item.participant);
             }
             if (item.connector) {
                 connector = item.connector;
@@ -137,19 +113,19 @@ var pumlVisitor2 = /** @class */ (function (_super) {
                 text = item.text;
             }
         });
-        if (participants.length < 2) {
+        if (msg.participants.length < 2) {
             throw "Invalid Sequence";
         }
         if (connector === undefined) {
             throw "Invalid Sequence";
         }
         if (reversed) {
-            connector.source = participants[1];
-            connector.target = participants[0];
+            connector.source = msg.participants[1].id;
+            connector.target = msg.participants[0].id;
         }
         else {
-            connector.source = participants[0];
-            connector.target = participants[1];
+            connector.source = msg.participants[0].id;
+            connector.target = msg.participants[1].id;
         }
         if (text) {
             connector.text = text;
@@ -159,63 +135,21 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     };
     ;
     // Visit a parse tree produced by pumlParser#connector.
-    pumlVisitor2.prototype.visitParticipant = function (ctx) {
-        var ret = {};
+    pumlVisitor2.prototype.visitSequenceMessageParticipant = function (ctx) {
+        var p = new document_1.Participant("");
         visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.identifier) {
-                ret.participantId = item.identifier;
+            if (item.id) {
+                p.id = item.id;
             }
-        });
-        return ret;
-    };
-    ;
-    pumlVisitor2.prototype.visitDeclareTitleAsId = function (ctx) {
-        var data = [];
-        visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.identifier) {
-                data.push(item.identifier);
+            if (item.title) {
+                p.title = item.title;
             }
         });
         return {
-            title: data[0],
-            id: data[1]
+            participant: p
         };
     };
     ;
-    // Visit a parse tree produced by pumlParser#declareIdAsTitle.
-    pumlVisitor2.prototype.visitDeclareIdAsTitle = function (ctx) {
-        var data = [];
-        visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.identifier) {
-                data.push(item.identifier);
-            }
-        });
-        return {
-            title: data[1],
-            id: data[0]
-        };
-    };
-    ;
-    // Visit a parse tree produced by pumlParser#declareId.
-    pumlVisitor2.prototype.visitDeclareId = function (ctx) {
-        return visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.identifier) {
-                return {
-                    id: item.identifier
-                };
-            }
-        });
-    };
-    ;
-    pumlVisitor2.prototype.visitDeclareOrder = function (ctx) {
-        return visitor_utilities_1.processChildren(this, ctx, function (item) {
-            if (item.identifier) {
-                return {
-                    order: parseFloat(item.identifier)
-                };
-            }
-        });
-    };
     // Visit a parse tree produced by pumlParser#messageText.
     pumlVisitor2.prototype.visitMessageText = function (ctx) {
         return {

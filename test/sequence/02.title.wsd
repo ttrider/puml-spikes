@@ -10,4 +10,5 @@ Blah 2
 Blah 3 '/
 
 id2 -> id
+"New Source" as news -> "New Target" as newt
 @enduml

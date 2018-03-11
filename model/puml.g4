@@ -90,7 +90,7 @@ declareParticipant
 	| declareEntity
 	| declareDatabase
 	| declareCollections
-	) SPACE ( declareId | declareTitleAsId | declareIdAsTitle ) (SPACE ORDER SPACE declareOrder )? (SPACE color)? SPACE? CR;
+	) SPACE declareParticipantIdAndTitle (SPACE ORDER SPACE declareOrder )? (SPACE color)? SPACE? CR;
 
 declareDefaultParticipant: PARTICIPANT;
 declareActor: ACTOR;
@@ -103,10 +103,13 @@ declareCollections: COLLECTIONS;
 declareTitleAsId: (quotedIdentifier SPACE AS SPACE identifier) | (identifier SPACE AS SPACE identifier);
 declareIdAsTitle: identifier SPACE AS SPACE quotedIdentifier;
 declareId: identifier | quotedIdentifier;
+declareParticipantIdAndTitle: ( declareId | declareTitleAsId | declareIdAsTitle );
 declareOrder: identifier;
 
+sequenceMessageParticipant: declareParticipantIdAndTitle;
+
 sequenceMessage:
-	participant SPACE? connector SPACE? participant SPACE? (
+	sequenceMessageParticipant SPACE? connector SPACE? sequenceMessageParticipant SPACE? (
 		COLON messageText
 	)? CR;
 
@@ -124,7 +127,7 @@ connectorDottedReverse: CONNECTOR_DOUBLE_RIGHT;
 
 
 
-participant: identifier | quotedIdentifier;
+
 
 identifier: ~DBLQUOTE (~(SPACE | CR))*;
 quotedIdentifier: DBLQUOTE ( (~DBLQUOTE) | ESC_DBLQUOTE ) * DBLQUOTE;

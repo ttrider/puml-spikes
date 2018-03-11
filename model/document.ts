@@ -64,6 +64,7 @@ export class Note extends DiagramItem {
 
 export class SequenceMessage extends DiagramItem {
     connector?: Connector;
+    participants?: Participant[];
     constructor() {
         super("sequence_message");
     }
@@ -85,7 +86,8 @@ export class Participant extends DiagramItem {
     color?: string;
     title?: string;
     order?: any;
-    constructor(public index: number, public id: string) {
+    index: number = 0;
+    constructor(public id: string) {
         super("participant");
     }
 
@@ -99,6 +101,9 @@ export class Participant extends DiagramItem {
             }
             if (!this.title && other.title) {
                 this.title = other.title;
+            }
+            if (!this.order && other.order) {
+                this.order = other.order;
             }
         }
 
