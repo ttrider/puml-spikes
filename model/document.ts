@@ -7,7 +7,7 @@ export class Document {
 }
 
 export class Diagram {
-    name: string | null = null;
+    name?: string;
     items: DiagramItem[] = [];
     participants?: { [name: string]: Participant };
 
@@ -84,6 +84,7 @@ export class Participant extends DiagramItem {
     style?: "default" | "actor" | "boundary" | "control" | "entity" | "database" | "collections";
     color?: string;
     title?: string;
+    order?: any;
     constructor(public index: number, public id: string) {
         super("participant");
     }

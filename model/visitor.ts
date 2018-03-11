@@ -102,6 +102,9 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             if (item.color) {
                 p.color = item.color;
             }
+            if (item.order) {
+                p.order = item.order;
+            }
         });
         return {
             declareParticipant: p
@@ -220,6 +223,17 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         });
     };
 
+    visitDeclareOrder(ctx: any) {
+        return processChildren(this, ctx, (item) => {
+            if (item.identifier) {
+                
+                return {
+                    order: parseFloat(item.identifier)
+                };
+            }
+        });
+    }
+
 
     // Visit a parse tree produced by pumlParser#messageText.
     visitMessageText(ctx: any) {
@@ -241,7 +255,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return {
             identifier: ctx.getText()
         };
-    };
+    }; 
 }
 
 applyMixins(pumlVisitor2, [NoteVisitor, NoteConnector, NoteParticipant]);

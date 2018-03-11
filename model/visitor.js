@@ -108,6 +108,9 @@ var pumlVisitor2 = /** @class */ (function (_super) {
             if (item.color) {
                 p.color = item.color;
             }
+            if (item.order) {
+                p.order = item.order;
+            }
         });
         return {
             declareParticipant: p
@@ -204,6 +207,15 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         });
     };
     ;
+    pumlVisitor2.prototype.visitDeclareOrder = function (ctx) {
+        return visitor_utilities_1.processChildren(this, ctx, function (item) {
+            if (item.identifier) {
+                return {
+                    order: parseFloat(item.identifier)
+                };
+            }
+        });
+    };
     // Visit a parse tree produced by pumlParser#messageText.
     pumlVisitor2.prototype.visitMessageText = function (ctx) {
         return {

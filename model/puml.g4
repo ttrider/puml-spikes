@@ -90,7 +90,7 @@ declareParticipant
 	| declareEntity
 	| declareDatabase
 	| declareCollections
-	) SPACE ( declareId | declareTitleAsId | declareIdAsTitle ) (SPACE color)? SPACE? CR;
+	) SPACE ( declareId | declareTitleAsId | declareIdAsTitle ) (SPACE ORDER SPACE declareOrder )? (SPACE color)? SPACE? CR;
 
 declareDefaultParticipant: PARTICIPANT;
 declareActor: ACTOR;
@@ -103,6 +103,7 @@ declareCollections: COLLECTIONS;
 declareTitleAsId: (quotedIdentifier SPACE AS SPACE identifier) | (identifier SPACE AS SPACE identifier);
 declareIdAsTitle: identifier SPACE AS SPACE quotedIdentifier;
 declareId: identifier | quotedIdentifier;
+declareOrder: identifier;
 
 sequenceMessage:
 	participant SPACE? connector SPACE? participant SPACE? (
@@ -170,6 +171,7 @@ END_HNOTE: E N D SPACE H N O T E;
 
 OF: O F;
 AS: A S;
+ORDER: O R D E R;
 
 CONNECTOR_SINGLE_LEFT: '->';
 CONNECTOR_SINGLE_RIGHT: '<-';
@@ -190,6 +192,7 @@ WS: (' ' | '\t');
 
 
 CR: ('\r'? '\n') | EOF;
+
 
 SINGLE_LINE_COMMENT: '\'' ~('\r' | '\n')* '\r'? '\n' -> skip;
 MULTI_LINE_COMMENT: '/\'' ~('\'')* '\'/' -> skip;

@@ -1,0 +1,64 @@
+{
+    "diagrams": [{
+
+        "items": [],
+        "participants": {
+            "Last": {
+                "type": "participant",
+                "index": 0,
+                "id": "Last",
+                "style": "default"
+            },
+            "Last2": {
+                "type": "participant",
+                "index": 1,
+                "id": "Last2",
+                "title": "Last 2",
+                "style": "default",
+                "color": "#blue"
+            },
+            "Last3": {
+                "type": "participant",
+                "index": 2,
+                "id": "Last3",
+                "style": "default"
+            },
+            "Middle": {
+                "type": "participant",
+                "index": 3,
+                "id": "Middle",
+                "style": "default",
+                "order": 2
+            },
+            "First0": {
+                "type": "participant",
+                "index": 4,
+                "id": "First0",
+                "style": "default",
+
+                "color": "#red"
+            },
+            "First200": {
+                "type": "participant",
+                "index": 5,
+                "id": "First200",
+                "style": "default",
+                "color": "#white"
+            },
+            "First3": {
+                "type": "participant",
+                "index": 6,
+                "id": "First3",
+                "style": "default",
+                "order": 1
+            },
+            "First4": {
+                "type": "participant",
+                "index": 7,
+                "id": "First4",
+                "style": "default",
+                "order": 1
+            }
+        }
+    }]
+}

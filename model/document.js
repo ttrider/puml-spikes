@@ -19,7 +19,6 @@ var Document = /** @class */ (function () {
 exports.Document = Document;
 var Diagram = /** @class */ (function () {
     function Diagram() {
-        this.name = null;
         this.items = [];
     }
     Diagram.prototype.addParticipant = function (participant) {

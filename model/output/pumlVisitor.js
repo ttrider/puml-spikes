@@ -210,6 +210,12 @@ pumlVisitor.prototype.visitDeclareId = function(ctx) {
 };
 
 
+// Visit a parse tree produced by pumlParser#declareOrder.
+pumlVisitor.prototype.visitDeclareOrder = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by pumlParser#sequenceMessage.
 pumlVisitor.prototype.visitSequenceMessage = function(ctx) {
   return this.visitChildren(ctx);

@@ -308,6 +308,15 @@ pumlListener.prototype.exitDeclareId = function(ctx) {
 };
 
 
+// Enter a parse tree produced by pumlParser#declareOrder.
+pumlListener.prototype.enterDeclareOrder = function(ctx) {
+};
+
+// Exit a parse tree produced by pumlParser#declareOrder.
+pumlListener.prototype.exitDeclareOrder = function(ctx) {
+};
+
+
 // Enter a parse tree produced by pumlParser#sequenceMessage.
 pumlListener.prototype.enterSequenceMessage = function(ctx) {
 };
