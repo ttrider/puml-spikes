@@ -1,0 +1,23 @@
+@startuml
+Bob ->x Alice
+Bob -->x Alice
+Bob x<-- Alice
+Bob x<- Alice
+Bob ->> Alice
+Bob -->> Alice
+Bob <<->> Alice
+Bob <<-->> Alice
+Bob -\ Alice
+Bob \\- Alice
+Bob //-- Alice
+Bob ->o Alice
+Bob o\\-- Alice
+Bob <-> Alice
+Bob o<<->o Alice
+Bob -[#green]> Alice
+Bob -[#green]->> Alice
+Bob <<-[#blue]>> Alice
+Bob o<<[#brown]-->> Alice
+@enduml
+
+' x|o <|\|/   -|-- | []- -[] []-- []-- -[]-  >|\|/ x|o
