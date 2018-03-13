@@ -1,6 +1,6 @@
 const antlr4 = require('antlr4/index');
 const pumlLexer = require('./output/pumlLexer');
-const pumlParser = require('./output/pumlParser');
+const puml = require('./output/puml');
 const pumlVisitor = require('./output/pumlVisitor');
 import { Document } from "./document";
 import { visitDocument } from "./visitor";
@@ -17,7 +17,7 @@ export function parse(diagram: string): Document {
 
     const lexer = new pumlLexer.pumlLexer(chars);
     const tokens = new antlr4.CommonTokenStream(lexer);
-    const parser = new pumlParser.pumlParser(tokens);
+    const parser = new puml.puml(tokens);
     parser.buildParseTrees = true;
 
     return visitDocument(parser);

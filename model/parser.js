@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var antlr4 = require('antlr4/index');
 var pumlLexer = require('./output/pumlLexer');
-var pumlParser = require('./output/pumlParser');
+var puml = require('./output/puml');
 var pumlVisitor = require('./output/pumlVisitor');
 var visitor_1 = require("./visitor");
 function parse(diagram) {
@@ -15,7 +15,7 @@ function parse(diagram) {
     }
     var lexer = new pumlLexer.pumlLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
-    var parser = new pumlParser.pumlParser(tokens);
+    var parser = new puml.puml(tokens);
     parser.buildParseTrees = true;
     return visitor_1.visitDocument(parser);
 }
