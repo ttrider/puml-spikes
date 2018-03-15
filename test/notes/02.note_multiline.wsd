@@ -1,5 +1,5 @@
 @startuml Notes
-note left
+note left        
 0 - line
 1 - line
 end note

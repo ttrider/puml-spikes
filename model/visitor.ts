@@ -43,7 +43,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
             } else if (item.sequenceMessage) {
                 diagram.items.push(item.sequenceMessage);
 
-                if (item.sequenceMessage.participants){
+                if (item.sequenceMessage.participants) {
                     for (const p of item.sequenceMessage.participants) {
                         diagram.addParticipant(p);
                     }
@@ -57,15 +57,12 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return { diagram: diagram };
     };
 
-    visitStartUml(ctx: any) {
-        const txt: string = ctx.getText();
-        //strip @startuml
-        if (txt.length > 9) {
-            return {
-                diagramName: txt.substr(9).trim()
-            };
+    
+
+    visitStartUmlName(ctx: any) {
+        return {
+            diagramName: getText(ctx, true)
         }
-        return {};
     };
 
 

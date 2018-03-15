@@ -2,7 +2,7 @@
 note left of Bob
 Bob
 end note
-note right of Bob, Alise #red
+note right of "Bob\, \"Alise" #red
 Bob
 Alise
 endnote

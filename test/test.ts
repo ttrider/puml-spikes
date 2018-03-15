@@ -5,8 +5,8 @@ import { parse } from "../model/parser";
 
 const testSet = [
     "test/common", 
-    "test/notes",
-    "test/sequence"
+   // "test/notes",
+  //  "test/sequence"
 ];
 
 async.eachOf(testSet,

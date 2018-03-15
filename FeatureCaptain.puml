@@ -1,0 +1,57 @@
+@startuml Timeline
+
+state "Brainstorm" as bs {
+    bs: All Team
+}
+
+state "Feature Definition" as pm {
+    pm: PM Team
+}
+
+state "UX Definition" as ux {    
+    ux: UX Team
+}
+
+state "Implementation" as impl {
+    impl: Engineering Team
+    state "Client" as impl_client {
+
+    }
+    [*] -> impl_client
+    --
+    state "Service" as impl_service {
+
+    }
+
+    [*] -> impl_service
+    --
+    state "Data" as impl_data {
+
+    }
+    [*] -> impl_data
+    --
+    state "Content" as impl_content {
+
+    }
+    [*] -> impl_content
+}
+
+state "Release" as ship {
+    ship: All Team
+}
+
+[*] --> bs
+bs --> pm
+pm --> ux
+ux --> impl
+ux --> pm
+impl --> ship
+impl --> ux
+impl --> pm
+ship --> bs
+ship --> pm
+ship --> ux
+ship --> impl
+ship --> [*]
+
+@enduml

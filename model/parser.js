@@ -6,7 +6,7 @@ var puml = require('./output/puml');
 var pumlVisitor = require('./output/pumlVisitor');
 var visitor_1 = require("./visitor");
 function parse(diagram) {
-    //  printTokens(diagram);
+    printTokens(diagram);
     var chars = new antlr4.InputStream(diagram);
     // adding extra CRLF at the end, if it is not there
     if (chars.data[chars.size - 1] != 10) {

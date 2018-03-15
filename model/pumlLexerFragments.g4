@@ -1,9 +1,19 @@
 lexer grammar pumlLexerFragments;
 
- 
+fragment WS: ' ' | '\t';
+
 fragment LETTERS: [a-zA-Z];
 fragment DIGITS: [0-9];
 fragment HEXDIGITS: [0-9aAbBcCdDeEfF];
+
+fragment AT: '@';
+fragment COLON: ':';
+fragment SLASH: '\\';
+
+
+fragment DBLQUOTE: '"';
+fragment ESC_DBLQUOTE: '\\"';
+
 
 fragment A: 'A' | 'a';
 fragment B: 'B' | 'b';

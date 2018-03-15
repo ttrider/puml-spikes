@@ -67,15 +67,10 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         return { diagram: diagram };
     };
     ;
-    pumlVisitor2.prototype.visitStartUml = function (ctx) {
-        var txt = ctx.getText();
-        //strip @startuml
-        if (txt.length > 9) {
-            return {
-                diagramName: txt.substr(9).trim()
-            };
-        }
-        return {};
+    pumlVisitor2.prototype.visitStartUmlName = function (ctx) {
+        return {
+            diagramName: visitor_utilities_1.getText(ctx, true)
+        };
     };
     ;
     pumlVisitor2.prototype.visitEndUml = function (ctx) {

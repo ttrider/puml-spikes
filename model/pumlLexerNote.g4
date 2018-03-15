@@ -1,23 +1,48 @@
 lexer grammar pumlLexerNote;
-import pumlLexerFragments;
- 
-// NOTE
-NOTE: N O T E;
-RNOTE: R N O T E;
-HNOTE: H N O T E;
+import pumlLexerFragments, pumlLexerCommon;
 
-LEFT: L E F T;
-RIGHT: R I G H T;
-OVER: O V E R;
-ENDNOTE: E N D N O T E;
-ENDRNOTE: E N D R N O T E;
-ENDHNOTE: E N D H N O T E;
-END_NOTE: E N D SPACE N O T E;
-END_RNOTE: E N D SPACE R N O T E;
-END_HNOTE: E N D SPACE H N O T E;
 
-OF: O F;
+NOTE:	N O T E WSS -> mode(NOTE_MODE);
+RNOTE:	R N O T E WSS -> mode(NOTE_MODE);
+HNOTE:	H N O T E WSS -> mode(NOTE_MODE);
 
-SPACE: (' ' | '\t')+;
+mode NOTE_MODE;
+
+LEFT:	L E F T;
+RIGHT:	R I G H T;
+LEFT_OF: L E F T WSS O F WSS;
+RIGHT_OF: R I G H T WSS O F WSS;
+OVER_OF: O V E R WSS O F WSS;
+
+ENDNOTE:	E N D N O T E;
+ENDRNOTE:	E N D R N O T E;
+ENDHNOTE:	E N D H N O T E;
+END_NOTE:	E N D WSS N O T E;
+END_RNOTE:	E N D WSS R N O T E;
+END_HNOTE:	E N D WSS H N O T E;
+
+NOTE_SINGLE_LINE:		COLON -> mode(EOL_MODE);
+NOTE_MULTI_LINE:		.+?;
+END_MULTILINE_NOTE: ((ENDNOTE) | (END_NOTE)) WSS? CRLF -> popMode;
+
+END_MULTILINE_RNOTE:
+	(
+		ENDNOTE
+		| END_NOTE
+		| ENDRNOTE
+		| END_RNOTE
+		| ENDHNOTE
+		| END_HNOTE
+	) WSS? CRLF -> popMode;
+
+END_MULTILINE_HNOTE:
+	(
+		ENDNOTE
+		| END_NOTE
+		| ENDRNOTE
+		| END_RNOTE
+		| ENDHNOTE
+		| END_HNOTE
+	) WSS? CRLF -> popMode;
 
 

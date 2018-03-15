@@ -7,7 +7,7 @@ import { visitDocument } from "./visitor";
 
 
 export function parse(diagram: string): Document {
-    //  printTokens(diagram);
+      printTokens(diagram);
     const chars = new antlr4.InputStream(diagram);
     // adding extra CRLF at the end, if it is not there
     if (chars.data[chars.size - 1] != 10) {
