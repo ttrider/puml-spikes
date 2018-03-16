@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var antlr4 = require('antlr4/index');
-var pumlLexer = require('./output/pumlLexer');
-var puml = require('./output/puml');
-var pumlVisitor = require('./output/pumlVisitor');
-var visitor_1 = require("./visitor");
+var pumlLexer = require('./grammar/code/pumlLexer');
+var puml = require('./grammar/code/puml');
+var visitor_1 = require("./visitor/visitor");
 function parse(diagram) {
     printTokens(diagram);
     var chars = new antlr4.InputStream(diagram);

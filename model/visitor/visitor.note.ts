@@ -1,5 +1,5 @@
 import { getText, processChildren, appendChildren } from "./visitor.utilities";
-import { Note } from "./document";
+import { Note } from "../document";
 
 export class NoteVisitor {
     visitNote(ctx: any) {

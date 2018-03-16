@@ -1,13 +1,11 @@
 parser grammar puml;
 import pumlParserCommon;
-//import pumlParserNote;
 //import pumlParserDeclareParticipant;
-//import pumlParserSequence;
 
 options {
 	tokenVocab = pumlLexer; 
 }
-
+ 
 document: diagram+;
 
 diagram: startUml diagramItem* endUml CRLF*;

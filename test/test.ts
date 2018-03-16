@@ -4,9 +4,9 @@ import { getTests, deepCompare } from './util';
 import { parse } from "../model/parser";
 
 const testSet = [
-    "test/common", 
+    //"test/common", 
    // "test/notes",
-  //  "test/sequence"
+    "test/sequence"
 ];
 
 async.eachOf(testSet,

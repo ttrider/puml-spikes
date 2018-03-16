@@ -1,6 +1,5 @@
 import { getText, processChildren} from "./visitor.utilities";
-//import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from "./document";
-import { Note, Connector } from "./document";
+import { Note, Connector } from "../document";
 
 export class NoteConnector {
 

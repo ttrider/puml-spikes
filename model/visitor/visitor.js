@@ -10,8 +10,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var pumlVisitor = require('./output/pumlVisitor');
-var document_1 = require("./document");
+var pumlVisitor = require('../grammar/code/pumlVisitor');
+var document_1 = require("../document");
 var visitor_utilities_1 = require("./visitor.utilities");
 var visitor_note_1 = require("./visitor.note");
 var visitor_connector_1 = require("./visitor.connector");

@@ -1,9 +1,8 @@
 const antlr4 = require('antlr4/index');
-const pumlLexer = require('./output/pumlLexer');
-const puml = require('./output/puml');
-const pumlVisitor = require('./output/pumlVisitor');
+const pumlLexer = require('./grammar/code/pumlLexer');
+const puml = require('./grammar/code/puml');
 import { Document } from "./document";
-import { visitDocument } from "./visitor";
+import { visitDocument } from "./visitor/visitor";
 
 
 export function parse(diagram: string): Document {

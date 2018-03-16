@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var visitor_utilities_1 = require("./visitor.utilities");
-var document_1 = require("./document");
+var document_1 = require("../document");
 var NoteVisitor = /** @class */ (function () {
     function NoteVisitor() {
     }

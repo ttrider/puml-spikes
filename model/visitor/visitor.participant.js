@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var visitor_utilities_1 = require("./visitor.utilities");
 //import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from "./document";
-var document_1 = require("./document");
+var document_1 = require("../document");
 var NoteParticipant = /** @class */ (function () {
     function NoteParticipant() {
     }

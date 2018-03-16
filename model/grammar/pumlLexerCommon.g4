@@ -4,6 +4,13 @@ import pumlLexerFragments;
 SINGLE_LINE_COMMENT: '\'' ~('\r' | '\n')* '\r'? '\n' -> skip;
 MULTI_LINE_COMMENT: '/\'' ~('\'')* '\'/' -> skip;
 
+AS_KEYWORD: WSS A S WSS;
+ORDER_KEYWORD: WSS O R D E R WSS;
+
+
+DBLQUOTE: '"';
+ESC_DBLQUOTE: '\\"';
+
 HEX_COLORS:
 	'#' HEXDIGITS HEXDIGITS HEXDIGITS (
 		HEXDIGITS HEXDIGITS HEXDIGITS
@@ -165,4 +172,7 @@ WSS: WS+;
 
 mode EOL_MODE;
 EOL_TEXT: .*? CRLF -> popMode;
+
+
+
 

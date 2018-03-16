@@ -12,7 +12,6 @@ export class Diagram {
     participants?: { [name: string]: Participant };
 
 
-
     addParticipant(participant: Participant): Participant {
 
         if (!participant || !participant.id) { return participant; }

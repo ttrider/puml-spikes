@@ -4,9 +4,63 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "npm",
-            "script": "test",
+            "label": "antlr lexer",
+            "type": "shell",
+            "command": "java",
+            "options": {
+                "cwd": "./model/grammar"
+            },
+            "args": [
+                "-jar",
+                "/usr/local/lib/antlr-4.7.1-complete.jar",
+                "-o",
+                "../js",
+                "-Dlanguage=JavaScript",
+                "pumlLexer.g4"
+            ],
+            "dependsOn": "antlr cleanup",
             "problemMatcher": []
+        },
+        {
+            "label": "antlr parser",
+            "type": "shell",
+            "command": "java",
+            "options": {
+                "cwd": "./model/grammar"
+            },
+            "dependsOn": "antlr lexer",
+            "args": [
+                "-jar",
+                "/usr/local/lib/antlr-4.7.1-complete.jar",
+                "-o",
+                "../js",
+                "-Dlanguage=JavaScript",
+                "-no-listener",
+                "-visitor",
+                "puml.g4"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "antlr cleanup",
+            "type": "shell",
+            "command": "rm",
+            "options": {
+                "cwd": "./model/js"
+            },
+            "args": [
+                "-r",
+                "./model/js/"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
+            ]
         }
     ]
 }

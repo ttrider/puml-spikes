@@ -1,5 +1,5 @@
-const pumlVisitor = require('./output/pumlVisitor');
-import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from "./document";
+const pumlVisitor = require('../grammar/code/pumlVisitor');
+import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from "../document";
 import { getText, applyMixins, processChildren, appendChildren } from "./visitor.utilities";
 import { NoteVisitor } from "./visitor.note";
 import { NoteConnector } from "./visitor.connector";

@@ -1,9 +1,9 @@
 lexer grammar pumlLexer;
 import 
     pumlLexerFragments,
-    pumlLexerCommon;
+    pumlLexerCommon,
     //pumlLexerNote, 
-    //pumlLexerParticipant
+    pumlLexerParticipant;
 
 
 
