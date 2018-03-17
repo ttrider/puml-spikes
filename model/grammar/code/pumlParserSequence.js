@@ -1,13 +1,13 @@
-// Generated from /Volumes/v/github/puml/spikes/model/grammar/pumlParserCommon.g4 by ANTLR 4.7.1
+// Generated from /Volumes/v/github/puml/spikes/model/grammar/pumlParserSequence.g4 by ANTLR 4.7.1
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
-var pumlParserCommonListener = require('./pumlParserCommonListener').pumlParserCommonListener;
-var pumlParserCommonVisitor = require('./pumlParserCommonVisitor').pumlParserCommonVisitor;
+var pumlParserSequenceListener = require('./pumlParserSequenceListener').pumlParserSequenceListener;
+var pumlParserSequenceVisitor = require('./pumlParserSequenceVisitor').pumlParserSequenceVisitor;
 
-var grammarFileName = "pumlParserCommon.g4";
+var grammarFileName = "pumlParserSequence.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u001e6\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0003\u001d6\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
     "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
     "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0003\u0002\u0003\u0002\u0003\u0003\u0003",
     "\u0003\u0003\u0004\u0003\u0004\u0005\u0004\u001b\n\u0004\u0003\u0005",
@@ -15,8 +15,8 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0005\u0007$\n\u0007\u0003\b\u0003\b\u0003\b\u0003\b\u0003\b\u0003",
     "\b\u0003\b\u0003\b\u0005\b.\n\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003",
     "\n\u0003\n\u0003\n\u0002\u0002\u000b\u0002\u0004\u0006\b\n\f\u000e\u0010",
-    "\u0012\u0002\u0006\u0004\u0002\f\f\u0016\u0016\u0003\u0002\u0011\u0012",
-    "\u0004\u0002\u0014\u0014\u001b\u001b\u0004\u0002\u0013\u0013\u001a\u001a",
+    "\u0012\u0002\u0006\u0004\u0002\f\f\u0015\u0015\u0003\u0002\u0011\u0012",
+    "\u0004\u0002\u0014\u0014\u001a\u001a\u0004\u0002\u0013\u0013\u0019\u0019",
     "\u00020\u0002\u0014\u0003\u0002\u0002\u0002\u0004\u0016\u0003\u0002",
     "\u0002\u0002\u0006\u001a\u0003\u0002\u0002\u0002\b\u001c\u0003\u0002",
     "\u0002\u0002\n\u001e\u0003\u0002\u0002\u0002\f#\u0003\u0002\u0002\u0002",
@@ -30,12 +30,12 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0002\u0002\u001f\u000b\u0003\u0002\u0002\u0002 $\u0005\u000e\b\u0002",
     "!$\u0005\u0010\t\u0002\"$\u0005\u0006\u0004\u0002# \u0003\u0002\u0002",
     "\u0002#!\u0003\u0002\u0002\u0002#\"\u0003\u0002\u0002\u0002$\r\u0003",
-    "\u0002\u0002\u0002%&\u0005\n\u0006\u0002&\'\u0007\u0017\u0002\u0002",
+    "\u0002\u0002\u0002%&\u0005\n\u0006\u0002&\'\u0007\u0016\u0002\u0002",
     "\'(\u0005\b\u0005\u0002(.\u0003\u0002\u0002\u0002)*\u0005\b\u0005\u0002",
-    "*+\u0007\u0017\u0002\u0002+,\u0005\b\u0005\u0002,.\u0003\u0002\u0002",
+    "*+\u0007\u0016\u0002\u0002+,\u0005\b\u0005\u0002,.\u0003\u0002\u0002",
     "\u0002-%\u0003\u0002\u0002\u0002-)\u0003\u0002\u0002\u0002.\u000f\u0003",
-    "\u0002\u0002\u0002/0\u0005\b\u0005\u000201\u0007\u0017\u0002\u00021",
-    "2\u0005\n\u0006\u00022\u0011\u0003\u0002\u0002\u000234\u0007\u001e\u0002",
+    "\u0002\u0002\u0002/0\u0005\b\u0005\u000201\u0007\u0016\u0002\u00021",
+    "2\u0005\n\u0006\u00022\u0011\u0003\u0002\u0002\u000234\u0007\u001d\u0002",
     "\u00024\u0013\u0003\u0002\u0002\u0002\u0005\u001a#-"].join("");
 
 
@@ -51,14 +51,14 @@ var symbolicNames = [ null, "STARTUML", "ENDUML", "PARTICIPANT", "ACTOR",
                       "BOUNDARY", "CONTROL", "ENTITY", "DATABASE", "COLLECTIONS", 
                       "COLORS", "HEX_COLORS", "NAMED_COLORS", "SINGLE_LINE_COMMENT", 
                       "MULTI_LINE_COMMENT", "CRLF", "WSS", "QID", "ID", 
-                      "COLON_EOL", "DP_COLORS", "DP_AS", "DP_ORDER", "DP_WSS", 
-                      "DP_QID", "DP_ID", "DP_CRLF", "STARTUML_NAME", "EOL_TEXT" ];
+                      "DP_COLORS", "DP_AS", "DP_ORDER", "DP_WSS", "DP_QID", 
+                      "DP_ID", "DP_CRLF", "STARTUML_NAME", "EOL_TEXT" ];
 
 var ruleNames =  [ "color", "emptyLine", "identifier", "simpleIdentifier", 
                    "quotedIdentifier", "namedIdentifier", "titleAsIdIdentifier", 
                    "idAsTitleIdentifier", "eolText" ];
 
-function pumlParserCommon (input) {
+function pumlParserSequence (input) {
 	antlr4.Parser.call(this, input);
     this._interp = new antlr4.atn.ParserATNSimulator(this, atn, decisionsToDFA, sharedContextCache);
     this.ruleNames = ruleNames;
@@ -67,54 +67,53 @@ function pumlParserCommon (input) {
     return this;
 }
 
-pumlParserCommon.prototype = Object.create(antlr4.Parser.prototype);
-pumlParserCommon.prototype.constructor = pumlParserCommon;
+pumlParserSequence.prototype = Object.create(antlr4.Parser.prototype);
+pumlParserSequence.prototype.constructor = pumlParserSequence;
 
-Object.defineProperty(pumlParserCommon.prototype, "atn", {
+Object.defineProperty(pumlParserSequence.prototype, "atn", {
 	get : function() {
 		return atn;
 	}
 });
 
-pumlParserCommon.EOF = antlr4.Token.EOF;
-pumlParserCommon.STARTUML = 1;
-pumlParserCommon.ENDUML = 2;
-pumlParserCommon.PARTICIPANT = 3;
-pumlParserCommon.ACTOR = 4;
-pumlParserCommon.BOUNDARY = 5;
-pumlParserCommon.CONTROL = 6;
-pumlParserCommon.ENTITY = 7;
-pumlParserCommon.DATABASE = 8;
-pumlParserCommon.COLLECTIONS = 9;
-pumlParserCommon.COLORS = 10;
-pumlParserCommon.HEX_COLORS = 11;
-pumlParserCommon.NAMED_COLORS = 12;
-pumlParserCommon.SINGLE_LINE_COMMENT = 13;
-pumlParserCommon.MULTI_LINE_COMMENT = 14;
-pumlParserCommon.CRLF = 15;
-pumlParserCommon.WSS = 16;
-pumlParserCommon.QID = 17;
-pumlParserCommon.ID = 18;
-pumlParserCommon.COLON_EOL = 19;
-pumlParserCommon.DP_COLORS = 20;
-pumlParserCommon.DP_AS = 21;
-pumlParserCommon.DP_ORDER = 22;
-pumlParserCommon.DP_WSS = 23;
-pumlParserCommon.DP_QID = 24;
-pumlParserCommon.DP_ID = 25;
-pumlParserCommon.DP_CRLF = 26;
-pumlParserCommon.STARTUML_NAME = 27;
-pumlParserCommon.EOL_TEXT = 28;
+pumlParserSequence.EOF = antlr4.Token.EOF;
+pumlParserSequence.STARTUML = 1;
+pumlParserSequence.ENDUML = 2;
+pumlParserSequence.PARTICIPANT = 3;
+pumlParserSequence.ACTOR = 4;
+pumlParserSequence.BOUNDARY = 5;
+pumlParserSequence.CONTROL = 6;
+pumlParserSequence.ENTITY = 7;
+pumlParserSequence.DATABASE = 8;
+pumlParserSequence.COLLECTIONS = 9;
+pumlParserSequence.COLORS = 10;
+pumlParserSequence.HEX_COLORS = 11;
+pumlParserSequence.NAMED_COLORS = 12;
+pumlParserSequence.SINGLE_LINE_COMMENT = 13;
+pumlParserSequence.MULTI_LINE_COMMENT = 14;
+pumlParserSequence.CRLF = 15;
+pumlParserSequence.WSS = 16;
+pumlParserSequence.QID = 17;
+pumlParserSequence.ID = 18;
+pumlParserSequence.DP_COLORS = 19;
+pumlParserSequence.DP_AS = 20;
+pumlParserSequence.DP_ORDER = 21;
+pumlParserSequence.DP_WSS = 22;
+pumlParserSequence.DP_QID = 23;
+pumlParserSequence.DP_ID = 24;
+pumlParserSequence.DP_CRLF = 25;
+pumlParserSequence.STARTUML_NAME = 26;
+pumlParserSequence.EOL_TEXT = 27;
 
-pumlParserCommon.RULE_color = 0;
-pumlParserCommon.RULE_emptyLine = 1;
-pumlParserCommon.RULE_identifier = 2;
-pumlParserCommon.RULE_simpleIdentifier = 3;
-pumlParserCommon.RULE_quotedIdentifier = 4;
-pumlParserCommon.RULE_namedIdentifier = 5;
-pumlParserCommon.RULE_titleAsIdIdentifier = 6;
-pumlParserCommon.RULE_idAsTitleIdentifier = 7;
-pumlParserCommon.RULE_eolText = 8;
+pumlParserSequence.RULE_color = 0;
+pumlParserSequence.RULE_emptyLine = 1;
+pumlParserSequence.RULE_identifier = 2;
+pumlParserSequence.RULE_simpleIdentifier = 3;
+pumlParserSequence.RULE_quotedIdentifier = 4;
+pumlParserSequence.RULE_namedIdentifier = 5;
+pumlParserSequence.RULE_titleAsIdIdentifier = 6;
+pumlParserSequence.RULE_idAsTitleIdentifier = 7;
+pumlParserSequence.RULE_eolText = 8;
 
 function ColorContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -125,7 +124,7 @@ function ColorContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_color;
+    this.ruleIndex = pumlParserSequence.RULE_color;
     return this;
 }
 
@@ -133,27 +132,27 @@ ColorContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ColorContext.prototype.constructor = ColorContext;
 
 ColorContext.prototype.COLORS = function() {
-    return this.getToken(pumlParserCommon.COLORS, 0);
+    return this.getToken(pumlParserSequence.COLORS, 0);
 };
 
 ColorContext.prototype.DP_COLORS = function() {
-    return this.getToken(pumlParserCommon.DP_COLORS, 0);
+    return this.getToken(pumlParserSequence.DP_COLORS, 0);
 };
 
 ColorContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterColor(this);
 	}
 };
 
 ColorContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitColor(this);
 	}
 };
 
 ColorContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitColor(this);
     } else {
         return visitor.visitChildren(this);
@@ -163,18 +162,18 @@ ColorContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.ColorContext = ColorContext;
+pumlParserSequence.ColorContext = ColorContext;
 
-pumlParserCommon.prototype.color = function() {
+pumlParserSequence.prototype.color = function() {
 
     var localctx = new ColorContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 0, pumlParserCommon.RULE_color);
+    this.enterRule(localctx, 0, pumlParserSequence.RULE_color);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 18;
         _la = this._input.LA(1);
-        if(!(_la===pumlParserCommon.COLORS || _la===pumlParserCommon.DP_COLORS)) {
+        if(!(_la===pumlParserSequence.COLORS || _la===pumlParserSequence.DP_COLORS)) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -204,7 +203,7 @@ function EmptyLineContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_emptyLine;
+    this.ruleIndex = pumlParserSequence.RULE_emptyLine;
     return this;
 }
 
@@ -212,27 +211,27 @@ EmptyLineContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EmptyLineContext.prototype.constructor = EmptyLineContext;
 
 EmptyLineContext.prototype.WSS = function() {
-    return this.getToken(pumlParserCommon.WSS, 0);
+    return this.getToken(pumlParserSequence.WSS, 0);
 };
 
 EmptyLineContext.prototype.CRLF = function() {
-    return this.getToken(pumlParserCommon.CRLF, 0);
+    return this.getToken(pumlParserSequence.CRLF, 0);
 };
 
 EmptyLineContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterEmptyLine(this);
 	}
 };
 
 EmptyLineContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitEmptyLine(this);
 	}
 };
 
 EmptyLineContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitEmptyLine(this);
     } else {
         return visitor.visitChildren(this);
@@ -242,18 +241,18 @@ EmptyLineContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.EmptyLineContext = EmptyLineContext;
+pumlParserSequence.EmptyLineContext = EmptyLineContext;
 
-pumlParserCommon.prototype.emptyLine = function() {
+pumlParserSequence.prototype.emptyLine = function() {
 
     var localctx = new EmptyLineContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 2, pumlParserCommon.RULE_emptyLine);
+    this.enterRule(localctx, 2, pumlParserSequence.RULE_emptyLine);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 20;
         _la = this._input.LA(1);
-        if(!(_la===pumlParserCommon.CRLF || _la===pumlParserCommon.WSS)) {
+        if(!(_la===pumlParserSequence.CRLF || _la===pumlParserSequence.WSS)) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -283,7 +282,7 @@ function IdentifierContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_identifier;
+    this.ruleIndex = pumlParserSequence.RULE_identifier;
     return this;
 }
 
@@ -299,19 +298,19 @@ IdentifierContext.prototype.quotedIdentifier = function() {
 };
 
 IdentifierContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterIdentifier(this);
 	}
 };
 
 IdentifierContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitIdentifier(this);
 	}
 };
 
 IdentifierContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitIdentifier(this);
     } else {
         return visitor.visitChildren(this);
@@ -321,24 +320,24 @@ IdentifierContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.IdentifierContext = IdentifierContext;
+pumlParserSequence.IdentifierContext = IdentifierContext;
 
-pumlParserCommon.prototype.identifier = function() {
+pumlParserSequence.prototype.identifier = function() {
 
     var localctx = new IdentifierContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 4, pumlParserCommon.RULE_identifier);
+    this.enterRule(localctx, 4, pumlParserSequence.RULE_identifier);
     try {
         this.state = 24;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
-        case pumlParserCommon.ID:
-        case pumlParserCommon.DP_ID:
+        case pumlParserSequence.ID:
+        case pumlParserSequence.DP_ID:
             this.enterOuterAlt(localctx, 1);
             this.state = 22;
             this.simpleIdentifier();
             break;
-        case pumlParserCommon.QID:
-        case pumlParserCommon.DP_QID:
+        case pumlParserSequence.QID:
+        case pumlParserSequence.DP_QID:
             this.enterOuterAlt(localctx, 2);
             this.state = 23;
             this.quotedIdentifier();
@@ -369,7 +368,7 @@ function SimpleIdentifierContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_simpleIdentifier;
+    this.ruleIndex = pumlParserSequence.RULE_simpleIdentifier;
     return this;
 }
 
@@ -377,27 +376,27 @@ SimpleIdentifierContext.prototype = Object.create(antlr4.ParserRuleContext.proto
 SimpleIdentifierContext.prototype.constructor = SimpleIdentifierContext;
 
 SimpleIdentifierContext.prototype.ID = function() {
-    return this.getToken(pumlParserCommon.ID, 0);
+    return this.getToken(pumlParserSequence.ID, 0);
 };
 
 SimpleIdentifierContext.prototype.DP_ID = function() {
-    return this.getToken(pumlParserCommon.DP_ID, 0);
+    return this.getToken(pumlParserSequence.DP_ID, 0);
 };
 
 SimpleIdentifierContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterSimpleIdentifier(this);
 	}
 };
 
 SimpleIdentifierContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitSimpleIdentifier(this);
 	}
 };
 
 SimpleIdentifierContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitSimpleIdentifier(this);
     } else {
         return visitor.visitChildren(this);
@@ -407,18 +406,18 @@ SimpleIdentifierContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.SimpleIdentifierContext = SimpleIdentifierContext;
+pumlParserSequence.SimpleIdentifierContext = SimpleIdentifierContext;
 
-pumlParserCommon.prototype.simpleIdentifier = function() {
+pumlParserSequence.prototype.simpleIdentifier = function() {
 
     var localctx = new SimpleIdentifierContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 6, pumlParserCommon.RULE_simpleIdentifier);
+    this.enterRule(localctx, 6, pumlParserSequence.RULE_simpleIdentifier);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 26;
         _la = this._input.LA(1);
-        if(!(_la===pumlParserCommon.ID || _la===pumlParserCommon.DP_ID)) {
+        if(!(_la===pumlParserSequence.ID || _la===pumlParserSequence.DP_ID)) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -448,7 +447,7 @@ function QuotedIdentifierContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_quotedIdentifier;
+    this.ruleIndex = pumlParserSequence.RULE_quotedIdentifier;
     return this;
 }
 
@@ -456,27 +455,27 @@ QuotedIdentifierContext.prototype = Object.create(antlr4.ParserRuleContext.proto
 QuotedIdentifierContext.prototype.constructor = QuotedIdentifierContext;
 
 QuotedIdentifierContext.prototype.QID = function() {
-    return this.getToken(pumlParserCommon.QID, 0);
+    return this.getToken(pumlParserSequence.QID, 0);
 };
 
 QuotedIdentifierContext.prototype.DP_QID = function() {
-    return this.getToken(pumlParserCommon.DP_QID, 0);
+    return this.getToken(pumlParserSequence.DP_QID, 0);
 };
 
 QuotedIdentifierContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterQuotedIdentifier(this);
 	}
 };
 
 QuotedIdentifierContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitQuotedIdentifier(this);
 	}
 };
 
 QuotedIdentifierContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitQuotedIdentifier(this);
     } else {
         return visitor.visitChildren(this);
@@ -486,18 +485,18 @@ QuotedIdentifierContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.QuotedIdentifierContext = QuotedIdentifierContext;
+pumlParserSequence.QuotedIdentifierContext = QuotedIdentifierContext;
 
-pumlParserCommon.prototype.quotedIdentifier = function() {
+pumlParserSequence.prototype.quotedIdentifier = function() {
 
     var localctx = new QuotedIdentifierContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 8, pumlParserCommon.RULE_quotedIdentifier);
+    this.enterRule(localctx, 8, pumlParserSequence.RULE_quotedIdentifier);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 28;
         _la = this._input.LA(1);
-        if(!(_la===pumlParserCommon.QID || _la===pumlParserCommon.DP_QID)) {
+        if(!(_la===pumlParserSequence.QID || _la===pumlParserSequence.DP_QID)) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -527,7 +526,7 @@ function NamedIdentifierContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_namedIdentifier;
+    this.ruleIndex = pumlParserSequence.RULE_namedIdentifier;
     return this;
 }
 
@@ -547,19 +546,19 @@ NamedIdentifierContext.prototype.identifier = function() {
 };
 
 NamedIdentifierContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterNamedIdentifier(this);
 	}
 };
 
 NamedIdentifierContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitNamedIdentifier(this);
 	}
 };
 
 NamedIdentifierContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitNamedIdentifier(this);
     } else {
         return visitor.visitChildren(this);
@@ -569,12 +568,12 @@ NamedIdentifierContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.NamedIdentifierContext = NamedIdentifierContext;
+pumlParserSequence.NamedIdentifierContext = NamedIdentifierContext;
 
-pumlParserCommon.prototype.namedIdentifier = function() {
+pumlParserSequence.prototype.namedIdentifier = function() {
 
     var localctx = new NamedIdentifierContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 10, pumlParserCommon.RULE_namedIdentifier);
+    this.enterRule(localctx, 10, pumlParserSequence.RULE_namedIdentifier);
     try {
         this.state = 33;
         this._errHandler.sync(this);
@@ -622,7 +621,7 @@ function TitleAsIdIdentifierContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_titleAsIdIdentifier;
+    this.ruleIndex = pumlParserSequence.RULE_titleAsIdIdentifier;
     return this;
 }
 
@@ -634,7 +633,7 @@ TitleAsIdIdentifierContext.prototype.quotedIdentifier = function() {
 };
 
 TitleAsIdIdentifierContext.prototype.DP_AS = function() {
-    return this.getToken(pumlParserCommon.DP_AS, 0);
+    return this.getToken(pumlParserSequence.DP_AS, 0);
 };
 
 TitleAsIdIdentifierContext.prototype.simpleIdentifier = function(i) {
@@ -649,19 +648,19 @@ TitleAsIdIdentifierContext.prototype.simpleIdentifier = function(i) {
 };
 
 TitleAsIdIdentifierContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterTitleAsIdIdentifier(this);
 	}
 };
 
 TitleAsIdIdentifierContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitTitleAsIdIdentifier(this);
 	}
 };
 
 TitleAsIdIdentifierContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitTitleAsIdIdentifier(this);
     } else {
         return visitor.visitChildren(this);
@@ -671,33 +670,33 @@ TitleAsIdIdentifierContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.TitleAsIdIdentifierContext = TitleAsIdIdentifierContext;
+pumlParserSequence.TitleAsIdIdentifierContext = TitleAsIdIdentifierContext;
 
-pumlParserCommon.prototype.titleAsIdIdentifier = function() {
+pumlParserSequence.prototype.titleAsIdIdentifier = function() {
 
     var localctx = new TitleAsIdIdentifierContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 12, pumlParserCommon.RULE_titleAsIdIdentifier);
+    this.enterRule(localctx, 12, pumlParserSequence.RULE_titleAsIdIdentifier);
     try {
         this.state = 43;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
-        case pumlParserCommon.QID:
-        case pumlParserCommon.DP_QID:
+        case pumlParserSequence.QID:
+        case pumlParserSequence.DP_QID:
             this.enterOuterAlt(localctx, 1);
             this.state = 35;
             this.quotedIdentifier();
             this.state = 36;
-            this.match(pumlParserCommon.DP_AS);
+            this.match(pumlParserSequence.DP_AS);
             this.state = 37;
             this.simpleIdentifier();
             break;
-        case pumlParserCommon.ID:
-        case pumlParserCommon.DP_ID:
+        case pumlParserSequence.ID:
+        case pumlParserSequence.DP_ID:
             this.enterOuterAlt(localctx, 2);
             this.state = 39;
             this.simpleIdentifier();
             this.state = 40;
-            this.match(pumlParserCommon.DP_AS);
+            this.match(pumlParserSequence.DP_AS);
             this.state = 41;
             this.simpleIdentifier();
             break;
@@ -727,7 +726,7 @@ function IdAsTitleIdentifierContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_idAsTitleIdentifier;
+    this.ruleIndex = pumlParserSequence.RULE_idAsTitleIdentifier;
     return this;
 }
 
@@ -739,7 +738,7 @@ IdAsTitleIdentifierContext.prototype.simpleIdentifier = function() {
 };
 
 IdAsTitleIdentifierContext.prototype.DP_AS = function() {
-    return this.getToken(pumlParserCommon.DP_AS, 0);
+    return this.getToken(pumlParserSequence.DP_AS, 0);
 };
 
 IdAsTitleIdentifierContext.prototype.quotedIdentifier = function() {
@@ -747,19 +746,19 @@ IdAsTitleIdentifierContext.prototype.quotedIdentifier = function() {
 };
 
 IdAsTitleIdentifierContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterIdAsTitleIdentifier(this);
 	}
 };
 
 IdAsTitleIdentifierContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitIdAsTitleIdentifier(this);
 	}
 };
 
 IdAsTitleIdentifierContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitIdAsTitleIdentifier(this);
     } else {
         return visitor.visitChildren(this);
@@ -769,18 +768,18 @@ IdAsTitleIdentifierContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.IdAsTitleIdentifierContext = IdAsTitleIdentifierContext;
+pumlParserSequence.IdAsTitleIdentifierContext = IdAsTitleIdentifierContext;
 
-pumlParserCommon.prototype.idAsTitleIdentifier = function() {
+pumlParserSequence.prototype.idAsTitleIdentifier = function() {
 
     var localctx = new IdAsTitleIdentifierContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 14, pumlParserCommon.RULE_idAsTitleIdentifier);
+    this.enterRule(localctx, 14, pumlParserSequence.RULE_idAsTitleIdentifier);
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 45;
         this.simpleIdentifier();
         this.state = 46;
-        this.match(pumlParserCommon.DP_AS);
+        this.match(pumlParserSequence.DP_AS);
         this.state = 47;
         this.quotedIdentifier();
     } catch (re) {
@@ -806,7 +805,7 @@ function EolTextContext(parser, parent, invokingState) {
 	}
 	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
-    this.ruleIndex = pumlParserCommon.RULE_eolText;
+    this.ruleIndex = pumlParserSequence.RULE_eolText;
     return this;
 }
 
@@ -814,23 +813,23 @@ EolTextContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EolTextContext.prototype.constructor = EolTextContext;
 
 EolTextContext.prototype.EOL_TEXT = function() {
-    return this.getToken(pumlParserCommon.EOL_TEXT, 0);
+    return this.getToken(pumlParserSequence.EOL_TEXT, 0);
 };
 
 EolTextContext.prototype.enterRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.enterEolText(this);
 	}
 };
 
 EolTextContext.prototype.exitRule = function(listener) {
-    if(listener instanceof pumlParserCommonListener ) {
+    if(listener instanceof pumlParserSequenceListener ) {
         listener.exitEolText(this);
 	}
 };
 
 EolTextContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof pumlParserCommonVisitor ) {
+    if ( visitor instanceof pumlParserSequenceVisitor ) {
         return visitor.visitEolText(this);
     } else {
         return visitor.visitChildren(this);
@@ -840,16 +839,16 @@ EolTextContext.prototype.accept = function(visitor) {
 
 
 
-pumlParserCommon.EolTextContext = EolTextContext;
+pumlParserSequence.EolTextContext = EolTextContext;
 
-pumlParserCommon.prototype.eolText = function() {
+pumlParserSequence.prototype.eolText = function() {
 
     var localctx = new EolTextContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 16, pumlParserCommon.RULE_eolText);
+    this.enterRule(localctx, 16, pumlParserSequence.RULE_eolText);
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 49;
-        this.match(pumlParserCommon.EOL_TEXT);
+        this.match(pumlParserSequence.EOL_TEXT);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -865,4 +864,4 @@ pumlParserCommon.prototype.eolText = function() {
 };
 
 
-exports.pumlParserCommon = pumlParserCommon;
+exports.pumlParserSequence = pumlParserSequence;

@@ -9,9 +9,11 @@ var testSet = [
     // "test/notes",
     "test/sequence"
 ];
+//const filePattern =  "**/*.wsd";
+var filePattern = "**/02.message.wsd";
 async.eachOf(testSet, function (item, index, icb) {
     test(item, function (t) {
-        util_1.getTests(item, function (err, matches) {
+        util_1.getTests(item, filePattern, function (err, matches) {
             for (var _i = 0, matches_1 = matches; _i < matches_1.length; _i++) {
                 var item_1 = matches_1[_i];
                 console.info(item_1.name);

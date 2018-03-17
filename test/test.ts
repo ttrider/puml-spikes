@@ -9,11 +9,14 @@ const testSet = [
     "test/sequence"
 ];
 
+//const filePattern =  "**/*.wsd";
+const filePattern = "**/02.message.wsd";
+
 async.eachOf(testSet,
     (item, index, icb) => {
         test(item, (t) => {
 
-            getTests(item, (err, matches) => {
+            getTests(item,  filePattern, (err, matches) => {
 
                 for (const item of matches) {
                     console.info(item.name);

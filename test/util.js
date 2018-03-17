@@ -4,8 +4,8 @@ var fs = require("fs");
 var path = require("path");
 var glob = require("glob");
 var async = require("async");
-function getTests(testPath, cb) {
-    var pattern = path.resolve(testPath) + "/**/*.wsd";
+function getTests(testPath, filePattern, cb) {
+    var pattern = path.resolve(testPath, filePattern);
     console.info(pattern);
     glob(pattern, function (err, matches) {
         if (err) {

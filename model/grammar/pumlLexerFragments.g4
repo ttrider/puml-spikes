@@ -9,6 +9,14 @@ fragment HEXDIGITS: [0-9aAbBcCdDeEfF];
 fragment AT: '@';
 fragment COLON: ':';
 fragment SLASH: '\\';
+fragment BSLASH: '/';
+
+fragment LESS: '<';
+fragment DASH: '<-';
+fragment GREATER: '>';
+
+fragment OPEN_SQP: '[';
+fragment CLOSE_SQP: ']';
 
 fragment DBLQUOTE: '"';
 fragment ESC_DBLQUOTE: '\\"';

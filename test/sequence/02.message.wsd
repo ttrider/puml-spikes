@@ -1,0 +1,9 @@
+@startuml Messages
+Alice->Bob: Authentication Request
+Bob --> Alice
+Alice -> B:\ob : Another authentication Request
+Alice <-- Bob: another authentication Response
+Bob -> "James Smith": space in name
+Jeff->Jeff: Message To Self
+"New Source" as news -> "New Target" as newt
+@enduml

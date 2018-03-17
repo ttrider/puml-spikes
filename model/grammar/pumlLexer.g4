@@ -9,8 +9,20 @@ STARTUML:	AT S T A R T U M L -> pushMode(STARTUML_MODE);
 ENDUML:		AT E N D U M L WSS? CRLF;
 
 ///////////////////////////////////////////////////////////////
-// // KEYWORDS /////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////
+// // CONNECTORS ///////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////// 
+//' x|o <|\|/ -|-- | []- -[] []-- // []-- -[]- >|\|/ x|o
+
+CNTL_D: (X | O)? LESS LESS? DASH+;
+CNTL_D_C: ( (X | O)? LESS LESS? (DASH+ OPEN_SQP) | OPEN_SQP) -> pushMode(SQCLR_MODE);
+CNTL_S: (X | O)? SLASH SLASH? DASH+;
+CNTL_S_C: ( (X | O)? SLASH SLASH? (DASH+ OPEN_SQP) | OPEN_SQP ) -> pushMode(SQCLR_MODE);
+CNTL_BS: (X | O)? BSLASH BSLASH? DASH+;
+CNTL_BS_C: ( (X | O)? BSLASH BSLASH? (DASH+ OPEN_SQP) | OPEN_SQP ) -> pushMode(SQCLR_MODE);
+
+CNTR_D: DASH+ LESS LESS? (X | O)?;
+CNTR_S: DASH+ SLASH SLASH? (X | O)?;
+CNTR_BS: DASH+ BSLASH BSLASH? (X | O)?;
 
 
 ///////////////////////////////////////////////////////////////
@@ -197,20 +209,22 @@ CRLF: ('\r'? '\n') | EOF;
 
 WSS: WS+;
 
-QID: '"' ((~'"') | '\\"')* '"';
-//ID:	(~[ \t\r\n"])*;
-ID: (~(' ' | '\t' | '\r' | '\n'))+;
+COLON_EOL: COLON -> pushMode(EOL_MODE);
+QID:	'"' ((~'"') | '\\"')* '"';
+ID:		((~(' ' | '\t' | '\r' | '\n'))+ (' ' | '\t' | '\r' | '\n'));
+
+
 
 ///////////////////////////////////////////////////////////////
 // // MODES ////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////
 
 mode DP_MODE;
-DP_COLORS:  COLORS;
+DP_COLORS:	COLORS;
 DP_AS:		WSS A S WSS;
 DP_ORDER:	WSS O R D E R WSS;
 
-DP_WSS:     WSS;
+DP_WSS:		WSS;
 DP_QID:		QID;
 DP_ID:		ID;
 DP_CRLF:	CRLF -> popMode;
@@ -220,4 +234,8 @@ STARTUML_NAME: .*? CRLF -> popMode;
 
 mode EOL_MODE;
 EOL_TEXT: .*? CRLF -> popMode;
+
+mode SQCLR_MODE;
+SQCLR_CLOSE:	CLOSE_SQP -> popMode;
+SQCLR_COLORS:	COLORS;
 

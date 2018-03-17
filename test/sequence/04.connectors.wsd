@@ -17,7 +17,7 @@ Bob o<<->o Alice
 Bob -[#green]> Alice
 Bob -[#green]->> Alice
 Bob <<-[#blue]>> Alice
-Bob o<<[#brown]-->> Alice
+Bob o<<-----[#brown]--> Alice
 @enduml
 
 ' x|o <|\|/   -|-- | []- -[] []-- []-- -[]-  >|\|/ x|o

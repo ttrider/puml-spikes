@@ -4,8 +4,8 @@ import * as glob from "glob";
 import * as async from "async";
 
 
-export function getTests(testPath: string, cb: (err: Error | null, matches: Array<{ name: string, diagram: string, data: any }>) => void) {
-    const pattern = path.resolve(testPath) + "/**/*.wsd";
+export function getTests(testPath: string, filePattern:string, cb: (err: Error | null, matches: Array<{ name: string, diagram: string, data: any }>) => void) {
+    const pattern = path.resolve(testPath, filePattern);
     console.info(pattern);
 
     glob(pattern, (err, matches) => {
