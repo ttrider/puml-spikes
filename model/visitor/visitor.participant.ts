@@ -2,21 +2,18 @@ import { getText, processChildren } from "./visitor.utilities";
 //import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from "./document";
 import { Note, Participant } from "../document";
 
-export class NoteParticipant {
+export class ParticipantVisitor {
 
     visitDeclareParticipant(ctx: any) {
 
         const p = new Participant("");
 
         processChildren(this, ctx, (item) => {
-            if (item.id) {
-                p.id = item.id;
+            if (item.identifier) {
+                p.id = item.identifier;
             }
-            if (item.participantId) {
-                p.id = item.participantId;
-            }
-            if (item.title) {
-                p.title = item.title;
+            if (item.alias) {
+                p.title = item.alias;
             }
             if (item.style) {
                 p.style = item.style;
@@ -33,41 +30,14 @@ export class NoteParticipant {
         }
     };
 
-    visitDeclareTitleAsId(ctx: any) {
-        const data: string[] = [];
-        processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                data.push(item.identifier);
-            }
-        });
-
-        return {
-            title: data[0],
-            id: data[1]
-        };
-    };
-    visitDeclareIdAsTitle(ctx: any) {
-        const data: string[] = [];
-        processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                data.push(item.identifier);
-            }
-        });
-
-        return {
-            title: data[1],
-            id: data[0]
-        };
-    };
-    visitDeclareId(ctx: any) {
-        return processChildren(this, ctx, (item) => {
-            if (item.identifier) {
-                return {
-                    id: item.identifier
-                };
-            }
-        });
-    };
+    visitDeclareDefaultParticipant(ctx: any) { return { style: "default" }; };
+    visitDeclareActor(ctx: any) { return { style: "actor" }; };
+    visitDeclareBoundary(ctx: any) { return { style: "boundary" }; };
+    visitDeclareControl(ctx: any) { return { style: "control" }; };
+    visitDeclareEntity(ctx: any) { return { style: "entity" }; };
+    visitDeclareDatabase(ctx: any) { return { style: "database" }; };
+    visitDeclareCollections(ctx: any) { return { style: "collections" }; };
+    
     visitDeclareOrder(ctx: any) {
         return processChildren(this, ctx, (item) => {
             if (item.identifier) {
@@ -79,13 +49,6 @@ export class NoteParticipant {
         });
     }
 
-    visitDeclareDefaultParticipant(ctx: any) { return { style: "default" }; };
-    visitDeclareActor(ctx: any) { return { style: "actor" }; };
-    visitDeclareBoundary(ctx: any) { return { style: "boundary" }; };
-    visitDeclareControl(ctx: any) { return { style: "control" }; };
-    visitDeclareEntity(ctx: any) { return { style: "entity" }; };
-    visitDeclareDatabase(ctx: any) { return { style: "database" }; };
-    visitDeclareCollections(ctx: any) { return { style: "collections" }; };
 }
 
 

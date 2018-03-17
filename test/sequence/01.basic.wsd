@@ -1,16 +1,9 @@
 @startuml Sequence
 participant Participant
-actor Actor   #red
+actor Actor #red
 boundary Boundary
 control Control
-entity Entity
 database Database
+entity Entity
 collections Collections
-
-Alice->Bob: Authentication Request
-Bob --> Alice
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-Bob -> "James Smith": space in name
-Jeff->Jeff: Message To Self
 @enduml

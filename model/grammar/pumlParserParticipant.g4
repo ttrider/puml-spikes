@@ -1,4 +1,4 @@
-parser grammar pumlParserDeclareParticipant;
+parser grammar pumlParserParticipant;
 import pumlParserCommon;
 
 options {
@@ -14,9 +14,11 @@ declareParticipant: (
 		| declareEntity
 		| declareDatabase
 		| declareCollections
-	) WSS namedIdentifier (
-		ORDER_KEYWORD declareOrder
-	)? (WSS color)? WSS? CRLF;
+	) namedIdentifier 
+	// (
+	// 	ORDER_KEYWORD declareOrder
+	// )? 
+	(DP_WSS color)? DP_WSS? DP_CRLF;
 
 declareDefaultParticipant:	PARTICIPANT;
 declareActor:				ACTOR;
@@ -25,6 +27,5 @@ declareControl:				CONTROL;
 declareEntity:				ENTITY;
 declareDatabase:			DATABASE;
 declareCollections:			COLLECTIONS;
-
 
 declareOrder: identifier;

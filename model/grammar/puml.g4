@@ -1,6 +1,6 @@
 parser grammar puml;
-import pumlParserCommon;
-//import pumlParserDeclareParticipant;
+import pumlParserCommon,
+pumlParserParticipant;
 
 options {
 	tokenVocab = pumlLexer; 
@@ -19,7 +19,7 @@ endUml: ENDUML;
 diagramItem:
 	emptyLine
 	//| noteItem
-	//| declareParticipant
+	| declareParticipant
 	//| sequenceMessage
 	;
 

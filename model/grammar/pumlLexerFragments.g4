@@ -10,8 +10,8 @@ fragment AT: '@';
 fragment COLON: ':';
 fragment SLASH: '\\';
 
-
-
+fragment DBLQUOTE: '"';
+fragment ESC_DBLQUOTE: '\\"';
 
 
 fragment A: 'A' | 'a';

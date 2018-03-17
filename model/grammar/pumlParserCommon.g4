@@ -9,9 +9,12 @@ emptyLine: WSS | CRLF;
 
 identifier: simpleIdentifier | quotedIdentifier;
 
-simpleIdentifier: ~DBLQUOTE (~(WSS | CRLF))*;
+simpleIdentifier:
+	DP_ID |
+	( ~DBLQUOTE (~(WSS | CRLF))+);
 quotedIdentifier:
-	DBLQUOTE ((~DBLQUOTE) | ESC_DBLQUOTE)* DBLQUOTE;
+	DP_QID 
+	| (DBLQUOTE ((~DBLQUOTE) | ESC_DBLQUOTE)* DBLQUOTE);
 
 namedIdentifier:
 	titleAsIdIdentifier 
@@ -27,4 +30,8 @@ idAsTitleIdentifier:
 	simpleIdentifier AS_KEYWORD quotedIdentifier;
 
 eolText: EOL_TEXT;
+
+
+
+
 

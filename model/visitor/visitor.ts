@@ -1,9 +1,10 @@
-const pumlVisitor = require('../grammar/code/pumlVisitor');
+const pumlVisitor = require('../js/pumlVisitor');
 import { Document, Diagram, Note, SequenceMessage, Connector, Participant } from "../document";
 import { getText, applyMixins, processChildren, appendChildren } from "./visitor.utilities";
 import { NoteVisitor } from "./visitor.note";
 import { NoteConnector } from "./visitor.connector";
-import { NoteParticipant } from "./visitor.participant";
+import { ParticipantVisitor } from "./visitor.participant";
+import { CommonVisitor } from "./visitor.common";
 
 export function visitDocument(parser: any): Document {
     const start = parser.document();
@@ -70,16 +71,6 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         return null;
     };
 
-    visitColor(ctx: any) {
-
-        const color = ctx.getText();
-        if (color) {
-            return {
-                color: color.toLowerCase()
-            };
-        }
-        return null;
-    };
 
 
 
@@ -168,20 +159,7 @@ class pumlVisitor2 extends pumlVisitor.pumlVisitor {
         };
     };
 
-    visitQuotedIdentifier(ctx: any) {
-        const txt = ctx.getText() as string;
-        return {
-            identifier: txt.substr(1, txt.length - 2)
-        };
-    };
-
-
-    // Visit a parse tree produced by pumlParser#simpleParticipant.
-    visitIdentifier(ctx: any) {
-        return {
-            identifier: ctx.getText()
-        };
-    };
+    
 }
 
-applyMixins(pumlVisitor2, [NoteVisitor, NoteConnector, NoteParticipant]);
+applyMixins(pumlVisitor2, [CommonVisitor, ParticipantVisitor]);

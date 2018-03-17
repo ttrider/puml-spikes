@@ -10,12 +10,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var pumlVisitor = require('../grammar/code/pumlVisitor');
+var pumlVisitor = require('../js/pumlVisitor');
 var document_1 = require("../document");
 var visitor_utilities_1 = require("./visitor.utilities");
-var visitor_note_1 = require("./visitor.note");
-var visitor_connector_1 = require("./visitor.connector");
 var visitor_participant_1 = require("./visitor.participant");
+var visitor_common_1 = require("./visitor.common");
 function visitDocument(parser) {
     var start = parser.document();
     var visitor = new pumlVisitor2();
@@ -74,16 +73,6 @@ var pumlVisitor2 = /** @class */ (function (_super) {
     };
     ;
     pumlVisitor2.prototype.visitEndUml = function (ctx) {
-        return null;
-    };
-    ;
-    pumlVisitor2.prototype.visitColor = function (ctx) {
-        var color = ctx.getText();
-        if (color) {
-            return {
-                color: color.toLowerCase()
-            };
-        }
         return null;
     };
     ;
@@ -152,21 +141,7 @@ var pumlVisitor2 = /** @class */ (function (_super) {
         };
     };
     ;
-    pumlVisitor2.prototype.visitQuotedIdentifier = function (ctx) {
-        var txt = ctx.getText();
-        return {
-            identifier: txt.substr(1, txt.length - 2)
-        };
-    };
-    ;
-    // Visit a parse tree produced by pumlParser#simpleParticipant.
-    pumlVisitor2.prototype.visitIdentifier = function (ctx) {
-        return {
-            identifier: ctx.getText()
-        };
-    };
-    ;
     return pumlVisitor2;
 }(pumlVisitor.pumlVisitor));
-visitor_utilities_1.applyMixins(pumlVisitor2, [visitor_note_1.NoteVisitor, visitor_connector_1.NoteConnector, visitor_participant_1.NoteParticipant]);
+visitor_utilities_1.applyMixins(pumlVisitor2, [visitor_common_1.CommonVisitor, visitor_participant_1.ParticipantVisitor]);
 //# sourceMappingURL=visitor.js.map

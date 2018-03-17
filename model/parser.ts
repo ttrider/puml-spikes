@@ -1,6 +1,6 @@
 const antlr4 = require('antlr4/index');
-const pumlLexer = require('./grammar/code/pumlLexer');
-const puml = require('./grammar/code/puml');
+const pumlLexer = require('./js/pumlLexer');
+const puml = require('./js/puml');
 import { Document } from "./document";
 import { visitDocument } from "./visitor/visitor";
 

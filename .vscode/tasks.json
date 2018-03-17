@@ -18,7 +18,6 @@
                 "-Dlanguage=JavaScript",
                 "pumlLexer.g4"
             ],
-            "dependsOn": "antlr cleanup",
             "problemMatcher": []
         },
         {
@@ -42,15 +41,21 @@
             "problemMatcher": []
         },
         {
-            "label": "antlr cleanup",
+            "label": "antlr current",
             "type": "shell",
-            "command": "rm",
+            "command": "java",
             "options": {
-                "cwd": "./model/js"
+                "cwd": "./model/grammar"
             },
             "args": [
-                "-r",
-                "./model/js/"
+                "-jar",
+                "/usr/local/lib/antlr-4.7.1-complete.jar",
+                "-o",
+                "../js",
+                "-Dlanguage=JavaScript",
+                "-no-listener",
+                "-visitor",
+                "${file}"
             ],
             "problemMatcher": []
         },
