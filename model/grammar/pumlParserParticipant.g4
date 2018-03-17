@@ -15,9 +15,9 @@ declareParticipant: (
 		| declareDatabase
 		| declareCollections
 	) namedIdentifier 
-	// (
-	// 	ORDER_KEYWORD declareOrder
-	// )? 
+	(
+		DP_ORDER declareOrder
+	)? 
 	(DP_WSS color)? DP_WSS? DP_CRLF;
 
 declareDefaultParticipant:	PARTICIPANT;
@@ -28,4 +28,4 @@ declareEntity:				ENTITY;
 declareDatabase:			DATABASE;
 declareCollections:			COLLECTIONS;
 
-declareOrder: identifier;
+declareOrder: simpleIdentifier;

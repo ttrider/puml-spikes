@@ -3,18 +3,16 @@ options {
 	tokenVocab = pumlLexer;
 }
 
-color: NAMED_COLORS | HEX_COLORS;
+color: COLORS | DP_COLORS;
 
 emptyLine: WSS | CRLF;
 
 identifier: simpleIdentifier | quotedIdentifier;
 
 simpleIdentifier:
-	DP_ID |
-	( ~DBLQUOTE (~(WSS | CRLF))+);
+	ID | DP_ID;
 quotedIdentifier:
-	DP_QID 
-	| (DBLQUOTE ((~DBLQUOTE) | ESC_DBLQUOTE)* DBLQUOTE);
+	QID | DP_QID; 
 
 namedIdentifier:
 	titleAsIdIdentifier 
@@ -22,12 +20,12 @@ namedIdentifier:
 	| identifier;
 
 titleAsIdIdentifier: (
-		quotedIdentifier AS_KEYWORD simpleIdentifier
+		quotedIdentifier DP_AS simpleIdentifier
 	)
-	| (simpleIdentifier AS_KEYWORD simpleIdentifier);
+	| (simpleIdentifier DP_AS simpleIdentifier);
 
 idAsTitleIdentifier:
-	simpleIdentifier AS_KEYWORD quotedIdentifier;
+	simpleIdentifier DP_AS quotedIdentifier;
 
 eolText: EOL_TEXT;
 

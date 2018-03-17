@@ -6,104 +6,91 @@ var pumlVisitor = require('./pumlVisitor').pumlVisitor;
 var grammarFileName = "puml.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003.\u00aa\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
-    "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
-    "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f\u0004",
-    "\r\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010\u0004",
-    "\u0011\t\u0011\u0004\u0012\t\u0012\u0004\u0013\t\u0013\u0004\u0014\t",
-    "\u0014\u0004\u0015\t\u0015\u0004\u0016\t\u0016\u0004\u0017\t\u0017\u0004",
-    "\u0018\t\u0018\u0004\u0019\t\u0019\u0003\u0002\u0006\u00024\n\u0002",
-    "\r\u0002\u000e\u00025\u0003\u0003\u0003\u0003\u0007\u0003:\n\u0003\f",
-    "\u0003\u000e\u0003=\u000b\u0003\u0003\u0003\u0003\u0003\u0007\u0003",
+    "\u0003\u001d\u0099\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004",
+    "\t\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007",
+    "\u0004\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f",
+    "\u0004\r\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010",
+    "\u0004\u0011\t\u0011\u0004\u0012\t\u0012\u0004\u0013\t\u0013\u0004\u0014",
+    "\t\u0014\u0004\u0015\t\u0015\u0004\u0016\t\u0016\u0004\u0017\t\u0017",
+    "\u0004\u0018\t\u0018\u0004\u0019\t\u0019\u0003\u0002\u0006\u00024\n",
+    "\u0002\r\u0002\u000e\u00025\u0003\u0003\u0003\u0003\u0007\u0003:\n\u0003",
+    "\f\u0003\u000e\u0003=\u000b\u0003\u0003\u0003\u0003\u0003\u0007\u0003",
     "A\n\u0003\f\u0003\u000e\u0003D\u000b\u0003\u0003\u0004\u0003\u0004\u0003",
     "\u0004\u0003\u0005\u0003\u0005\u0003\u0006\u0003\u0006\u0003\u0007\u0003",
     "\u0007\u0005\u0007O\n\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003\n",
-    "\u0003\n\u0005\nW\n\n\u0003\u000b\u0003\u000b\u0003\u000b\u0006\u000b",
-    "\\\n\u000b\r\u000b\u000e\u000b]\u0005\u000b`\n\u000b\u0003\f\u0003\f",
-    "\u0003\f\u0003\f\u0007\ff\n\f\f\f\u000e\fi\u000b\f\u0003\f\u0005\fl",
-    "\n\f\u0003\r\u0003\r\u0003\r\u0005\rq\n\r\u0003\u000e\u0003\u000e\u0003",
-    "\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0005",
-    "\u000e{\n\u000e\u0003\u000f\u0003\u000f\u0003\u000f\u0003\u000f\u0003",
-    "\u0010\u0003\u0010\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011\u0003",
-    "\u0011\u0003\u0011\u0003\u0011\u0005\u0011\u008a\n\u0011\u0003\u0011",
-    "\u0003\u0011\u0003\u0011\u0005\u0011\u008f\n\u0011\u0003\u0011\u0003",
-    "\u0011\u0005\u0011\u0093\n\u0011\u0003\u0011\u0005\u0011\u0096\n\u0011",
-    "\u0003\u0011\u0003\u0011\u0003\u0012\u0003\u0012\u0003\u0013\u0003\u0013",
-    "\u0003\u0014\u0003\u0014\u0003\u0015\u0003\u0015\u0003\u0016\u0003\u0016",
-    "\u0003\u0017\u0003\u0017\u0003\u0018\u0003\u0018\u0003\u0019\u0003\u0019",
-    "\u0003\u0019\u0002\u0002\u001a\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012",
-    "\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*,.0\u0002\u0005\u0003\u0002",
-    "\t\n\u0003\u0002\u000b\f\u0003\u0002--\u0002\u00a7\u00023\u0003\u0002",
-    "\u0002\u0002\u00047\u0003\u0002\u0002\u0002\u0006E\u0003\u0002\u0002",
-    "\u0002\bH\u0003\u0002\u0002\u0002\nJ\u0003\u0002\u0002\u0002\fN\u0003",
-    "\u0002\u0002\u0002\u000eP\u0003\u0002\u0002\u0002\u0010R\u0003\u0002",
-    "\u0002\u0002\u0012V\u0003\u0002\u0002\u0002\u0014_\u0003\u0002\u0002",
-    "\u0002\u0016k\u0003\u0002\u0002\u0002\u0018p\u0003\u0002\u0002\u0002",
-    "\u001az\u0003\u0002\u0002\u0002\u001c|\u0003\u0002\u0002\u0002\u001e",
-    "\u0080\u0003\u0002\u0002\u0002 \u0089\u0003\u0002\u0002\u0002\"\u0099",
-    "\u0003\u0002\u0002\u0002$\u009b\u0003\u0002\u0002\u0002&\u009d\u0003",
-    "\u0002\u0002\u0002(\u009f\u0003\u0002\u0002\u0002*\u00a1\u0003\u0002",
-    "\u0002\u0002,\u00a3\u0003\u0002\u0002\u0002.\u00a5\u0003\u0002\u0002",
-    "\u00020\u00a7\u0003\u0002\u0002\u000224\u0005\u0004\u0003\u000232\u0003",
-    "\u0002\u0002\u000245\u0003\u0002\u0002\u000253\u0003\u0002\u0002\u0002",
-    "56\u0003\u0002\u0002\u00026\u0003\u0003\u0002\u0002\u00027;\u0005\u0006",
-    "\u0004\u00028:\u0005\f\u0007\u000298\u0003\u0002\u0002\u0002:=\u0003",
-    "\u0002\u0002\u0002;9\u0003\u0002\u0002\u0002;<\u0003\u0002\u0002\u0002",
-    "<>\u0003\u0002\u0002\u0002=;\u0003\u0002\u0002\u0002>B\u0005\n\u0006",
-    "\u0002?A\u0007\u000b\u0002\u0002@?\u0003\u0002\u0002\u0002AD\u0003\u0002",
-    "\u0002\u0002B@\u0003\u0002\u0002\u0002BC\u0003\u0002\u0002\u0002C\u0005",
-    "\u0003\u0002\u0002\u0002DB\u0003\u0002\u0002\u0002EF\u0007\u0003\u0002",
-    "\u0002FG\u0005\b\u0005\u0002G\u0007\u0003\u0002\u0002\u0002HI\u0007",
-    "\u0017\u0002\u0002I\t\u0003\u0002\u0002\u0002JK\u0007\u0004\u0002\u0002",
-    "K\u000b\u0003\u0002\u0002\u0002LO\u0005\u0010\t\u0002MO\u0005 \u0011",
-    "\u0002NL\u0003\u0002\u0002\u0002NM\u0003\u0002\u0002\u0002O\r\u0003",
-    "\u0002\u0002\u0002PQ\t\u0002\u0002\u0002Q\u000f\u0003\u0002\u0002\u0002",
-    "RS\t\u0003\u0002\u0002S\u0011\u0003\u0002\u0002\u0002TW\u0005\u0014",
-    "\u000b\u0002UW\u0005\u0016\f\u0002VT\u0003\u0002\u0002\u0002VU\u0003",
-    "\u0002\u0002\u0002W\u0013\u0003\u0002\u0002\u0002X`\u0007\u001a\u0002",
-    "\u0002Y[\n\u0004\u0002\u0002Z\\\n\u0003\u0002\u0002[Z\u0003\u0002\u0002",
-    "\u0002\\]\u0003\u0002\u0002\u0002][\u0003\u0002\u0002\u0002]^\u0003",
-    "\u0002\u0002\u0002^`\u0003\u0002\u0002\u0002_X\u0003\u0002\u0002\u0002",
-    "_Y\u0003\u0002\u0002\u0002`\u0015\u0003\u0002\u0002\u0002al\u0007\u0019",
-    "\u0002\u0002bg\u0007-\u0002\u0002cf\n\u0004\u0002\u0002df\u0007.\u0002",
-    "\u0002ec\u0003\u0002\u0002\u0002ed\u0003\u0002\u0002\u0002fi\u0003\u0002",
-    "\u0002\u0002ge\u0003\u0002\u0002\u0002gh\u0003\u0002\u0002\u0002hj\u0003",
-    "\u0002\u0002\u0002ig\u0003\u0002\u0002\u0002jl\u0007-\u0002\u0002ka",
-    "\u0003\u0002\u0002\u0002kb\u0003\u0002\u0002\u0002l\u0017\u0003\u0002",
-    "\u0002\u0002mq\u0005\u001a\u000e\u0002nq\u0005\u001c\u000f\u0002oq\u0005",
-    "\u0012\n\u0002pm\u0003\u0002\u0002\u0002pn\u0003\u0002\u0002\u0002p",
-    "o\u0003\u0002\u0002\u0002q\u0019\u0003\u0002\u0002\u0002rs\u0005\u0016",
-    "\f\u0002st\u0007\u0007\u0002\u0002tu\u0005\u0014\u000b\u0002u{\u0003",
-    "\u0002\u0002\u0002vw\u0005\u0014\u000b\u0002wx\u0007\u0007\u0002\u0002",
-    "xy\u0005\u0014\u000b\u0002y{\u0003\u0002\u0002\u0002zr\u0003\u0002\u0002",
-    "\u0002zv\u0003\u0002\u0002\u0002{\u001b\u0003\u0002\u0002\u0002|}\u0005",
-    "\u0014\u000b\u0002}~\u0007\u0007\u0002\u0002~\u007f\u0005\u0016\f\u0002",
-    "\u007f\u001d\u0003\u0002\u0002\u0002\u0080\u0081\u0007\u0018\u0002\u0002",
-    "\u0081\u001f\u0003\u0002\u0002\u0002\u0082\u008a\u0005\"\u0012\u0002",
-    "\u0083\u008a\u0005$\u0013\u0002\u0084\u008a\u0005&\u0014\u0002\u0085",
-    "\u008a\u0005(\u0015\u0002\u0086\u008a\u0005*\u0016\u0002\u0087\u008a",
-    "\u0005,\u0017\u0002\u0088\u008a\u0005.\u0018\u0002\u0089\u0082\u0003",
-    "\u0002\u0002\u0002\u0089\u0083\u0003\u0002\u0002\u0002\u0089\u0084\u0003",
-    "\u0002\u0002\u0002\u0089\u0085\u0003\u0002\u0002\u0002\u0089\u0086\u0003",
-    "\u0002\u0002\u0002\u0089\u0087\u0003\u0002\u0002\u0002\u0089\u0088\u0003",
-    "\u0002\u0002\u0002\u008a\u008b\u0003\u0002\u0002\u0002\u008b\u008e\u0005",
-    "\u0018\r\u0002\u008c\u008d\u0007\b\u0002\u0002\u008d\u008f\u00050\u0019",
-    "\u0002\u008e\u008c\u0003\u0002\u0002\u0002\u008e\u008f\u0003\u0002\u0002",
-    "\u0002\u008f\u0092\u0003\u0002\u0002\u0002\u0090\u0091\u0007\u001b\u0002",
-    "\u0002\u0091\u0093\u0005\u000e\b\u0002\u0092\u0090\u0003\u0002\u0002",
-    "\u0002\u0092\u0093\u0003\u0002\u0002\u0002\u0093\u0095\u0003\u0002\u0002",
-    "\u0002\u0094\u0096\u0007\u001b\u0002\u0002\u0095\u0094\u0003\u0002\u0002",
-    "\u0002\u0095\u0096\u0003\u0002\u0002\u0002\u0096\u0097\u0003\u0002\u0002",
-    "\u0002\u0097\u0098\u0007\u001c\u0002\u0002\u0098!\u0003\u0002\u0002",
-    "\u0002\u0099\u009a\u0007\r\u0002\u0002\u009a#\u0003\u0002\u0002\u0002",
-    "\u009b\u009c\u0007\u000e\u0002\u0002\u009c%\u0003\u0002\u0002\u0002",
-    "\u009d\u009e\u0007\u000f\u0002\u0002\u009e\'\u0003\u0002\u0002\u0002",
-    "\u009f\u00a0\u0007\u0010\u0002\u0002\u00a0)\u0003\u0002\u0002\u0002",
-    "\u00a1\u00a2\u0007\u0011\u0002\u0002\u00a2+\u0003\u0002\u0002\u0002",
-    "\u00a3\u00a4\u0007\u0012\u0002\u0002\u00a4-\u0003\u0002\u0002\u0002",
-    "\u00a5\u00a6\u0007\u0013\u0002\u0002\u00a6/\u0003\u0002\u0002\u0002",
-    "\u00a7\u00a8\u0005\u0012\n\u0002\u00a81\u0003\u0002\u0002\u0002\u0012",
-    "5;BNV]_egkpz\u0089\u008e\u0092\u0095"].join("");
+    "\u0003\n\u0005\nW\n\n\u0003\u000b\u0003\u000b\u0003\f\u0003\f\u0003",
+    "\r\u0003\r\u0003\r\u0005\r`\n\r\u0003\u000e\u0003\u000e\u0003\u000e",
+    "\u0003\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0003\u000e\u0005\u000e",
+    "j\n\u000e\u0003\u000f\u0003\u000f\u0003\u000f\u0003\u000f\u0003\u0010",
+    "\u0003\u0010\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011",
+    "\u0003\u0011\u0003\u0011\u0005\u0011y\n\u0011\u0003\u0011\u0003\u0011",
+    "\u0003\u0011\u0005\u0011~\n\u0011\u0003\u0011\u0003\u0011\u0005\u0011",
+    "\u0082\n\u0011\u0003\u0011\u0005\u0011\u0085\n\u0011\u0003\u0011\u0003",
+    "\u0011\u0003\u0012\u0003\u0012\u0003\u0013\u0003\u0013\u0003\u0014\u0003",
+    "\u0014\u0003\u0015\u0003\u0015\u0003\u0016\u0003\u0016\u0003\u0017\u0003",
+    "\u0017\u0003\u0018\u0003\u0018\u0003\u0019\u0003\u0019\u0003\u0019\u0002",
+    "\u0002\u001a\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018",
+    "\u001a\u001c\u001e \"$&(*,.0\u0002\u0006\u0004\u0002\f\f\u0015\u0015",
+    "\u0003\u0002\u0011\u0012\u0004\u0002\u0014\u0014\u001a\u001a\u0004\u0002",
+    "\u0013\u0013\u0019\u0019\u0002\u0091\u00023\u0003\u0002\u0002\u0002",
+    "\u00047\u0003\u0002\u0002\u0002\u0006E\u0003\u0002\u0002\u0002\bH\u0003",
+    "\u0002\u0002\u0002\nJ\u0003\u0002\u0002\u0002\fN\u0003\u0002\u0002\u0002",
+    "\u000eP\u0003\u0002\u0002\u0002\u0010R\u0003\u0002\u0002\u0002\u0012",
+    "V\u0003\u0002\u0002\u0002\u0014X\u0003\u0002\u0002\u0002\u0016Z\u0003",
+    "\u0002\u0002\u0002\u0018_\u0003\u0002\u0002\u0002\u001ai\u0003\u0002",
+    "\u0002\u0002\u001ck\u0003\u0002\u0002\u0002\u001eo\u0003\u0002\u0002",
+    "\u0002 x\u0003\u0002\u0002\u0002\"\u0088\u0003\u0002\u0002\u0002$\u008a",
+    "\u0003\u0002\u0002\u0002&\u008c\u0003\u0002\u0002\u0002(\u008e\u0003",
+    "\u0002\u0002\u0002*\u0090\u0003\u0002\u0002\u0002,\u0092\u0003\u0002",
+    "\u0002\u0002.\u0094\u0003\u0002\u0002\u00020\u0096\u0003\u0002\u0002",
+    "\u000224\u0005\u0004\u0003\u000232\u0003\u0002\u0002\u000245\u0003\u0002",
+    "\u0002\u000253\u0003\u0002\u0002\u000256\u0003\u0002\u0002\u00026\u0003",
+    "\u0003\u0002\u0002\u00027;\u0005\u0006\u0004\u00028:\u0005\f\u0007\u0002",
+    "98\u0003\u0002\u0002\u0002:=\u0003\u0002\u0002\u0002;9\u0003\u0002\u0002",
+    "\u0002;<\u0003\u0002\u0002\u0002<>\u0003\u0002\u0002\u0002=;\u0003\u0002",
+    "\u0002\u0002>B\u0005\n\u0006\u0002?A\u0007\u0011\u0002\u0002@?\u0003",
+    "\u0002\u0002\u0002AD\u0003\u0002\u0002\u0002B@\u0003\u0002\u0002\u0002",
+    "BC\u0003\u0002\u0002\u0002C\u0005\u0003\u0002\u0002\u0002DB\u0003\u0002",
+    "\u0002\u0002EF\u0007\u0003\u0002\u0002FG\u0005\b\u0005\u0002G\u0007",
+    "\u0003\u0002\u0002\u0002HI\u0007\u001c\u0002\u0002I\t\u0003\u0002\u0002",
+    "\u0002JK\u0007\u0004\u0002\u0002K\u000b\u0003\u0002\u0002\u0002LO\u0005",
+    "\u0010\t\u0002MO\u0005 \u0011\u0002NL\u0003\u0002\u0002\u0002NM\u0003",
+    "\u0002\u0002\u0002O\r\u0003\u0002\u0002\u0002PQ\t\u0002\u0002\u0002",
+    "Q\u000f\u0003\u0002\u0002\u0002RS\t\u0003\u0002\u0002S\u0011\u0003\u0002",
+    "\u0002\u0002TW\u0005\u0014\u000b\u0002UW\u0005\u0016\f\u0002VT\u0003",
+    "\u0002\u0002\u0002VU\u0003\u0002\u0002\u0002W\u0013\u0003\u0002\u0002",
+    "\u0002XY\t\u0004\u0002\u0002Y\u0015\u0003\u0002\u0002\u0002Z[\t\u0005",
+    "\u0002\u0002[\u0017\u0003\u0002\u0002\u0002\\`\u0005\u001a\u000e\u0002",
+    "]`\u0005\u001c\u000f\u0002^`\u0005\u0012\n\u0002_\\\u0003\u0002\u0002",
+    "\u0002_]\u0003\u0002\u0002\u0002_^\u0003\u0002\u0002\u0002`\u0019\u0003",
+    "\u0002\u0002\u0002ab\u0005\u0016\f\u0002bc\u0007\u0016\u0002\u0002c",
+    "d\u0005\u0014\u000b\u0002dj\u0003\u0002\u0002\u0002ef\u0005\u0014\u000b",
+    "\u0002fg\u0007\u0016\u0002\u0002gh\u0005\u0014\u000b\u0002hj\u0003\u0002",
+    "\u0002\u0002ia\u0003\u0002\u0002\u0002ie\u0003\u0002\u0002\u0002j\u001b",
+    "\u0003\u0002\u0002\u0002kl\u0005\u0014\u000b\u0002lm\u0007\u0016\u0002",
+    "\u0002mn\u0005\u0016\f\u0002n\u001d\u0003\u0002\u0002\u0002op\u0007",
+    "\u001d\u0002\u0002p\u001f\u0003\u0002\u0002\u0002qy\u0005\"\u0012\u0002",
+    "ry\u0005$\u0013\u0002sy\u0005&\u0014\u0002ty\u0005(\u0015\u0002uy\u0005",
+    "*\u0016\u0002vy\u0005,\u0017\u0002wy\u0005.\u0018\u0002xq\u0003\u0002",
+    "\u0002\u0002xr\u0003\u0002\u0002\u0002xs\u0003\u0002\u0002\u0002xt\u0003",
+    "\u0002\u0002\u0002xu\u0003\u0002\u0002\u0002xv\u0003\u0002\u0002\u0002",
+    "xw\u0003\u0002\u0002\u0002yz\u0003\u0002\u0002\u0002z}\u0005\u0018\r",
+    "\u0002{|\u0007\u0017\u0002\u0002|~\u00050\u0019\u0002}{\u0003\u0002",
+    "\u0002\u0002}~\u0003\u0002\u0002\u0002~\u0081\u0003\u0002\u0002\u0002",
+    "\u007f\u0080\u0007\u0018\u0002\u0002\u0080\u0082\u0005\u000e\b\u0002",
+    "\u0081\u007f\u0003\u0002\u0002\u0002\u0081\u0082\u0003\u0002\u0002\u0002",
+    "\u0082\u0084\u0003\u0002\u0002\u0002\u0083\u0085\u0007\u0018\u0002\u0002",
+    "\u0084\u0083\u0003\u0002\u0002\u0002\u0084\u0085\u0003\u0002\u0002\u0002",
+    "\u0085\u0086\u0003\u0002\u0002\u0002\u0086\u0087\u0007\u001b\u0002\u0002",
+    "\u0087!\u0003\u0002\u0002\u0002\u0088\u0089\u0007\u0005\u0002\u0002",
+    "\u0089#\u0003\u0002\u0002\u0002\u008a\u008b\u0007\u0006\u0002\u0002",
+    "\u008b%\u0003\u0002\u0002\u0002\u008c\u008d\u0007\u0007\u0002\u0002",
+    "\u008d\'\u0003\u0002\u0002\u0002\u008e\u008f\u0007\b\u0002\u0002\u008f",
+    ")\u0003\u0002\u0002\u0002\u0090\u0091\u0007\t\u0002\u0002\u0091+\u0003",
+    "\u0002\u0002\u0002\u0092\u0093\u0007\n\u0002\u0002\u0093-\u0003\u0002",
+    "\u0002\u0002\u0094\u0095\u0007\u000b\u0002\u0002\u0095/\u0003\u0002",
+    "\u0002\u0002\u0096\u0097\u0005\u0014\u000b\u0002\u00971\u0003\u0002",
+    "\u0002\u0002\r5;BNV_ix}\u0081\u0084"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -114,17 +101,12 @@ var sharedContextCache = new antlr4.PredictionContextCache();
 
 var literalNames = [  ];
 
-var symbolicNames = [ null, "STARTUML", "ENDUML", "SINGLE_LINE_COMMENT", 
-                      "MULTI_LINE_COMMENT", "AS_KEYWORD", "ORDER_KEYWORD", 
-                      "HEX_COLORS", "NAMED_COLORS", "CRLF", "WSS", "PARTICIPANT", 
-                      "ACTOR", "BOUNDARY", "CONTROL", "ENTITY", "DATABASE", 
-                      "COLLECTIONS", "NOTE", "RNOTE", "HNOTE", "STARTUML_NAME", 
-                      "EOL_TEXT", "DP_QID", "DP_ID", "DP_WSS", "DP_CRLF", 
-                      "LEFT", "RIGHT", "LEFT_OF", "RIGHT_OF", "OVER_OF", 
-                      "ENDNOTE", "ENDRNOTE", "ENDHNOTE", "END_NOTE", "END_RNOTE", 
-                      "END_HNOTE", "NOTE_SINGLE_LINE", "NOTE_MULTI_LINE", 
-                      "END_MULTILINE_NOTE", "END_MULTILINE_RNOTE", "END_MULTILINE_HNOTE", 
-                      "DBLQUOTE", "ESC_DBLQUOTE" ];
+var symbolicNames = [ null, "STARTUML", "ENDUML", "PARTICIPANT", "ACTOR", 
+                      "BOUNDARY", "CONTROL", "ENTITY", "DATABASE", "COLLECTIONS", 
+                      "COLORS", "HEX_COLORS", "NAMED_COLORS", "SINGLE_LINE_COMMENT", 
+                      "MULTI_LINE_COMMENT", "CRLF", "WSS", "QID", "ID", 
+                      "DP_COLORS", "DP_AS", "DP_ORDER", "DP_WSS", "DP_QID", 
+                      "DP_ID", "DP_CRLF", "STARTUML_NAME", "EOL_TEXT" ];
 
 var ruleNames =  [ "document", "diagram", "startUml", "startUmlName", "endUml", 
                    "diagramItem", "color", "emptyLine", "identifier", "simpleIdentifier", 
@@ -155,48 +137,31 @@ Object.defineProperty(puml.prototype, "atn", {
 puml.EOF = antlr4.Token.EOF;
 puml.STARTUML = 1;
 puml.ENDUML = 2;
-puml.SINGLE_LINE_COMMENT = 3;
-puml.MULTI_LINE_COMMENT = 4;
-puml.AS_KEYWORD = 5;
-puml.ORDER_KEYWORD = 6;
-puml.HEX_COLORS = 7;
-puml.NAMED_COLORS = 8;
-puml.CRLF = 9;
-puml.WSS = 10;
-puml.PARTICIPANT = 11;
-puml.ACTOR = 12;
-puml.BOUNDARY = 13;
-puml.CONTROL = 14;
-puml.ENTITY = 15;
-puml.DATABASE = 16;
-puml.COLLECTIONS = 17;
-puml.NOTE = 18;
-puml.RNOTE = 19;
-puml.HNOTE = 20;
-puml.STARTUML_NAME = 21;
-puml.EOL_TEXT = 22;
+puml.PARTICIPANT = 3;
+puml.ACTOR = 4;
+puml.BOUNDARY = 5;
+puml.CONTROL = 6;
+puml.ENTITY = 7;
+puml.DATABASE = 8;
+puml.COLLECTIONS = 9;
+puml.COLORS = 10;
+puml.HEX_COLORS = 11;
+puml.NAMED_COLORS = 12;
+puml.SINGLE_LINE_COMMENT = 13;
+puml.MULTI_LINE_COMMENT = 14;
+puml.CRLF = 15;
+puml.WSS = 16;
+puml.QID = 17;
+puml.ID = 18;
+puml.DP_COLORS = 19;
+puml.DP_AS = 20;
+puml.DP_ORDER = 21;
+puml.DP_WSS = 22;
 puml.DP_QID = 23;
 puml.DP_ID = 24;
-puml.DP_WSS = 25;
-puml.DP_CRLF = 26;
-puml.LEFT = 27;
-puml.RIGHT = 28;
-puml.LEFT_OF = 29;
-puml.RIGHT_OF = 30;
-puml.OVER_OF = 31;
-puml.ENDNOTE = 32;
-puml.ENDRNOTE = 33;
-puml.ENDHNOTE = 34;
-puml.END_NOTE = 35;
-puml.END_RNOTE = 36;
-puml.END_HNOTE = 37;
-puml.NOTE_SINGLE_LINE = 38;
-puml.NOTE_MULTI_LINE = 39;
-puml.END_MULTILINE_NOTE = 40;
-puml.END_MULTILINE_RNOTE = 41;
-puml.END_MULTILINE_HNOTE = 42;
-puml.DBLQUOTE = 43;
-puml.ESC_DBLQUOTE = 44;
+puml.DP_CRLF = 25;
+puml.STARTUML_NAME = 26;
+puml.EOL_TEXT = 27;
 
 puml.RULE_document = 0;
 puml.RULE_diagram = 1;
@@ -366,7 +331,7 @@ puml.prototype.diagram = function() {
         this.state = 57;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << puml.CRLF) | (1 << puml.WSS) | (1 << puml.PARTICIPANT) | (1 << puml.ACTOR) | (1 << puml.BOUNDARY) | (1 << puml.CONTROL) | (1 << puml.ENTITY) | (1 << puml.DATABASE) | (1 << puml.COLLECTIONS))) !== 0)) {
+        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << puml.PARTICIPANT) | (1 << puml.ACTOR) | (1 << puml.BOUNDARY) | (1 << puml.CONTROL) | (1 << puml.ENTITY) | (1 << puml.DATABASE) | (1 << puml.COLLECTIONS) | (1 << puml.CRLF) | (1 << puml.WSS))) !== 0)) {
             this.state = 54;
             this.diagramItem();
             this.state = 59;
@@ -665,12 +630,12 @@ function ColorContext(parser, parent, invokingState) {
 ColorContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ColorContext.prototype.constructor = ColorContext;
 
-ColorContext.prototype.NAMED_COLORS = function() {
-    return this.getToken(puml.NAMED_COLORS, 0);
+ColorContext.prototype.COLORS = function() {
+    return this.getToken(puml.COLORS, 0);
 };
 
-ColorContext.prototype.HEX_COLORS = function() {
-    return this.getToken(puml.HEX_COLORS, 0);
+ColorContext.prototype.DP_COLORS = function() {
+    return this.getToken(puml.DP_COLORS, 0);
 };
 
 ColorContext.prototype.accept = function(visitor) {
@@ -695,7 +660,7 @@ puml.prototype.color = function() {
         this.enterOuterAlt(localctx, 1);
         this.state = 78;
         _la = this._input.LA(1);
-        if(!(_la===puml.HEX_COLORS || _la===puml.NAMED_COLORS)) {
+        if(!(_la===puml.COLORS || _la===puml.DP_COLORS)) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -827,20 +792,21 @@ puml.prototype.identifier = function() {
     try {
         this.state = 84;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,4,this._ctx);
-        switch(la_) {
-        case 1:
+        switch(this._input.LA(1)) {
+        case puml.ID:
+        case puml.DP_ID:
             this.enterOuterAlt(localctx, 1);
             this.state = 82;
             this.simpleIdentifier();
             break;
-
-        case 2:
+        case puml.QID:
+        case puml.DP_QID:
             this.enterOuterAlt(localctx, 2);
             this.state = 83;
             this.quotedIdentifier();
             break;
-
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -872,37 +838,13 @@ function SimpleIdentifierContext(parser, parent, invokingState) {
 SimpleIdentifierContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SimpleIdentifierContext.prototype.constructor = SimpleIdentifierContext;
 
+SimpleIdentifierContext.prototype.ID = function() {
+    return this.getToken(puml.ID, 0);
+};
+
 SimpleIdentifierContext.prototype.DP_ID = function() {
     return this.getToken(puml.DP_ID, 0);
 };
-
-SimpleIdentifierContext.prototype.DBLQUOTE = function() {
-    return this.getToken(puml.DBLQUOTE, 0);
-};
-
-SimpleIdentifierContext.prototype.WSS = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(puml.WSS);
-    } else {
-        return this.getToken(puml.WSS, i);
-    }
-};
-
-
-SimpleIdentifierContext.prototype.CRLF = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(puml.CRLF);
-    } else {
-        return this.getToken(puml.CRLF, i);
-    }
-};
-
 
 SimpleIdentifierContext.prototype.accept = function(visitor) {
     if ( visitor instanceof pumlVisitor ) {
@@ -923,52 +865,15 @@ puml.prototype.simpleIdentifier = function() {
     this.enterRule(localctx, 18, puml.RULE_simpleIdentifier);
     var _la = 0; // Token type
     try {
-        this.state = 93;
-        this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,6,this._ctx);
-        switch(la_) {
-        case 1:
-            this.enterOuterAlt(localctx, 1);
-            this.state = 86;
-            this.match(puml.DP_ID);
-            break;
-
-        case 2:
-            this.enterOuterAlt(localctx, 2);
-            this.state = 87;
-            _la = this._input.LA(1);
-            if(_la<=0 || _la===puml.DBLQUOTE) {
-            this._errHandler.recoverInline(this);
-            }
-            else {
-            	this._errHandler.reportMatch(this);
-                this.consume();
-            }
-            this.state = 89; 
-            this._errHandler.sync(this);
-            var _alt = 1;
-            do {
-            	switch (_alt) {
-            	case 1:
-            		this.state = 88;
-            		_la = this._input.LA(1);
-            		if(_la<=0 || _la===puml.CRLF || _la===puml.WSS) {
-            		this._errHandler.recoverInline(this);
-            		}
-            		else {
-            			this._errHandler.reportMatch(this);
-            		    this.consume();
-            		}
-            		break;
-            	default:
-            		throw new antlr4.error.NoViableAltException(this);
-            	}
-            	this.state = 91; 
-            	this._errHandler.sync(this);
-            	_alt = this._interp.adaptivePredict(this._input,5, this._ctx);
-            } while ( _alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER );
-            break;
-
+        this.enterOuterAlt(localctx, 1);
+        this.state = 86;
+        _la = this._input.LA(1);
+        if(!(_la===puml.ID || _la===puml.DP_ID)) {
+        this._errHandler.recoverInline(this);
+        }
+        else {
+        	this._errHandler.reportMatch(this);
+            this.consume();
         }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1000,33 +905,13 @@ function QuotedIdentifierContext(parser, parent, invokingState) {
 QuotedIdentifierContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 QuotedIdentifierContext.prototype.constructor = QuotedIdentifierContext;
 
+QuotedIdentifierContext.prototype.QID = function() {
+    return this.getToken(puml.QID, 0);
+};
+
 QuotedIdentifierContext.prototype.DP_QID = function() {
     return this.getToken(puml.DP_QID, 0);
 };
-
-QuotedIdentifierContext.prototype.DBLQUOTE = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(puml.DBLQUOTE);
-    } else {
-        return this.getToken(puml.DBLQUOTE, i);
-    }
-};
-
-
-QuotedIdentifierContext.prototype.ESC_DBLQUOTE = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(puml.ESC_DBLQUOTE);
-    } else {
-        return this.getToken(puml.ESC_DBLQUOTE, i);
-    }
-};
-
 
 QuotedIdentifierContext.prototype.accept = function(visitor) {
     if ( visitor instanceof pumlVisitor ) {
@@ -1047,53 +932,15 @@ puml.prototype.quotedIdentifier = function() {
     this.enterRule(localctx, 20, puml.RULE_quotedIdentifier);
     var _la = 0; // Token type
     try {
-        this.state = 105;
-        this._errHandler.sync(this);
-        switch(this._input.LA(1)) {
-        case puml.DP_QID:
-            this.enterOuterAlt(localctx, 1);
-            this.state = 95;
-            this.match(puml.DP_QID);
-            break;
-        case puml.DBLQUOTE:
-            this.enterOuterAlt(localctx, 2);
-            this.state = 96;
-            this.match(puml.DBLQUOTE);
-            this.state = 101;
-            this._errHandler.sync(this);
-            _la = this._input.LA(1);
-            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << puml.STARTUML) | (1 << puml.ENDUML) | (1 << puml.SINGLE_LINE_COMMENT) | (1 << puml.MULTI_LINE_COMMENT) | (1 << puml.AS_KEYWORD) | (1 << puml.ORDER_KEYWORD) | (1 << puml.HEX_COLORS) | (1 << puml.NAMED_COLORS) | (1 << puml.CRLF) | (1 << puml.WSS) | (1 << puml.PARTICIPANT) | (1 << puml.ACTOR) | (1 << puml.BOUNDARY) | (1 << puml.CONTROL) | (1 << puml.ENTITY) | (1 << puml.DATABASE) | (1 << puml.COLLECTIONS) | (1 << puml.NOTE) | (1 << puml.RNOTE) | (1 << puml.HNOTE) | (1 << puml.STARTUML_NAME) | (1 << puml.EOL_TEXT) | (1 << puml.DP_QID) | (1 << puml.DP_ID) | (1 << puml.DP_WSS) | (1 << puml.DP_CRLF) | (1 << puml.LEFT) | (1 << puml.RIGHT) | (1 << puml.LEFT_OF) | (1 << puml.RIGHT_OF) | (1 << puml.OVER_OF))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (puml.ENDNOTE - 32)) | (1 << (puml.ENDRNOTE - 32)) | (1 << (puml.ENDHNOTE - 32)) | (1 << (puml.END_NOTE - 32)) | (1 << (puml.END_RNOTE - 32)) | (1 << (puml.END_HNOTE - 32)) | (1 << (puml.NOTE_SINGLE_LINE - 32)) | (1 << (puml.NOTE_MULTI_LINE - 32)) | (1 << (puml.END_MULTILINE_NOTE - 32)) | (1 << (puml.END_MULTILINE_RNOTE - 32)) | (1 << (puml.END_MULTILINE_HNOTE - 32)) | (1 << (puml.ESC_DBLQUOTE - 32)))) !== 0)) {
-                this.state = 99;
-                this._errHandler.sync(this);
-                var la_ = this._interp.adaptivePredict(this._input,7,this._ctx);
-                switch(la_) {
-                case 1:
-                    this.state = 97;
-                    _la = this._input.LA(1);
-                    if(_la<=0 || _la===puml.DBLQUOTE) {
-                    this._errHandler.recoverInline(this);
-                    }
-                    else {
-                    	this._errHandler.reportMatch(this);
-                        this.consume();
-                    }
-                    break;
-
-                case 2:
-                    this.state = 98;
-                    this.match(puml.ESC_DBLQUOTE);
-                    break;
-
-                }
-                this.state = 103;
-                this._errHandler.sync(this);
-                _la = this._input.LA(1);
-            }
-            this.state = 104;
-            this.match(puml.DBLQUOTE);
-            break;
-        default:
-            throw new antlr4.error.NoViableAltException(this);
+        this.enterOuterAlt(localctx, 1);
+        this.state = 88;
+        _la = this._input.LA(1);
+        if(!(_la===puml.QID || _la===puml.DP_QID)) {
+        this._errHandler.recoverInline(this);
+        }
+        else {
+        	this._errHandler.reportMatch(this);
+            this.consume();
         }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1155,25 +1002,25 @@ puml.prototype.namedIdentifier = function() {
     var localctx = new NamedIdentifierContext(this, this._ctx, this.state);
     this.enterRule(localctx, 22, puml.RULE_namedIdentifier);
     try {
-        this.state = 110;
+        this.state = 93;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
+        var la_ = this._interp.adaptivePredict(this._input,5,this._ctx);
         switch(la_) {
         case 1:
             this.enterOuterAlt(localctx, 1);
-            this.state = 107;
+            this.state = 90;
             this.titleAsIdIdentifier();
             break;
 
         case 2:
             this.enterOuterAlt(localctx, 2);
-            this.state = 108;
+            this.state = 91;
             this.idAsTitleIdentifier();
             break;
 
         case 3:
             this.enterOuterAlt(localctx, 3);
-            this.state = 109;
+            this.state = 92;
             this.identifier();
             break;
 
@@ -1212,8 +1059,8 @@ TitleAsIdIdentifierContext.prototype.quotedIdentifier = function() {
     return this.getTypedRuleContext(QuotedIdentifierContext,0);
 };
 
-TitleAsIdIdentifierContext.prototype.AS_KEYWORD = function() {
-    return this.getToken(puml.AS_KEYWORD, 0);
+TitleAsIdIdentifierContext.prototype.DP_AS = function() {
+    return this.getToken(puml.DP_AS, 0);
 };
 
 TitleAsIdIdentifierContext.prototype.simpleIdentifier = function(i) {
@@ -1245,30 +1092,31 @@ puml.prototype.titleAsIdIdentifier = function() {
     var localctx = new TitleAsIdIdentifierContext(this, this._ctx, this.state);
     this.enterRule(localctx, 24, puml.RULE_titleAsIdIdentifier);
     try {
-        this.state = 120;
+        this.state = 103;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,11,this._ctx);
-        switch(la_) {
-        case 1:
+        switch(this._input.LA(1)) {
+        case puml.QID:
+        case puml.DP_QID:
             this.enterOuterAlt(localctx, 1);
-            this.state = 112;
+            this.state = 95;
             this.quotedIdentifier();
-            this.state = 113;
-            this.match(puml.AS_KEYWORD);
-            this.state = 114;
+            this.state = 96;
+            this.match(puml.DP_AS);
+            this.state = 97;
             this.simpleIdentifier();
             break;
-
-        case 2:
+        case puml.ID:
+        case puml.DP_ID:
             this.enterOuterAlt(localctx, 2);
-            this.state = 116;
+            this.state = 99;
             this.simpleIdentifier();
-            this.state = 117;
-            this.match(puml.AS_KEYWORD);
-            this.state = 118;
+            this.state = 100;
+            this.match(puml.DP_AS);
+            this.state = 101;
             this.simpleIdentifier();
             break;
-
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1304,8 +1152,8 @@ IdAsTitleIdentifierContext.prototype.simpleIdentifier = function() {
     return this.getTypedRuleContext(SimpleIdentifierContext,0);
 };
 
-IdAsTitleIdentifierContext.prototype.AS_KEYWORD = function() {
-    return this.getToken(puml.AS_KEYWORD, 0);
+IdAsTitleIdentifierContext.prototype.DP_AS = function() {
+    return this.getToken(puml.DP_AS, 0);
 };
 
 IdAsTitleIdentifierContext.prototype.quotedIdentifier = function() {
@@ -1331,11 +1179,11 @@ puml.prototype.idAsTitleIdentifier = function() {
     this.enterRule(localctx, 26, puml.RULE_idAsTitleIdentifier);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 122;
+        this.state = 105;
         this.simpleIdentifier();
-        this.state = 123;
-        this.match(puml.AS_KEYWORD);
-        this.state = 124;
+        this.state = 106;
+        this.match(puml.DP_AS);
+        this.state = 107;
         this.quotedIdentifier();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1390,7 +1238,7 @@ puml.prototype.eolText = function() {
     this.enterRule(localctx, 28, puml.RULE_eolText);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 126;
+        this.state = 109;
         this.match(puml.EOL_TEXT);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1458,8 +1306,8 @@ DeclareParticipantContext.prototype.declareCollections = function() {
     return this.getTypedRuleContext(DeclareCollectionsContext,0);
 };
 
-DeclareParticipantContext.prototype.ORDER_KEYWORD = function() {
-    return this.getToken(puml.ORDER_KEYWORD, 0);
+DeclareParticipantContext.prototype.DP_ORDER = function() {
+    return this.getToken(puml.DP_ORDER, 0);
 };
 
 DeclareParticipantContext.prototype.declareOrder = function() {
@@ -1502,71 +1350,71 @@ puml.prototype.declareParticipant = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 135;
+        this.state = 118;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case puml.PARTICIPANT:
-            this.state = 128;
+            this.state = 111;
             this.declareDefaultParticipant();
             break;
         case puml.ACTOR:
-            this.state = 129;
+            this.state = 112;
             this.declareActor();
             break;
         case puml.BOUNDARY:
-            this.state = 130;
+            this.state = 113;
             this.declareBoundary();
             break;
         case puml.CONTROL:
-            this.state = 131;
+            this.state = 114;
             this.declareControl();
             break;
         case puml.ENTITY:
-            this.state = 132;
+            this.state = 115;
             this.declareEntity();
             break;
         case puml.DATABASE:
-            this.state = 133;
+            this.state = 116;
             this.declareDatabase();
             break;
         case puml.COLLECTIONS:
-            this.state = 134;
+            this.state = 117;
             this.declareCollections();
             break;
         default:
             throw new antlr4.error.NoViableAltException(this);
         }
-        this.state = 137;
+        this.state = 120;
         this.namedIdentifier();
-        this.state = 140;
+        this.state = 123;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        if(_la===puml.ORDER_KEYWORD) {
-            this.state = 138;
-            this.match(puml.ORDER_KEYWORD);
-            this.state = 139;
+        if(_la===puml.DP_ORDER) {
+            this.state = 121;
+            this.match(puml.DP_ORDER);
+            this.state = 122;
             this.declareOrder();
         }
 
-        this.state = 144;
+        this.state = 127;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,14,this._ctx);
+        var la_ = this._interp.adaptivePredict(this._input,9,this._ctx);
         if(la_===1) {
-            this.state = 142;
+            this.state = 125;
             this.match(puml.DP_WSS);
-            this.state = 143;
+            this.state = 126;
             this.color();
 
         }
-        this.state = 147;
+        this.state = 130;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===puml.DP_WSS) {
-            this.state = 146;
+            this.state = 129;
             this.match(puml.DP_WSS);
         }
 
-        this.state = 149;
+        this.state = 132;
         this.match(puml.DP_CRLF);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1621,7 +1469,7 @@ puml.prototype.declareDefaultParticipant = function() {
     this.enterRule(localctx, 32, puml.RULE_declareDefaultParticipant);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 151;
+        this.state = 134;
         this.match(puml.PARTICIPANT);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1676,7 +1524,7 @@ puml.prototype.declareActor = function() {
     this.enterRule(localctx, 34, puml.RULE_declareActor);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 153;
+        this.state = 136;
         this.match(puml.ACTOR);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1731,7 +1579,7 @@ puml.prototype.declareBoundary = function() {
     this.enterRule(localctx, 36, puml.RULE_declareBoundary);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 155;
+        this.state = 138;
         this.match(puml.BOUNDARY);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1786,7 +1634,7 @@ puml.prototype.declareControl = function() {
     this.enterRule(localctx, 38, puml.RULE_declareControl);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 157;
+        this.state = 140;
         this.match(puml.CONTROL);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1841,7 +1689,7 @@ puml.prototype.declareEntity = function() {
     this.enterRule(localctx, 40, puml.RULE_declareEntity);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 159;
+        this.state = 142;
         this.match(puml.ENTITY);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1896,7 +1744,7 @@ puml.prototype.declareDatabase = function() {
     this.enterRule(localctx, 42, puml.RULE_declareDatabase);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 161;
+        this.state = 144;
         this.match(puml.DATABASE);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1951,7 +1799,7 @@ puml.prototype.declareCollections = function() {
     this.enterRule(localctx, 44, puml.RULE_declareCollections);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 163;
+        this.state = 146;
         this.match(puml.COLLECTIONS);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1983,8 +1831,8 @@ function DeclareOrderContext(parser, parent, invokingState) {
 DeclareOrderContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DeclareOrderContext.prototype.constructor = DeclareOrderContext;
 
-DeclareOrderContext.prototype.identifier = function() {
-    return this.getTypedRuleContext(IdentifierContext,0);
+DeclareOrderContext.prototype.simpleIdentifier = function() {
+    return this.getTypedRuleContext(SimpleIdentifierContext,0);
 };
 
 DeclareOrderContext.prototype.accept = function(visitor) {
@@ -2006,8 +1854,8 @@ puml.prototype.declareOrder = function() {
     this.enterRule(localctx, 46, puml.RULE_declareOrder);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 165;
-        this.identifier();
+        this.state = 148;
+        this.simpleIdentifier();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;

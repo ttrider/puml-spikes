@@ -28,17 +28,17 @@
                 "id": "Control",
                 "style": "control"
             },
-            "Entity": {
-                "type": "participant",
-                "index": 4,
-                "id": "Entity",
-                "style": "entity"
-            },
             "Database": {
                 "type": "participant",
-                "index": 5,
+                "index": 4,
                 "id": "Database",
                 "style": "database"
+            },
+            "Entity": {
+                "type": "participant",
+                "index": 5,
+                "id": "Entity",
+                "style": "entity"
             },
             "Collections": {
                 "type": "participant",
@@ -46,25 +46,29 @@
                 "id": "Collections",
                 "style": "collections"
             },
-            "Alice": {
+            "id2": {
                 "type": "participant",
                 "index": 7,
-                "id": "Alice"
+                "id": "id2",
+                "title": "Title2",
+                "style": "default",
+                "color": "#990099"
             },
-            "Bob": {
+            "id": {
                 "type": "participant",
                 "index": 8,
-                "id": "Bob"
+                "id": "id",
+                "title": "Title",
+                "style": "default",
+                "color": "#99ff99"
             },
-            "James Smith": {
+            "id3": {
                 "type": "participant",
                 "index": 9,
-                "id": "James Smith"
-            },
-            "Jeff": {
-                "type": "participant",
-                "index": 10,
-                "id": "Jeff"
+                "id": "id3",
+                "title": "Title3",
+                "style": "default",
+                "color": "#00ff11"
             }
         }
     }]

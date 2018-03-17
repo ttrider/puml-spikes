@@ -28,7 +28,7 @@ function printTokens(input) {
     var token = lexer.nextToken();
     while (token.type != -1) {
         console.info(pumlLexer.pumlLexer.prototype.symbolicNames[token.type]);
-        console.info(token.text);
+        console.info("'" + token.text + "'");
         token = lexer.nextToken();
     }
     console.info("~~~~~~~~~~");

@@ -5,7 +5,7 @@ import { parse } from "../model/parser";
 
 const testSet = [
     //"test/common", 
-   // "test/notes",
+    // "test/notes",
     "test/sequence"
 ];
 
@@ -19,9 +19,15 @@ async.eachOf(testSet,
                     console.info(item.name);
                     const actual = parse(item.diagram);
 
-                    deepCompare(actual, item.data);
-
-                    t.deepEqual(actual, item.data, JSON.stringify(actual));
+                    try {
+                        deepCompare(actual, item.data);
+                        t.pass(item.name);
+                        //t.deepEqual(actual, item.data, item.name);
+                    }
+                    catch (e) {
+                        console.log(JSON.stringify(actual));
+                        t.error(e);
+                    }
                 }
                 t.end();
                 icb();

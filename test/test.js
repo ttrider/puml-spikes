@@ -16,8 +16,15 @@ async.eachOf(testSet, function (item, index, icb) {
                 var item_1 = matches_1[_i];
                 console.info(item_1.name);
                 var actual = parser_1.parse(item_1.diagram);
-                util_1.deepCompare(actual, item_1.data);
-                t.deepEqual(actual, item_1.data, JSON.stringify(actual));
+                try {
+                    util_1.deepCompare(actual, item_1.data);
+                    t.pass(item_1.name);
+                    //t.deepEqual(actual, item.data, item.name);
+                }
+                catch (e) {
+                    console.log(JSON.stringify(actual));
+                    t.error(e);
+                }
             }
             t.end();
             icb();

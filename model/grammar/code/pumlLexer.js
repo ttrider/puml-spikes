@@ -1,4 +1,4 @@
-// Generated from pumlLexer.g4 by ANTLR 4.7.1
+// Generated from /Volumes/v/github/puml/spikes/model/grammar/pumlLexer.g4 by ANTLR 4.7.1
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 

@@ -6,4 +6,7 @@ control Control
 database Database
 entity Entity
 collections Collections
+participant "Title2" as id2   #990099 
+participant Title as id   #99FF99 
+participant id3 as "Title3"  #00FF11 
 @enduml
