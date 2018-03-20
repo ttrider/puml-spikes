@@ -2,6 +2,7 @@ import * as test from 'tape';
 import * as async from "async";
 import { getTests, deepCompare } from './util';
 import { parse } from "../model/parser";
+import { parse as rg } from "../model/rgparser";
 
 const testSet = [
     //"test/common", 
@@ -20,7 +21,8 @@ async.eachOf(testSet,
 
                 for (const item of matches) {
                     console.info(item.name);
-                    const actual = parse(item.diagram);
+                    const actual = rg(item.diagram);
+                    //const actual = parse(item.diagram);
 
                     try {
                         deepCompare(actual, item.data);
@@ -39,31 +41,3 @@ async.eachOf(testSet,
     }, (errcb) => {
 
     });
-
-// test('common', (t) => {
-
-//     getTests("test/common", (err, matches) => {
-
-//         for (const item of matches) {
-//             console.info(item.name);
-//             const actual = parse(item.diagram);
-
-//             t.deepEqual(actual, item.data, item.name);
-//         }
-//         t.end();
-//     });
-// });
-
-// test('notes', (t) => {
-
-//     getTests("test/notes", (err, matches) => {
-
-//         for (const item of matches) {
-//             console.info(item.name);
-//             const actual = parse(item.diagram);
-
-//             t.deepEqual(actual, item.data, item.name);
-//         }
-//         t.end();
-//     });
-// });

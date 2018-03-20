@@ -3,7 +3,7 @@ participant Participant
 actor Actor #red
 boundary Boundary
 control Control
-database Database
+database Database  
 entity Entity
 collections Collections
 participant "Title2" as id2   #990099 
