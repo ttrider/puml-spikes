@@ -3,26 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var document_1 = require("./document");
 // @startuml <text>
 var startuml = /^\s*(\@startuml)(.+?)?$/im;
-function visitStartuml(context) {
-    if (!context.results)
-        return false;
-    if (context.results.length < 3)
-        return false;
+function visitStartuml(context, results) {
     var diagram = new document_1.Diagram();
-    var name = context.results[2];
-    if (name) {
-        diagram.name = name.trim();
+    if (results.name) {
+        diagram.name = results.name;
     }
-    var document = context.getValue("document");
-    document.diagrams.push(diagram);
-    context.setValue("diagram", diagram);
-    context.pushState("diagram");
+    context.values.diagram = diagram;
     return true;
 }
 var enduml = /^\@enduml\s*$/im;
-function visitEnduml(context) {
-    context.deleteValue("diagram");
-    context.popState();
+function visitEnduml(context, results) {
+    context.values.document.diagrams.push(context.values.diagram);
+    delete context.values.diagram;
     return true;
 }
 var declareParticipant = /^\s*((participant)|(actor)|(boundary)|(control)|(database)|(entity)|(collections))\s*((\"[^"]+")|([^\s]+))(\s+as\s+((\"[^"]+")|([^\s]+)))?\s*(order\s+(\d+))?\s*(#\w+)?\s*$/im;
@@ -31,7 +23,11 @@ var pt = {
         expressions: [
             {
                 expression: startuml,
-                handler: visitStartuml
+                handler: visitStartuml,
+                mappings: {
+                    "name": 2
+                },
+                pushState: ["diagram"]
             }
         ]
     },
@@ -39,93 +35,103 @@ var pt = {
         expressions: [
             {
                 expression: enduml,
-                handler: visitEnduml
+                handler: visitEnduml,
+                mappings: {},
+                popState: 1
             }
         ]
     }
 };
-function process(context, value) {
-    if (context.state) {
-        var current = pt[context.state];
-        if (!current) {
-            throw Error("unknown state");
-        }
-        for (var _i = 0, _a = current.expressions; _i < _a.length; _i++) {
-            var exp = _a[_i];
-            var results = exp.expression.exec(value);
-            if (results && results.length) {
-                var rc = new Context(context, results);
-                if (exp.handler(rc)) {
-                    value = value.substring(results.index + results[0].length + 1);
-                    return value;
-                }
-            }
-        }
+var Parser = /** @class */ (function () {
+    function Parser(source) {
+        this.source = source;
+        this.stateStack = ["doc"];
+        this.values = {};
+        this.values.document = new document_1.Document();
     }
-    throw new Error("syntax error");
-}
-function parse(diagram) {
-    var context = new Context();
-    context.pushState("doc");
-    context.setValue("document", new document_1.Document());
-    var text = diagram;
-    while (text) {
-        text = process(context, text);
-    }
-    if (context.state != "doc") {
-        throw new Error("something went wrong");
-    }
-    var doc = context.getValue("document");
-    return doc;
-}
-exports.parse = parse;
-var Context = /** @class */ (function () {
-    function Context(parent, results) {
-        this.parent = parent;
-        this.results = results;
-        this.data = {};
-        this.stateStack = [];
-    }
-    Context.prototype.getValue = function (name) {
-        var value = this.data[name];
-        if (value !== undefined) {
-            return value;
-        }
-        if (this.parent) {
-            return this.parent.getValue(name);
-        }
-        return undefined;
-    };
-    Context.prototype.setValue = function (name, value) {
-        this.data[name] = value;
-        return value;
-    };
-    Context.prototype.deleteValue = function (name) {
-        delete this.data[name];
-    };
-    Context.prototype.pushState = function (state) {
-        if (this.parent) {
-            return this.parent.pushState(state);
-        }
-        this.stateStack.push(state);
-        return state;
-    };
-    Context.prototype.popState = function () {
-        if (this.parent) {
-            return this.parent.popState();
-        }
-        return this.stateStack.pop();
-    };
-    Object.defineProperty(Context.prototype, "state", {
+    Object.defineProperty(Parser.prototype, "state", {
         get: function () {
-            if (this.parent) {
-                return this.parent.state;
-            }
             return this.stateStack[this.stateStack.length - 1];
         },
         enumerable: true,
         configurable: true
     });
-    return Context;
+    Parser.prototype.parse = function () {
+        var value = this.source;
+        while (value) {
+            value = this.process(value);
+        }
+        if (this.stateStack.length != 1 && this.stateStack[0] != "doc") {
+            throw new Error("something went wrong - we are not in the 'doc' state");
+        }
+        return this.values.document;
+    };
+    Parser.prototype.process = function (value) {
+        if (this.state) {
+            var current = pt[this.state];
+            if (!current) {
+                throw Error("unknown state");
+            }
+            for (var _i = 0, _a = current.expressions; _i < _a.length; _i++) {
+                var exp = _a[_i];
+                var matches = exp.expression.exec(value);
+                if (matches && matches.length) {
+                    var results = new Results(matches, exp.mappings, exp.keepCRLF);
+                    if (exp.handler(this, results)) {
+                        value = results.getNextValue(value);
+                        if (exp.pushState && exp.pushState.length) {
+                            for (var _b = 0, _c = exp.pushState; _b < _c.length; _b++) {
+                                var stateName = _c[_b];
+                                this.stateStack.push(stateName);
+                            }
+                        }
+                        if (exp.popState !== undefined) {
+                            for (var i = 0; i < exp.popState; i++) {
+                                this.stateStack.pop();
+                            }
+                        }
+                        return value;
+                    }
+                }
+            }
+        }
+        throw new Error("syntax error");
+    };
+    return Parser;
+}());
+function parse(diagram) {
+    var p = new Parser(diagram);
+    return p.parse();
+}
+exports.parse = parse;
+var Results = /** @class */ (function () {
+    function Results(source, mapping, keepCRLF) {
+        if (source && source.length && mapping) {
+            for (var key in mapping) {
+                if (mapping.hasOwnProperty(key)) {
+                    var index_1 = mapping[key];
+                    if (index_1 < source.length) {
+                        var v = source[index_1];
+                        if (v && typeof v === "string") {
+                            this[key] = v.trim();
+                        }
+                        else
+                            this[key] = v;
+                    }
+                }
+            }
+            var index_2 = source.index + source[0].length + ((keepCRLF) ? 0 : 1);
+            this.getNextValue = function (value) {
+                if (!value) {
+                    return value;
+                }
+                return value.substring(index_2);
+            };
+        }
+        else {
+            this.getNextValue = function (value) { return value; };
+        }
+    }
+    return Results;
 }());
 //# sourceMappingURL=rgparser.js.map
