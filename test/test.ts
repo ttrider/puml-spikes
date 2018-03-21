@@ -5,13 +5,13 @@ import { parse } from "../model/parser";
 import { parse as rg } from "../model/rgparser";
 
 const testSet = [
-    //"test/common", 
+    "test/common", 
     // "test/notes",
-    "test/sequence"
+    //"test/sequence"
 ];
 
-//const filePattern =  "**/*.wsd";
-const filePattern = "**/02.message.wsd";
+const filePattern =  "**/*.wsd";
+//const filePattern = "**/02.message.wsd";
 
 async.eachOf(testSet,
     (item, index, icb) => {

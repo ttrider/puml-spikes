@@ -5,12 +5,10 @@ var async = require("async");
 var util_1 = require("./util");
 var rgparser_1 = require("../model/rgparser");
 var testSet = [
-    //"test/common", 
-    // "test/notes",
-    "test/sequence"
+    "test/common",
 ];
-//const filePattern =  "**/*.wsd";
-var filePattern = "**/02.message.wsd";
+var filePattern = "**/*.wsd";
+//const filePattern = "**/02.message.wsd";
 async.eachOf(testSet, function (item, index, icb) {
     test(item, function (t) {
         util_1.getTests(item, filePattern, function (err, matches) {
