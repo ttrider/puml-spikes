@@ -60,7 +60,7 @@
                 "id": "id",
                 "title": "Title",
                 "style": "default",
-                "color": "#99ff99"
+                "color": "#99FF99"
             },
             "id3": {
                 "type": "participant",
@@ -68,7 +68,7 @@
                 "id": "id3",
                 "title": "Title3",
                 "style": "default",
-                "color": "#00ff11"
+                "color": "#00FF11"
             }
         }
     }]

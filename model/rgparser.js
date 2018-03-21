@@ -1,47 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var document_1 = require("./document");
-// @startuml <text>
-var startuml = /^\s*(\@startuml)(.+?)?$/im;
-function visitStartuml(context, results) {
-    var diagram = new document_1.Diagram();
-    if (results.name) {
-        diagram.name = results.name;
-    }
-    context.values.diagram = diagram;
-    return true;
-}
-var enduml = /^\@enduml\s*$/im;
-function visitEnduml(context, results) {
-    context.values.document.diagrams.push(context.values.diagram);
-    delete context.values.diagram;
-    return true;
-}
-var declareParticipant = /^\s*((participant)|(actor)|(boundary)|(control)|(database)|(entity)|(collections))\s*((\"[^"]+")|([^\s]+))(\s+as\s+((\"[^"]+")|([^\s]+)))?\s*(order\s+(\d+))?\s*(#\w+)?\s*$/im;
+var visitStartuml = require("./parser/visitStartuml");
+var visitEnduml = require("./parser/visitEnduml");
+var visitDeclareParticipant = require("./parser/visitDeclareParticipant");
 var pt = {
     "doc": {
-        expressions: [
-            {
-                expression: startuml,
-                handler: visitStartuml,
-                mappings: {
-                    "name": 2
-                },
-                pushState: ["diagram"]
-            }
-        ]
+        expressions: [visitStartuml]
     },
     "diagram": {
         expressions: [
-            {
-                expression: enduml,
-                handler: visitEnduml,
-                mappings: {},
-                popState: 1
-            }
+            visitDeclareParticipant,
+            visitEnduml
         ]
     }
 };
+function parse(diagram) {
+    var p = new Parser(diagram);
+    return p.parse();
+}
+exports.parse = parse;
 var Parser = /** @class */ (function () {
     function Parser(source) {
         this.source = source;
@@ -99,11 +77,6 @@ var Parser = /** @class */ (function () {
     };
     return Parser;
 }());
-function parse(diagram) {
-    var p = new Parser(diagram);
-    return p.parse();
-}
-exports.parse = parse;
 var Results = /** @class */ (function () {
     function Results(source, mapping, keepCRLF) {
         if (source && source.length && mapping) {

@@ -1,28 +1,11 @@
 import { Diagram, Document } from "./document";
 
+import * as visitStartuml from "./parser/visitStartuml";
+import * as visitEnduml from "./parser/visitEnduml";
+import * as visitDeclareParticipant from "./parser/visitDeclareParticipant";
 
-// @startuml <text>
-const startuml = /^\s*(\@startuml)(.+?)?$/im;
-function visitStartuml(context: IContext, results: Results) {
 
-    const diagram = new Diagram();
-    if (results.name) {
-        diagram.name = results.name;
-    }
-    context.values.diagram = diagram;
-    return true;
-}
 
-const enduml = /^\@enduml\s*$/im;
-function visitEnduml(context: IContext, results: Results) {
-    (<Document>context.values.document).diagrams.push(context.values.diagram);
-    delete context.values.diagram;
-    return true;
-}
-
-const declareParticipant = /^\s*((participant)|(actor)|(boundary)|(control)|(database)|(entity)|(collections))\s*((\"[^"]+")|([^\s]+))(\s+as\s+((\"[^"]+")|([^\s]+)))?\s*(order\s+(\d+))?\s*(#\w+)?\s*$/im;
-
-type states = undefined | "doc" | "diagram";
 
 const pt: {
     [name: string]: {
@@ -30,34 +13,23 @@ const pt: {
     }
 } = {
         "doc": {
-            expressions: [
-                {
-                    expression: startuml,
-                    handler: visitStartuml,
-                    mappings: {
-                        "name": 2
-                    },
-                    pushState: ["diagram"]
-                }]
+            expressions: [visitStartuml]
         },
         "diagram": {
             expressions: [
-                {
-                    expression: enduml,
-                    handler: visitEnduml,
-                    mappings: {},
-                    popState: 1
-                }
+                visitDeclareParticipant,
+                visitEnduml
             ]
         }
     };
 
-interface IContext {
-    stateStack: states[];
-    values: { [name: string]: any };
-    state: states;
-}
 
+export function parse(diagram: string): Document {
+
+    const p = new Parser(diagram);
+
+    return p.parse();
+}
 
 class Parser implements IContext {
     stateStack: states[] = ["doc"];
@@ -129,15 +101,7 @@ class Parser implements IContext {
 
 }
 
-export function parse(diagram: string): Document {
-
-    const p = new Parser(diagram);
-
-    return p.parse();
-}
-
-
-class Results {
+class Results implements IResults {
     [x: string]: any;
     constructor(source: RegExpExecArray, mapping: { [name: string]: number }, keepCRLF?: boolean) {
         if (source && source.length && mapping) {
@@ -173,14 +137,3 @@ class Results {
 
 
 
-
-interface ExpressionHandler {
-    expression: RegExp;
-    handler: (context: IContext, results: Results) => boolean;
-    mappings: { [name: string]: number };
-
-    pushState?: states[];
-    popState?: number;
-
-    keepCRLF?: boolean
-}

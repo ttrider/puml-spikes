@@ -5,7 +5,9 @@ var async = require("async");
 var util_1 = require("./util");
 var rgparser_1 = require("../model/rgparser");
 var testSet = [
-    "test/common",
+    // "test/common", 
+    // "test/notes",
+    "test/sequence"
 ];
 var filePattern = "**/*.wsd";
 //const filePattern = "**/02.message.wsd";
